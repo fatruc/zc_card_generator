@@ -18,20 +18,32 @@
 	max-width: 80%;
   }
  
+ .card_stats {
+	position: absolute;
+	z-index: 999;
+	top:0;
+	left:0;
+ }
   
 </style>
 
 <input type="file" id="files" name="files[]" multiple />
+<input id="input_range" type="text" onchange="update"/>
+<input id="input_nb_dice" type="text" onchange="update"/>
+<input id="input_val_dice" type="text" onchange="update"/>
+<input id="input_power" type="text" onchange="update"/>
 <br/><br/>
 <div id="card_overlay">
-	<img src="blank_cards/0001.jpg" id="card_background"/>
 	<img id="card_image" src=""/>
+	<div id="output_range" class="card_stats"></div>
+	<div id="output_nb_dice" class="card_stats"></div>
+	<div id="output_val_dice" class="card_stats"></div>
+	<div id="output_power" class="card_stats"></div>
+	
+	<img src="blank_cards/0001.jpg" id="card_background"/>
 </div>
 <br/>
-<input id="" type="text"/>
-<input id="" type="text"/>
-<input id="" type="text"/>
-<input id="" type="text"/>
+
 
 <script>
   function handleFileSelect(evt) {
@@ -69,14 +81,22 @@
 	
 
   }
+  
+  function update(){
+	document.getElementById("output_range").innerHTML=document.getElementById("input_range").value;
+	document.getElementById("output_nb_dice").innerHTML=document.getElementById("input_nb_dice").value;
+	document.getElementById("output_val_dice").innerHTML=document.getElementById("input_val_dice").value;
+	document.getElementById("output_power").innerHTML=document.getElementById("input_power").value;
+  }
 
   	window.onload = function(e){
 		  var card_image = document.getElementById("card_image");
 		  var card_overlay = document.getElementById("card_overlay");
-		  
-
-
-	  }
+	}
   
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  document.getElementById('input_range').addEventListener('change', update, false);
+  document.getElementById('input_nb_dice').addEventListener('change', update, false);
+  document.getElementById('input_val_dice').addEventListener('change', update, false);
+  document.getElementById('input_power').addEventListener('change', update, false);
 </script>
