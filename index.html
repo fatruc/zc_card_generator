@@ -100,7 +100,8 @@
 				html2canvas(document.getElementById("card_overlay"), {
 				onrendered: function(canvas) {
 					document.getElementById("card_download").href=canvas.toDataURL('image/png');
-				}
+				},
+				logging:true
 			});
 			
 		  }
