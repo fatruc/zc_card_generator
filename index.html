@@ -203,13 +203,13 @@
 				  var card_overlay = document.getElementById("card_overlay");
 
 				  document.getElementById('card_file').addEventListener('change', handleFileSelect, false);
-				  document.getElementById('input_range').addEventListener('keyup', update, false);
-				  document.getElementById('input_nb_dice').addEventListener('keyup', update, false);
-				  document.getElementById('input_val_dice').addEventListener('keyup', update, false);
-				  document.getElementById('input_power').addEventListener('keyup', update, false);
-				  document.getElementById('input_card_name').addEventListener('keyup', update, false);
-				  document.getElementById('input_card_sub_name').addEventListener('keyup', update, false);
-				  document.getElementById('input_description').addEventListener('keyup', update, false);
+				  document.getElementById('input_range').addEventListener('change', update, false);
+				  document.getElementById('input_nb_dice').addEventListener('change', update, false);
+				  document.getElementById('input_val_dice').addEventListener('change', update, false);
+				  document.getElementById('input_power').addEventListener('change', update, false);
+				  document.getElementById('input_card_name').addEventListener('change', update, false);
+				  document.getElementById('input_card_sub_name').addEventListener('change', update, false);
+				  document.getElementById('input_description').addEventListener('change', update, false);
 				  
 				  document.getElementById("input_ultrared").addEventListener('click', update,false);
 				  
@@ -228,7 +228,6 @@
 		<img id="card_image" src=""/>
 		<img src="img/Stats.png" id="calque_stats" class="calque"/>
 		<img src="img/Text.png" id="calque_description" class="calque"/>
-		<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
 		<div id="output_card_name" ></div>
 		<div id="output_card_sub_name" ></div>
 		<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
@@ -236,6 +235,7 @@
 		<div id="output_nb_dice" class="card_stats"></div>
 		<div id="output_val_dice" class="card_stats"></div>
 		<div id="output_power" class="card_stats"></div>
+		<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
 		
 	</div>
 
