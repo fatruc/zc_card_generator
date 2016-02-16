@@ -20,10 +20,35 @@
  
  .card_stats {
 	position: absolute;
+	font-family: EurostileLTStd;
 	z-index: 999;
-	top:0;
-	left:0;
+	top:5.8cm;
  }
+ 
+ #output_range {
+	right:3.2cm
+ }
+
+ #output_nb_dice {
+	right:2.3cm
+ }
+ 
+  #output_val_dice {
+	right:1.4cm
+ }
+
+  #output_power {
+	right:0.5cm
+ }
+ 
+ @font-face {
+	font-family: EurostileLTStd;
+	src: url("fonts/EurostileLTStd-BoldCn.otf") format("opentype");
+	font-size: 42px;
+	color:#000000;
+	text-align:right;
+}
+
   
 </style>
 
@@ -34,13 +59,14 @@
 <input id="input_power" type="text" onchange="update"/>
 <br/><br/>
 <div id="card_overlay">
-	<img id="card_image" src=""/>
+	
 	<div id="output_range" class="card_stats"></div>
 	<div id="output_nb_dice" class="card_stats"></div>
 	<div id="output_val_dice" class="card_stats"></div>
 	<div id="output_power" class="card_stats"></div>
 	
-	<img src="blank_cards/0001.jpg" id="card_background"/>
+	<img src="blank_cards/0003.jpg" id="card_background"/>
+	<img id="card_image" src=""/>
 </div>
 <br/>
 
@@ -63,17 +89,14 @@
       reader.onload = (function(theFile) {
         return function(e) {
           // Render thumbnail.
-		  
 		  var card_image = document.getElementById("card_image");
           card_image.src=e.target.result;
-
+		  
 		  card_image.style.left=(card_overlay.offsetWidth-card_image.offsetWidth)/2;
 		  
         };
       })(f);
 
-
-	  
 	  
       // Read in the image file as a data URL.
       reader.readAsDataURL(f);
