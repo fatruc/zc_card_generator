@@ -74,17 +74,27 @@
 			text-align:center
 		 }
 		 
-		 #output_description {
+		 #output_description_container {
 		 	position:absolute;
-			font-family: EurostileLTStd;
 			/* 89px -> 65pt */
 			font-size: 18pt;
 			color:#5C5C5F;
 			top: 545px;
-			width: 400px;
+			width: 420px;
+			height: 205px;
 			left: 35px;
+		 }
+		 
+		#output_description_container  tr{
+			height: 205px;
+			vertical-align:middle;
+		 }
+		 
+		 #output_description_container  tr td{
+			font-family: EurostileLTStd;
+			font-size: 18pt;
+			color:#5C5C5F;
 			text-align:center;
-			padding: 10px;
 		 }
 		 
 		 @font-face {
@@ -171,8 +181,8 @@
 			if(description){
 				document.getElementById("calque_description").style.display="block";
 				
-				window.alert(document.getElementById("output_description").offsetHeight);
-				document.getElementById("output_description").style.top=545 + (205-document.getElementById("output_description").offsetHeight)/2;
+				//window.alert(document.getElementById("output_description").offsetHeight);
+				//document.getElementById("output_description").style.top=545 + (205-document.getElementById("output_description").offsetHeight)/2;
 				} else {
 				document.getElementById("calque_description").style.display="none";
 			}
@@ -221,7 +231,7 @@
 		<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
 		<div id="output_card_name" ></div>
 		<div id="output_card_sub_name" ></div>
-		<div id="output_description" ></div>
+		<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
 		<div id="output_range" class="card_stats"></div>
 		<div id="output_nb_dice" class="card_stats"></div>
 		<div id="output_val_dice" class="card_stats"></div>
