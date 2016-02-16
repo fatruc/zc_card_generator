@@ -19,7 +19,7 @@
 			position: absolute;
 			font-family: EurostileLTStd;
 			top:685px;
-			font-size: 42pt;
+			font-size: 30pt;
 			color:#000000;
 			text-align:right;
 		 }
@@ -55,10 +55,36 @@
 		 #output_card_name {
 			position:absolute;
 			font-family: Crackhouse;
-			font-size: 89pt;
+			/* 89px -> 65pt */
+			font-size: 65pt;
 			color:#090808;
 			width: 497px;
+			top:30px;
 			text-align:center
+		 }
+
+		 #output_card_sub_name {
+			position:absolute;
+			font-family: EurostileLTStd;
+			/* 89px -> 65pt */
+			font-size: 18pt;
+			color:#5C5C5F;
+			width: 497px;
+			top:125px;
+			text-align:center
+		 }
+		 
+		 #output_description {
+		 	position:absolute;
+			font-family: EurostileLTStd;
+			/* 89px -> 65pt */
+			font-size: 18pt;
+			color:#5C5C5F;
+			top: 545px;
+			width: 400px;
+			left: 35px;
+			text-align:center;
+			padding: 10px;
 		 }
 		 
 		 @font-face {
@@ -125,24 +151,36 @@
 			var val_dices = document.getElementById("input_val_dice").value;
 			var power = document.getElementById("input_power").value;
 			var card_name = document.getElementById("input_card_name").value;
+			var card_sub_name = document.getElementById("input_card_sub_name").value;
+			var description = document.getElementById("input_description").value;
 			
 			if(range!="" || nb_dices!="" || val_dices!="" || power!=""){
-				document.getElementById("output_stats").style.display="block";
+				document.getElementById("calque_stats").style.display="block";
 			} else {
-				document.getElementById("output_stats").style.display="none";
+				document.getElementById("calque_stats").style.display="none";
 			}
 			
 			document.getElementById("output_range").innerHTML=range;
 			document.getElementById("output_nb_dice").innerHTML=nb_dices;
 			document.getElementById("output_val_dice").innerHTML=val_dices;
 			document.getElementById("output_power").innerHTML=power;
-			document.getElementById("output_card_name").innerHTML=card_name;
+			document.getElementById("output_card_name").innerHTML=card_name.toUpperCase();
+			document.getElementById("output_card_sub_name").innerHTML=card_sub_name.toUpperCase();
+			document.getElementById("output_description").innerHTML=description.toUpperCase();
 			
+			if(description){
+				document.getElementById("calque_description").style.display="block";
+				
+				window.alert(document.getElementById("output_description").offsetHeight);
+				document.getElementById("output_description").style.top=545 + (205-document.getElementById("output_description").offsetHeight)/2;
+				} else {
+				document.getElementById("calque_description").style.display="none";
+			}
 			
 			if(document.getElementById("input_ultrared").checked){
-				document.getElementById("output_ultrared").style.display="block";
+				document.getElementById("calque_ultrared").style.display="block";
 			} else {
-				document.getElementById("output_ultrared").style.display="none";
+				document.getElementById("calque_ultrared").style.display="none";
 			}
 			
 			
@@ -159,7 +197,9 @@
 				  document.getElementById('input_nb_dice').addEventListener('change', update, false);
 				  document.getElementById('input_val_dice').addEventListener('change', update, false);
 				  document.getElementById('input_power').addEventListener('change', update, false);
-				  document.getElementById('input_card_name').addEventListener('change', update, false);
+				  document.getElementById('input_card_name').addEventListener('keyup', update, false);
+				  document.getElementById('input_card_sub_name').addEventListener('change', update, false);
+				  document.getElementById('input_description').addEventListener('change', update, false);
 				  
 				  document.getElementById("input_ultrared").addEventListener('change', update,false);
 				  
@@ -176,9 +216,12 @@
 	<div id="card_overlay">
 		<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
 		<img id="card_image" src=""/>
-		<img src="img/Stats.png" id="output_stats" class="calque"/>
+		<img src="img/Stats.png" id="calque_stats" class="calque"/>
+		<img src="img/Text.png" id="calque_description" class="calque"
+		<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
 		<div id="output_card_name" ></div>
-		<img src="img/Ultrared.png" id="output_ultrared" class="calque"/>
+		<div id="output_card_sub_name" ></div>
+		<div id="output_description" ></div>
 		<div id="output_range" class="card_stats"></div>
 		<div id="output_nb_dice" class="card_stats"></div>
 		<div id="output_val_dice" class="card_stats"></div>
@@ -186,16 +229,43 @@
 		
 	</div>
 
-	<input type="text" id="input_card_name"/>
-	<input type="file" id="card_file" name="files[]" multiple />
+	<table border="0">
+		<tr>
+			<td>Titre:</td>
+			<td><input type="text" id="input_card_name"/></td>
+		</tr>
+		<tr>
+			<td>Sous-titre:</td>
+			<td><input type="text" id="input_card_sub_name"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="file" id="card_file" name="files[]" multiple />
+			</td>
+		</tr>
+		<tr>
+			<td>Stats:</td>
+			<td>
+					<input id="input_range" type="text" class="input_card_stats" />
+					<input id="input_nb_dice" type="text" class="input_card_stats" />
+					<input id="input_val_dice" type="text" class="input_card_stats" >
+					<input id="input_power" type="text" class="input_card_stats" />
+			</td>
+		</tr>
+		<tr>
+			<td>Description:</td>
+			<td><input type="text" id="input_description"/></td>
+		</tr>
+		<tr>
+			<td>Ultrarouge:</td>
+			<td><input type="checkbox" id="input_ultrared"/></td>
+		</tr>
+	</table>
+	
+	
 	<br/>
-	<input id="input_range" type="text" class="input_card_stats" />
-	<input id="input_nb_dice" type="text" class="input_card_stats" />
-	<input id="input_val_dice" type="text" class="input_card_stats" >
-	<input id="input_power" type="text" class="input_card_stats" />
-	<br/>
-	Ultrarouge ? <input type="checkbox" id="input_ultrared"/>
-	<br/>
+
+
 	<a id="card_download" download="card.png" href="">Download</a>
 <br/>
 </body>
