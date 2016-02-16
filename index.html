@@ -52,12 +52,24 @@
 		 	position:absolute;
 		 }
 		 
+		 #output_card_name {
+			position:absolute;
+			font-family: Crackhouse;
+			font-size: 89pt;
+			color:#090808;
+			width: 497px;
+			text-align:center
+		 }
+		 
 		 @font-face {
 			font-family: EurostileLTStd;
 			src: url("fonts/EurostileLTStd-BoldCn.otf") format("opentype");
-
 		}
 
+		@font-face {
+			font-family: Crackhouse;
+			src: url('fonts/crackhouse.otf') format("opentype");
+		}
 		  
 		</style>
 
@@ -112,6 +124,7 @@
 			var nb_dices = document.getElementById("input_nb_dice").value;
 			var val_dices = document.getElementById("input_val_dice").value;
 			var power = document.getElementById("input_power").value;
+			var card_name = document.getElementById("input_card_name").value;
 			
 			if(range!="" || nb_dices!="" || val_dices!="" || power!=""){
 				document.getElementById("output_stats").style.display="block";
@@ -123,6 +136,7 @@
 			document.getElementById("output_nb_dice").innerHTML=nb_dices;
 			document.getElementById("output_val_dice").innerHTML=val_dices;
 			document.getElementById("output_power").innerHTML=power;
+			document.getElementById("output_card_name").innerHTML=card_name;
 			
 			
 			if(document.getElementById("input_ultrared").checked){
@@ -145,6 +159,7 @@
 				  document.getElementById('input_nb_dice').addEventListener('change', update, false);
 				  document.getElementById('input_val_dice').addEventListener('change', update, false);
 				  document.getElementById('input_power').addEventListener('change', update, false);
+				  document.getElementById('input_card_name').addEventListener('change', update, false);
 				  
 				  document.getElementById("input_ultrared").addEventListener('change', update,false);
 				  
@@ -160,15 +175,18 @@
 
 	<div id="card_overlay">
 		<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-		<img src="img/Stats.png" id="output_stats" class="calque"/>
-		<img src="img/Ultrared.png" id="output_ultrared" class="calque"/>
 		<img id="card_image" src=""/>
+		<img src="img/Stats.png" id="output_stats" class="calque"/>
+		<div id="output_card_name" ></div>
+		<img src="img/Ultrared.png" id="output_ultrared" class="calque"/>
 		<div id="output_range" class="card_stats"></div>
 		<div id="output_nb_dice" class="card_stats"></div>
 		<div id="output_val_dice" class="card_stats"></div>
 		<div id="output_power" class="card_stats"></div>
+		
 	</div>
 
+	<input type="text" id="input_card_name"/>
 	<input type="file" id="card_file" name="files[]" multiple />
 	<br/>
 	<input id="input_range" type="text" class="input_card_stats" />
