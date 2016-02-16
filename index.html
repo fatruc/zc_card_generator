@@ -222,61 +222,68 @@
 
 	</head>
 <body>
-
-	<div id="card_overlay">
-		<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-		<img id="card_image" src=""/>
-		<img src="img/Stats.png" id="calque_stats" class="calque"/>
-		<img src="img/Text.png" id="calque_description" class="calque"/>
-		<div id="output_card_name" ></div>
-		<div id="output_card_sub_name" ></div>
-		<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
-		<div id="output_range" class="card_stats"></div>
-		<div id="output_nb_dice" class="card_stats"></div>
-		<div id="output_val_dice" class="card_stats"></div>
-		<div id="output_power" class="card_stats"></div>
-		<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
-		
-	</div>
-
-	<table border="0">
+	<table>
 		<tr>
-			<td>Titre:</td>
-			<td><input type="text" id="input_card_name"/></td>
-		</tr>
-		<tr>
-			<td>Sous-titre:</td>
-			<td><input type="text" id="input_card_sub_name"/></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="file" id="card_file" name="files[]" multiple />
-			</td>
-		</tr>
-		<tr>
-			<td>Stats:</td>
 			<td>
-					<input id="input_range" type="text" class="input_card_stats" />
-					<input id="input_nb_dice" type="text" class="input_card_stats" />
-					<input id="input_val_dice" type="text" class="input_card_stats" >
-					<input id="input_power" type="text" class="input_card_stats" />
+				<div id="card_overlay">
+					<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
+					<img id="card_image" src=""/>
+					<img src="img/Stats.png" id="calque_stats" class="calque"/>
+					<img src="img/Text.png" id="calque_description" class="calque"/>
+					<div id="output_card_name" ></div>
+					<div id="output_card_sub_name" ></div>
+					<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
+					<div id="output_range" class="card_stats"></div>
+					<div id="output_nb_dice" class="card_stats"></div>
+					<div id="output_val_dice" class="card_stats"></div>
+					<div id="output_power" class="card_stats"></div>
+					<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
+					
+				</div>
 			</td>
-		</tr>
-		<tr>
-			<td>Description:</td>
-			<td><input type="text" id="input_description"/></td>
-		</tr>
-		<tr>
-			<td>Ultrarouge:</td>
-			<td><input type="checkbox" id="input_ultrared"/></td>
+			<td style="vertical-align:top;">
+
+				<table border="0">
+					<tr>
+						<td>Titre:</td>
+						<td><input type="text" id="input_card_name"/></td>
+					</tr>
+					<tr>
+						<td>Sous-titre:</td>
+						<td><input type="text" id="input_card_sub_name"/></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<input type="file" id="card_file" name="files[]" multiple />
+						</td>
+					</tr>
+					<tr>
+						<td>Stats:</td>
+						<td>
+								<input id="input_range" type="text" class="input_card_stats" />
+								<input id="input_nb_dice" type="text" class="input_card_stats" />
+								<input id="input_val_dice" type="text" class="input_card_stats" >
+								<input id="input_power" type="text" class="input_card_stats" />
+						</td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td><input type="text" id="input_description"/></td>
+					</tr>
+					<tr>
+						<td>Ultrarouge:</td>
+						<td><input type="checkbox" id="input_ultrared"/></td>
+					</tr>
+				</table>
+				
+				
+				<br/>
+
+
+				<a id="card_download" download="card.png" href="">-> Télécharger ! <-</a>
+			</td>
 		</tr>
 	</table>
-	
-	
-	<br/>
-
-
-	<a id="card_download" download="card.png" href="">Download</a>
 <br/>
 </body>
 </html>
