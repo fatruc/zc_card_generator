@@ -2,12 +2,22 @@
 	<head>
 		<style>
 
+			#card_canvas {
+				height: 750px;
+				width: 488px;
+			}
+		
 		  #card_overlay {
 			position:relative;
 			height: 6.35cm;
 			width: 4.115cm;
 		  }
 
+		  #card_background {
+			position:absolute;
+			height: 6.35cm;
+			width: 4.115cm;
+		  }
 		  
 		  #card_image {
 			position: absolute;
@@ -45,12 +55,6 @@
 			width:24px;
 		 }
 		 
-		 .calque{
-		 	position:absolute;
-			height: 6.35cm;
-			width: 4.115cm;
-		 }
-		 
 		 @font-face {
 			font-family: EurostileLTStd;
 			src: url("fonts/EurostileLTStd-BoldCn.otf") format("opentype");
@@ -86,7 +90,6 @@
 				  
 				  card_image.style.left=(card_overlay.offsetWidth-card_image.offsetWidth)/2;
 				  
-				  update();
 				};
 			  })(f);
 
@@ -102,37 +105,24 @@
 				html2canvas(document.getElementById("card_overlay"), {
 				onrendered: function(canvas) {
 					document.getElementById("card_download").href=canvas.toDataURL('image/png');
-				},
-				logging:true
+				}
 			});
 			
 		  }
 		  
 		  function update(){
-			var range = document.getElementById("input_range").value;
-			var nb_dices = document.getElementById("input_nb_dice").value;
-			var val_dices = document.getElementById("input_val_dice").value;
-			var power = document.getElementById("input_power").value;
-			
-			if(range!="" || nb_dices!="" || val_dices!="" || power!=""){
-				document.getElementById("output_stats").style.display="block";
-			} else {
-				document.getElementById("output_stats").style.display="none";
-			}
-			
-			document.getElementById("output_range").innerHTML=range;
-			document.getElementById("output_nb_dice").innerHTML=nb_dices;
-			document.getElementById("output_val_dice").innerHTML=val_dices;
-			document.getElementById("output_power").innerHTML=power;
-			
-			
-			if(document.getElementById("input_ultrared").checked){
-				document.getElementById("output_ultrared").style.display="block";
-			} else {
-				document.getElementById("output_ultrared").style.display="none";
-			}
-			
-			
+		  
+			var canvas = document.getElementById('card_canvas'),
+			context = canvas.getContext('2d');
+			base_image = new Image();
+			base_image.src = 'blank_cards/0003.png';
+			context.drawImage(base_image, 0, 0,488,750);
+		  
+			document.getElementById("card_background").src="blank_cards/0003.png";
+			document.getElementById("output_range").innerHTML=document.getElementById("input_range").value;
+			document.getElementById("output_nb_dice").innerHTML=document.getElementById("input_nb_dice").value;
+			document.getElementById("output_val_dice").innerHTML=document.getElementById("input_val_dice").value;
+			document.getElementById("output_power").innerHTML=document.getElementById("input_power").value;
 			convert();
 			
 		  }
@@ -147,8 +137,6 @@
 				  document.getElementById('input_val_dice').addEventListener('change', update, false);
 				  document.getElementById('input_power').addEventListener('change', update, false);
 				  
-				  document.getElementById("input_ultrared").addEventListener('change', update,false);
-				  
 				  update();
 			  
 			}
@@ -159,10 +147,12 @@
 	</head>
 <body>
 
+	<canvas id="card_canvas">
+		
+	</canvas>
+
 	<div id="card_overlay">
-		<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-		<img src="img/Stats.png" id="output_stats" class="calque"/>
-		<img src="img/Ultrared.png" id="output_ultrared" class="calque"/>
+		<img src="" id="card_background"/>
 		<img id="card_image" src=""/>
 		<div id="output_range" class="card_stats"></div>
 		<div id="output_nb_dice" class="card_stats"></div>
@@ -176,10 +166,8 @@
 	<input id="input_nb_dice" type="text" class="input_card_stats" />
 	<input id="input_val_dice" type="text" class="input_card_stats" >
 	<input id="input_power" type="text" class="input_card_stats" />
-	<br/>
-	Ultrarouge ? <input type="checkbox" id="input_ultrared"/>
-	<br/>
 	<a id="card_download" download="card.png" href="">Download</a>
+
 <br/>
 </body>
 </html>
