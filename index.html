@@ -339,6 +339,7 @@
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
 					<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
 					<span id="output_card_header">
+						<!--<img src="img/dual_melee.png" id="output_dual" />						-->
 						<p id="output_card_name" ></p>
 						<p id="output_card_sub_name" ></p>
 					</span>
@@ -364,7 +365,7 @@
 					</tr>
 					<tr>
 						<td colspan="2">
-							<input type="file" id="card_file" name="files[]" multiple />
+							<input type="file" id="card_file" name="files[]" />
 						</td>
 					</tr>
 					<tr>
@@ -398,6 +399,46 @@
 							<input id="input_kill_none" type="radio" name="input_kill_noise"  value="none" checked="checked">Non</input>
 							<input id="input_kill_silent" type="radio" name="input_kill_noise"  value="silent">Silencieux</input>
 							<input id="input_kill_noisy" type="radio" name="input_kill_noise"  value="noisy">Bruyant</input>
+						</td>
+					</tr>
+					
+					<tr  valign="top">
+						<td>Dual:</td>
+						<td>
+							<table>
+								<tr  style="vertical-align:middle;">
+									<td>
+										<input id="input_dual_none" type="radio" name="input_dual"  value="no" checked="checked">Non</input>
+									</td>
+									<td>
+										<p>|</p>
+									</td>
+									<td>
+										<input id="input_dual_melee" type="radio" name="input_dual"  value="melee">Mélée</input>
+									</td>
+									<td>
+										<img src="img/dual_melee.png"/>
+									</td>
+									<td>
+										<p>|</p>
+									</td>
+									<td>
+										<input id="input_dual_distance" type="radio" name="input_dual"  value="distance">Distance</input>
+									</td>
+									<td>
+										<img src="img/dual_distance.png"/>
+									</td>
+									<td>
+										<p>|</p>
+									</td>
+									<td>
+										<input id="input_dual_custom" type="radio" name="input_dual"  value="custom">Personnalisé</input>
+									</td>
+									<td>
+										<input type="file" id="dual_file" name="files[]" />
+									</td>
+								</tr>
+							</table>
 						</td>
 					</tr>
 					
