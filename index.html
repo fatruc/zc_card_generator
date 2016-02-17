@@ -5,7 +5,7 @@
 		  #card_overlay {
 			position:relative;
 			height: 750px;
-			width: 497px;
+			width: 487px;
 		  }
 
 		  
@@ -54,6 +54,13 @@
 		 .calque{
 		 	position:absolute;
 		 }
+		 
+		 .calque_break_in {
+			right:0px;
+			top: 150px;
+			cursor: move;
+		 }
+		 
 		 
 		 .optional {
 			display:none;
@@ -294,7 +301,17 @@
 
 				  document.getElementById("input_kill_none").addEventListener('click', update_kill_noise,false);
 				  document.getElementById("input_kill_noisy").addEventListener('click', update_kill_noise,false);
-				  document.getElementById("input_kill_silent").addEventListener('click', update_kill_noise,false)
+				  document.getElementById("input_kill_silent").addEventListener('click', update_kill_noise,false);
+				  
+				$( "#calque_noisy_break_in" ).draggable({
+					containment: "parent",
+					axis: "y"
+				});
+				
+				$( "#calque_silent_break_in" ).draggable({
+					containment: "parent",
+					axis: "y"
+				});
 				  
 			  
 			}
@@ -312,9 +329,9 @@
 					<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
 					<img src="img/Text.png" id="calque_description" class="calque optional"/>
 					<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional"/>
-					<img src="img/SilentBreakIn.png" id="calque_silent_break_in" class="calque optional"/>
+					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in"/>
+					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in"/>
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional"/>
-					<img src="img/NoisyBreakIn.png" id="calque_noisy_break_in" class="calque optional"/>
 					<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
 					<span id="output_card_header">
 						<p id="output_card_name" ></p>
