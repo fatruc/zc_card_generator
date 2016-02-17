@@ -156,6 +156,36 @@
 		<script src="libs/jquery-ui.min.js"></script>
 		
 		<script>
+
+			
+
+			function replaceEmoticons(text) {
+			  var emoticons = {
+				'[1]' : 'img/de1.png',
+				'[2]' : 'img/de2.png',
+				'[3]' : 'img/de3.png',
+				'[4]' : 'img/de4.png',
+				'[5]' : 'img/de5.png',
+				'[6]' : 'img/de6.png',
+			  },  patterns = [],
+				 metachars = /\[[0-6]\]/g;
+
+			  // build a regex pattern for each defined property
+			  for (var i in emoticons) {
+				if (emoticons.hasOwnProperty(i)){ // escape metacharacters
+				  patterns.push('('+i.replace(metachars, "\\$&")+')');
+				}
+			  }
+
+			  // build the regular expression and replace
+			  return text.replace(new RegExp(patterns.join('|'),'g'), function (match) {
+				return typeof emoticons[match] != 'undefined' ?
+					   '<img src="'+emoticons[match]+'"/>' :
+					   match;
+			  });
+			}
+
+		
 		  function handleFileSelect(evt) {
 			var files = evt.target.files; // FileList object
 
@@ -232,8 +262,6 @@
 				html2canvas(document.getElementById("card_overlay"), {
 				onrendered: function(canvas) {
 					document.getElementById("card_download").href=canvas.toDataURL('image/png');
-					
-
 				},
 				logging:false
 			});
@@ -263,13 +291,13 @@
 		  
 		  function update_headers(){
 		  		var card_name = document.getElementById("input_card_name").value.replace(/\r\n|\r|\n/g,"<br />");
-				var card_sub_name = document.getElementById("input_card_sub_name").value.replace(/\r\n|\r|\n/g,"<br />");
+				var card_sub_name = replaceEmoticons(document.getElementById("input_card_sub_name").value.replace(/\r\n|\r|\n/g,"<br />"));
 				document.getElementById("output_card_name").innerHTML=card_name.toUpperCase();
 				document.getElementById("output_card_sub_name").innerHTML=card_sub_name.toUpperCase();
 		  }
 		  
 		  function update_description(){
-			var description = document.getElementById("input_description").value;
+			var description = replaceEmoticons(document.getElementById("input_description").value);
 			description = description.replace(/\r\n|\r|\n/g,"<br />");
 			document.getElementById("output_description").innerHTML=description.toUpperCase();
 			
