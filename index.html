@@ -13,6 +13,8 @@
 			position: absolute;
 			max-height: 80%;
 			max-width: 80%;
+			top: 200px;
+			cursor: move;
 		  }
 		 
 		 .card_stats {
@@ -23,6 +25,7 @@
 			color:#000000;
 			text-align:right;
 		 }
+		 
 		 
 		 #output_range {
 			right:382px
@@ -119,6 +122,10 @@
 		</style>
 
 		<script src="libs/html2canvas.js"></script>
+
+		<script src="libs/jquery.js"></script>
+		<script src="libs/jquery-ui.min.js"></script>
+		
 		<script>
 		  function handleFileSelect(evt) {
 			var files = evt.target.files; // FileList object
@@ -159,7 +166,7 @@
 				onrendered: function(canvas) {
 					document.getElementById("card_download").href=canvas.toDataURL('image/png');
 				},
-				logging:true
+				logging:false
 			});
 			
 		  }
@@ -276,10 +283,18 @@
 				  document.getElementById("input_kill_noisy").addEventListener('click', update,false);
 				  document.getElementById("input_kill_silent").addEventListener('click', update,false)
 				  
+				  
 				  update();
+	
+				  
+				$( "#card_image" ).draggable({
+					containment: "parent",
+					axis: "y"
+				});
+
 			  
 			}
-		  
+			
 
 		</script>	
 
