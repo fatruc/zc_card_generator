@@ -149,7 +149,12 @@
 				  
 				  card_image.style.left=(card_overlay.offsetWidth-card_image.offsetWidth)/2;
 				  
-				  update();
+				$( "#card_image" ).draggable({
+					containment: "parent",
+					axis: "y"
+				});
+				  
+				  convert();
 				};
 			  })(f);
 
@@ -165,6 +170,8 @@
 				html2canvas(document.getElementById("card_overlay"), {
 				onrendered: function(canvas) {
 					document.getElementById("card_download").href=canvas.toDataURL('image/png');
+					
+
 				},
 				logging:false
 			});
@@ -187,6 +194,7 @@
 			document.getElementById("output_nb_dice").innerHTML=nb_dices;
 			document.getElementById("output_val_dice").innerHTML=val_dices;
 			document.getElementById("output_power").innerHTML=power;
+
 		  }
 		  
 		  function update_headers(){
@@ -208,6 +216,7 @@
 			} else {
 				document.getElementById("calque_description").style.display="none";
 			}
+			
 		  }
 		  
 		  function update_ultrared(){
@@ -216,6 +225,8 @@
 			} else {
 				document.getElementById("calque_ultrared").style.display="none";
 			}
+			
+			convert();
 		  }
 		  
 		  function update_break_in_noise(){
@@ -232,6 +243,8 @@
 			} else {
 				document.getElementById("calque_silent_break_in").style.display="none";
 			}
+			
+			convert();
 		  }
 
 		  function update_kill_noise(){
@@ -247,51 +260,42 @@
 			} else {
 				document.getElementById("calque_silent_kill").style.display="none";
 			}
-		  }
-		  
-		  function update(){
-			update_stats();
-			update_headers();
-			update_description();
-			update_ultrared();
-			update_break_in_noise();
-			update_kill_noise();
 			
 			convert();
 		  }
-
+		  
 			window.onload = function(e){
 				  var card_image = document.getElementById("card_image");
 				  var card_overlay = document.getElementById("card_overlay");
 
+				  
+				  document.getElementById('input_range').addEventListener('keyup', update_stats, false);
+				  document.getElementById('input_nb_dice').addEventListener('keyup', update_stats, false);
+				  document.getElementById('input_val_dice').addEventListener('keyup', update_stats, false);
+				  document.getElementById('input_power').addEventListener('keyup', update_stats, false);
+				  document.getElementById('input_card_name').addEventListener('keyup', update_headers, false);
+				  document.getElementById('input_card_sub_name').addEventListener('keyup', update_headers, false);
+				  document.getElementById('input_description').addEventListener('keyup', update_description, false);
+				  
+				   document.getElementById('input_range').addEventListener('change', convert, false);
+				  document.getElementById('input_nb_dice').addEventListener('change', convert, false);
+				  document.getElementById('input_val_dice').addEventListener('change', convert, false);
+				  document.getElementById('input_power').addEventListener('change', convert, false);
+				  document.getElementById('input_card_name').addEventListener('change', convert, false);
+				  document.getElementById('input_card_sub_name').addEventListener('change', convert, false);
+				  document.getElementById('input_description').addEventListener('change', convert, false);
+				  
 				  document.getElementById('card_file').addEventListener('change', handleFileSelect, false);
-				  document.getElementById('input_range').addEventListener('change', update, false);
-				  document.getElementById('input_nb_dice').addEventListener('change', update, false);
-				  document.getElementById('input_val_dice').addEventListener('change', update, false);
-				  document.getElementById('input_power').addEventListener('change', update, false);
-				  document.getElementById('input_card_name').addEventListener('change', update, false);
-				  document.getElementById('input_card_sub_name').addEventListener('change', update, false);
-				  document.getElementById('input_description').addEventListener('change', update, false);
+				  document.getElementById("input_ultrared").addEventListener('click', update_ultrared,false);
 				  
-				  document.getElementById("input_ultrared").addEventListener('click', update,false);
-				  
-				  document.getElementById("input_break_in_none").addEventListener('click', update,false);
-				  document.getElementById("input_break_in_noisy").addEventListener('click', update,false);
-				  document.getElementById("input_break_in_silent").addEventListener('click', update,false);
+				  document.getElementById("input_break_in_none").addEventListener('click', update_break_in_noise,false);
+				  document.getElementById("input_break_in_noisy").addEventListener('click', update_break_in_noise,false);
+				  document.getElementById("input_break_in_silent").addEventListener('click', update_break_in_noise,false);
 
-				  document.getElementById("input_kill_none").addEventListener('click', update,false);
-				  document.getElementById("input_kill_noisy").addEventListener('click', update,false);
-				  document.getElementById("input_kill_silent").addEventListener('click', update,false)
+				  document.getElementById("input_kill_none").addEventListener('click', update_kill_noise,false);
+				  document.getElementById("input_kill_noisy").addEventListener('click', update_kill_noise,false);
+				  document.getElementById("input_kill_silent").addEventListener('click', update_kill_noise,false)
 				  
-				  
-				  update();
-	
-				  
-				$( "#card_image" ).draggable({
-					containment: "parent",
-					axis: "y"
-				});
-
 			  
 			}
 			
@@ -305,7 +309,6 @@
 			<td>
 				<div id="card_overlay">
 					<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-					<img id="card_image" src=""/>
 					<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
 					<img src="img/Text.png" id="calque_description" class="calque optional"/>
 					<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional"/>
@@ -322,7 +325,7 @@
 					<div id="output_nb_dice" class="card_stats"></div>
 					<div id="output_val_dice" class="card_stats"></div>
 					<div id="output_power" class="card_stats"></div>
-					
+					<img id="card_image" src=""/>
 					
 				</div>
 			</td>
