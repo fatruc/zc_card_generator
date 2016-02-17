@@ -52,26 +52,31 @@
 		 	position:absolute;
 		 }
 		 
-		 #output_card_name {
+		 #output_card_header {
 			position:absolute;
+			width: 497px;
+			top:30px;
+			text-align:center;
+		}
+
+		 #output_card_header p{
+			margin: 0;
+		}
+		
+		 #output_card_name {
 			font-family: Crackhouse;
 			/* 89px -> 65pt */
 			font-size: 65pt;
 			color:#090808;
-			width: 497px;
-			top:30px;
-			text-align:center
+			line-height: 0.8em;
+
 		 }
 
 		 #output_card_sub_name {
-			position:absolute;
 			font-family: EurostileLTStd;
 			/* 89px -> 65pt */
 			font-size: 18pt;
 			color:#5C5C5F;
-			width: 497px;
-			top:125px;
-			text-align:center
 		 }
 		 
 		 #output_description_container {
@@ -230,14 +235,17 @@
 					<img id="card_image" src=""/>
 					<img src="img/Stats.png" id="calque_stats" class="calque"/>
 					<img src="img/Text.png" id="calque_description" class="calque"/>
-					<div id="output_card_name" ></div>
-					<div id="output_card_sub_name" ></div>
+					<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
+					<span id="output_card_header">
+						<p id="output_card_name" ></p>
+						<p id="output_card_sub_name" ></p>
+					</span>
 					<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
 					<div id="output_range" class="card_stats"></div>
 					<div id="output_nb_dice" class="card_stats"></div>
 					<div id="output_val_dice" class="card_stats"></div>
 					<div id="output_power" class="card_stats"></div>
-					<img src="img/Ultrared.png" id="calque_ultrared" class="calque"/>
+					
 					
 				</div>
 			</td>
