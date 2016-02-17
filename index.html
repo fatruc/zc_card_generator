@@ -198,8 +198,10 @@
 			
 			if(range!="" || nb_dices!="" || val_dices!="" || power!=""){
 				document.getElementById("calque_stats").style.display="block";
+				$("#input_description").prop('disabled', true);
 			} else {
 				document.getElementById("calque_stats").style.display="none";
+				$("#input_description").prop('disabled', false);
 			}
 			
 			document.getElementById("output_range").innerHTML=range;
@@ -222,11 +224,10 @@
 			
 			if(description){
 				document.getElementById("calque_description").style.display="block";
-				
-				//window.alert(document.getElementById("output_description").offsetHeight);
-				//document.getElementById("output_description").style.top=545 + (205-document.getElementById("output_description").offsetHeight)/2;
+				$(".input_card_stats").prop('disabled', true);
 			} else {
 				document.getElementById("calque_description").style.display="none";
+				$(".input_card_stats").prop('disabled', false);
 			}
 			
 		  }
@@ -377,7 +378,7 @@
 					</tr>
 					<tr>
 						<td>Description:</td>
-						<td><input type="text" id="input_description"/></td>
+						<td><textarea id="input_description" rows="4" coles="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td>
