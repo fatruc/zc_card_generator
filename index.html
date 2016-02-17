@@ -20,10 +20,11 @@
 		 .card_stats {
 			position: absolute;
 			font-family: EurostileLTStd;
-			top:676px;
+			bottom: 25px;
 			font-size: 30pt;
 			color:#000000;
 			text-align:right;
+			line-height: 0.9em;
 		 }
 		 
 		 
@@ -191,10 +192,10 @@
 		  }
 		  
 		  function update_stats(){
-			var range = document.getElementById("input_range").value;
-			var nb_dices = document.getElementById("input_nb_dice").value;
-			var val_dices = document.getElementById("input_val_dice").value;
-			var power = document.getElementById("input_power").value;
+			var range = document.getElementById("input_range").value.replace(/\r\n|\r|\n/g,"<br />");
+			var nb_dices = document.getElementById("input_nb_dice").value.replace(/\r\n|\r|\n/g,"<br />");
+			var val_dices = document.getElementById("input_val_dice").value.replace(/\r\n|\r|\n/g,"<br />");
+			var power = document.getElementById("input_power").value.replace(/\r\n|\r|\n/g,"<br />");
 			
 			if(range!="" || nb_dices!="" || val_dices!="" || power!=""){
 				document.getElementById("calque_stats").style.display="block";
@@ -358,11 +359,11 @@
 				<table border="0">
 					<tr>
 						<td>Titre:</td>
-						<td><textarea id="input_card_name" rows="4" coles="50" ></textarea></td>
+						<td><textarea id="input_card_name" rows="4" cols="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td>Sous-titre:</td>
-						<td><textarea id="input_card_sub_name" rows="4" coles="50" ></textarea></td>
+						<td><textarea id="input_card_sub_name" rows="4" cols="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -372,15 +373,15 @@
 					<tr>
 						<td>Stats:</td>
 						<td>
-								<input id="input_range" type="text" class="input_card_stats" />
-								<input id="input_nb_dice" type="text" class="input_card_stats" />
-								<input id="input_val_dice" type="text" class="input_card_stats" >
-								<input id="input_power" type="text" class="input_card_stats" />
+								<textarea id="input_range" rows="3" cols="10" class="input_card_stats"></textarea>
+								<textarea id="input_nb_dice" rows="3" cols="10" class="input_card_stats"></textarea>
+								<textarea id="input_val_dice" rows="3" cols="10" class="input_card_stats"></textarea>
+								<textarea id="input_power" rows="3" cols="10" class="input_card_stats"></textarea>
 						</td>
 					</tr>
 					<tr>
 						<td>Description:</td>
-						<td><textarea id="input_description" rows="4" coles="50" ></textarea></td>
+						<td><textarea id="input_description" rows="4" cols="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td>
