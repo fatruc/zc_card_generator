@@ -212,14 +212,15 @@
 		  }
 		  
 		  function update_headers(){
-		  		var card_name = document.getElementById("input_card_name").value;
-				var card_sub_name = document.getElementById("input_card_sub_name").value;
+		  		var card_name = document.getElementById("input_card_name").value.replace(/\r\n|\r|\n/g,"<br />");
+				var card_sub_name = document.getElementById("input_card_sub_name").value.replace(/\r\n|\r|\n/g,"<br />");
 				document.getElementById("output_card_name").innerHTML=card_name.toUpperCase();
 				document.getElementById("output_card_sub_name").innerHTML=card_sub_name.toUpperCase();
 		  }
 		  
 		  function update_description(){
 			var description = document.getElementById("input_description").value;
+			description = description.replace(/\r\n|\r|\n/g,"<br />");
 			document.getElementById("output_description").innerHTML=description.toUpperCase();
 			
 			if(description){
@@ -357,11 +358,11 @@
 				<table border="0">
 					<tr>
 						<td>Titre:</td>
-						<td><input type="text" id="input_card_name"/></td>
+						<td><textarea id="input_card_name" rows="4" coles="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td>Sous-titre:</td>
-						<td><input type="text" id="input_card_sub_name"/></td>
+						<td><textarea id="input_card_sub_name" rows="4" coles="50" ></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">
