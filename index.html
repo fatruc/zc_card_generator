@@ -8,6 +8,11 @@
 			width: 487px;
 		  }
 
+		  #output_dual{
+			padding-top:8px;
+			height: 60px;
+			width: 60px;
+		  }
 		  
 		  #card_image {
 			position: absolute;
@@ -74,10 +79,11 @@
 		 
 		 #output_card_header {
 			position:absolute;
-			width: 497px;
+			width: 487px;
 			top:30px;
 			text-align:center;
 		}
+		
 
 		 #output_card_header p{
 			margin: 0;
@@ -131,6 +137,15 @@
 			font-family: Crackhouse;
 			src: url('fonts/crackhouse.otf') format("opentype");
 		}
+		
+		#input_dual_container tr {
+			vertical-align: middle;
+		}
+		
+		#input_dual_container img {
+			width: 30px;
+			height: 30px;
+		}
 		  
 		</style>
 
@@ -166,6 +181,39 @@
 					containment: "parent",
 					axis: "y"
 				});
+				  
+				  convert();
+				};
+			  })(f);
+
+			  
+			  // Read in the image file as a data URL.
+			  reader.readAsDataURL(f);
+			}
+			
+
+		  }
+		  
+		  function handleDualFileSelect(evt) {
+			var files = evt.target.files; // FileList object
+
+			// Loop through the FileList and render image files as thumbnails.
+			for (var i = 0, f; f = files[i]; i++) {
+
+			  // Only process image files.
+			  if (!f.type.match('image.*')) {
+				continue;
+			  }
+
+			  var reader = new FileReader();
+
+			  // Closure to capture the file information.
+			  reader.onload = (function(theFile) {
+				return function(e) {
+				  // Render thumbnail.
+				  var dual_image = document.getElementById("output_dual");
+				  dual_image.src=e.target.result;
+				  
 				  
 				  convert();
 				};
@@ -262,7 +310,7 @@
 			convert();
 		  }
 
-		  function update_kill_noise(){
+		function update_kill_noise(){
 		  	if(document.getElementById("input_kill_noisy").checked){
 				document.getElementById("calque_noisy_kill").style.display="block";
 			} else {
@@ -277,12 +325,35 @@
 			}
 			
 			convert();
-		  }
+		}
+		
+		function update_dual_icon(){
+		
+			document.getElementById("input_dual_file").disabled=true;
+		
+			if(document.getElementById("input_dual_none").checked){
+				document.getElementById("output_dual").style.display="none";
+			} else {
+				document.getElementById("output_dual").style.display="block";
+				
+				if(document.getElementById("input_dual_melee").checked){
+					document.getElementById("output_dual").src="img/dual_melee.png"
+				} else if(document.getElementById("input_dual_distance").checked){
+					document.getElementById("output_dual").src="img/dual_distance.png"
+				} else if(document.getElementById("input_dual_custom").checked){
+					document.getElementById("output_dual").src=""
+					document.getElementById("input_dual_file").disabled=false;
+				} else{
+					document.getElementById("output_dual").style.display="none";
+				}
+			}
+		
+
+		}
 		  
 			window.onload = function(e){
 				  var card_image = document.getElementById("card_image");
 				  var card_overlay = document.getElementById("card_overlay");
-
 				  
 				  document.getElementById('input_range').addEventListener('keyup', update_stats, false);
 				  document.getElementById('input_nb_dice').addEventListener('keyup', update_stats, false);
@@ -292,7 +363,7 @@
 				  document.getElementById('input_card_sub_name').addEventListener('keyup', update_headers, false);
 				  document.getElementById('input_description').addEventListener('keyup', update_description, false);
 				  
-				   document.getElementById('input_range').addEventListener('change', convert, false);
+				  document.getElementById('input_range').addEventListener('change', convert, false);
 				  document.getElementById('input_nb_dice').addEventListener('change', convert, false);
 				  document.getElementById('input_val_dice').addEventListener('change', convert, false);
 				  document.getElementById('input_power').addEventListener('change', convert, false);
@@ -301,7 +372,11 @@
 				  document.getElementById('input_description').addEventListener('change', convert, false);
 				  
 				  document.getElementById('card_file').addEventListener('change', handleFileSelect, false);
+				  document.getElementById('input_dual_file').addEventListener('change', handleDualFileSelect, false);				  
+				  
 				  document.getElementById("input_ultrared").addEventListener('click', update_ultrared,false);
+				  
+				  $("input[name='input_dual']").click(update_dual_icon);
 				  
 				  document.getElementById("input_break_in_none").addEventListener('click', update_break_in_noise,false);
 				  document.getElementById("input_break_in_noisy").addEventListener('click', update_break_in_noise,false);
@@ -341,8 +416,12 @@
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
 					<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
 					<span id="output_card_header">
-						<!--<img src="img/dual_melee.png" id="output_dual" />						-->
-						<p id="output_card_name" ></p>
+						<table style="margin:auto">
+							<tr>
+								<td style="vertical-align: top;"><img src="img/dual_melee.png" id="output_dual" class="optional"/></td>
+								<td><p id="output_card_name" ></p></td>
+							</tr>
+						</table>
 						<p id="output_card_sub_name" ></p>
 					</span>
 					<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
@@ -407,8 +486,8 @@
 					<tr  valign="top">
 						<td>Dual:</td>
 						<td>
-							<table>
-								<tr  style="vertical-align:middle;">
+							<table id="input_dual_container">
+								<tr >
 									<td>
 										<input id="input_dual_none" type="radio" name="input_dual"  value="no" checked="checked">Non</input>
 									</td>
@@ -437,7 +516,7 @@
 										<input id="input_dual_custom" type="radio" name="input_dual"  value="custom">Personnalisé</input>
 									</td>
 									<td>
-										<input type="file" id="dual_file" name="files[]" />
+										<input type="file" id="input_dual_file" name="files[]" disabled/>
 									</td>
 								</tr>
 							</table>
