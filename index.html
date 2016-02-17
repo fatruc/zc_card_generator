@@ -55,12 +55,17 @@
 		 	position:absolute;
 		 }
 		 
-		 .calque_break_in {
+		 .calque_break_in_noise {
 			right:0px;
 			top: 150px;
 			cursor: move;
 		 }
 		 
+		 .calque_kill_noise{
+		 	left:0px;
+			top: 470;
+			cursor: move;
+		 }
 		 
 		 .optional {
 			display:none;
@@ -303,16 +308,15 @@
 				  document.getElementById("input_kill_noisy").addEventListener('click', update_kill_noise,false);
 				  document.getElementById("input_kill_silent").addEventListener('click', update_kill_noise,false);
 				  
-				$( "#calque_noisy_break_in" ).draggable({
+				$( ".calque_break_in_noise" ).draggable({
 					containment: "parent",
 					axis: "y"
 				});
 				
-				$( "#calque_silent_break_in" ).draggable({
+				$( ".calque_kill_noise" ).draggable({
 					containment: "parent",
 					axis: "y"
 				});
-				  
 			  
 			}
 			
@@ -328,10 +332,10 @@
 					<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
 					<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
 					<img src="img/Text.png" id="calque_description" class="calque optional"/>
-					<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional"/>
-					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in"/>
-					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in"/>
-					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional"/>
+					<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>
+					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
+					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
+					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
 					<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
 					<span id="output_card_header">
 						<p id="output_card_name" ></p>
