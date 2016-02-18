@@ -2,6 +2,19 @@
 	<head>
 		<style>
 
+		.ui-resizable { position: relative;}
+		.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
+		.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
+		.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
+		.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
+		.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
+		.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
+		.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
+		.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
+		.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
+		.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
+
+		
 		  #card_overlay {
 			position:relative;
 			height: 750px;
@@ -15,12 +28,12 @@
 		  }
 		  
 		  #card_image {
-			position: absolute;
-			max-height: 80%;
-			max-width: 80%;
-			top: 200px;
-			cursor: move;
+		  	position: absolute;
+			top: 20px;
+			left:50px;
+			width: 387px;
 		  }
+		  
 		 
 		 .card_stats {
 			position: absolute;
@@ -149,11 +162,15 @@
 		}
 		  
 		</style>
+		
 
 		<script src="libs/html2canvas.js"></script>
 
-		<script src="libs/jquery.js"></script>
-		<script src="libs/jquery-ui.min.js"></script>
+
+
+		
+		<script src="libs/jquery-ui-1.11.4/external/jquery/jquery.js"></script>
+		<script src="libs/jquery-ui-1.11.4/jquery-ui.min.js"></script>
 		
 		<script>
 
@@ -203,15 +220,16 @@
 			  reader.onload = (function(theFile) {
 				return function(e) {
 				  // Render thumbnail.
-				  var card_image = document.getElementById("card_image");
-				  card_image.src=e.target.result;
+					var card_image = document.getElementById("card_image");
+					card_image.src=e.target.result;
 				  
-				  card_image.style.left=(card_overlay.offsetWidth-card_image.offsetWidth)/2;
-				  
-				$( "#card_image" ).draggable({
-					containment: "parent",
-					axis: "y"
-				});
+					$( "#card_image" ).draggable({
+						containment: "parent",
+						axis: "y"
+					}).resizable({
+						containment: "parent",
+						aspectRatio: true
+					});
 				  
 				  convert();
 				};
@@ -425,6 +443,8 @@
 					axis: "y"
 				});
 			  
+
+			  
 			}
 			
 
@@ -445,7 +465,7 @@
 					<div id="output_nb_dice" class="card_stats"></div>
 					<div id="output_val_dice" class="card_stats"></div>
 					<div id="output_power" class="card_stats"></div>
-					<img id="card_image" src=""/>
+					<img id="card_image" src="" class="calque"/>
 					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
