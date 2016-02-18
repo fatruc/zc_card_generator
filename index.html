@@ -228,13 +228,15 @@
 					card_image.src=e.target.result;
 				  
 					$( "#card_image_container" ).draggable({
-						containment: "parent",
-						axis: "y"
+						containment: "#card_overlay",
+						axis: "y",
+						cursor: "crosshair"
 					})
 					
 					$( "#card_image" ).resizable({
-						containment: "parent",
-						aspectRatio: true
+						containment: "#card_overlay",
+						aspectRatio: true,
+						handles: 'n, e, s, w, ne, nw, se, sw'
 					});
 				  
 				  convert();
@@ -440,12 +442,13 @@
 				  document.getElementById("input_kill_silent").addEventListener('click', update_kill_noise,false);
 				  
 				$( ".calque_break_in_noise" ).draggable({
-					containment: "parent",
-					axis: "y"
+					containment: "#card_overlay",
+					axis: "y",
+
 				});
 				
 				$( ".calque_kill_noise" ).draggable({
-					containment: "parent",
+					containment: "#card_overlay",
 					axis: "y"
 				});
 			  
