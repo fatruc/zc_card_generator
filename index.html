@@ -27,8 +27,12 @@
 			width: 60px;
 		  }
 		  
-		  #card_image {
+		  #card_image_container {
 		  	position: absolute;
+			display:inline-block;
+		  }
+		  
+		  #card_image {
 			top: 20px;
 			left:50px;
 			width: 387px;
@@ -223,10 +227,12 @@
 					var card_image = document.getElementById("card_image");
 					card_image.src=e.target.result;
 				  
-					$( "#card_image" ).draggable({
+					$( "#card_image_container" ).draggable({
 						containment: "parent",
 						axis: "y"
-					}).resizable({
+					})
+					
+					$( "#card_image" ).resizable({
 						containment: "parent",
 						aspectRatio: true
 					});
@@ -465,7 +471,9 @@
 					<div id="output_nb_dice" class="card_stats"></div>
 					<div id="output_val_dice" class="card_stats"></div>
 					<div id="output_power" class="card_stats"></div>
-					<img id="card_image" src="" class="calque"/>
+					<div id="card_image_container">
+						<img id="card_image" src="" >
+					</div>
 					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
