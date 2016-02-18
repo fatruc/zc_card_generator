@@ -1,20 +1,7 @@
 <html>
 	<head>
 		<style>
-
-		.ui-resizable { position: relative;}
-		.ui-resizable-handle { position: absolute;font-size: 0.1px; display: block; }
-		.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
-		.ui-resizable-n { cursor: n-resize; height: 7px; width: 100%; top: -5px; left: 0; }
-		.ui-resizable-s { cursor: s-resize; height: 7px; width: 100%; bottom: -5px; left: 0; }
-		.ui-resizable-e { cursor: e-resize; width: 7px; right: -5px; top: 0; height: 100%; }
-		.ui-resizable-w { cursor: w-resize; width: 7px; left: -5px; top: 0; height: 100%; }
-		.ui-resizable-se { cursor: se-resize; width: 12px; height: 12px; right: 1px; bottom: 1px; }
-		.ui-resizable-sw { cursor: sw-resize; width: 9px; height: 9px; left: -5px; bottom: -5px; }
-		.ui-resizable-nw { cursor: nw-resize; width: 9px; height: 9px; left: -5px; top: -5px; }
-		.ui-resizable-ne { cursor: ne-resize; width: 9px; height: 9px; right: -5px; top: -5px;}
-
-		
+	
 		  #card_overlay {
 			position:relative;
 			height: 750px;
@@ -27,17 +14,12 @@
 			width: 60px;
 		  }
 		  
-		  #card_image_container {
-		  	position: absolute;
-			display:inline-block;
-		  }
-		  
 		  #card_image {
-			top: 20px;
+			position: absolute;
+			top: 200px;
 			left:50px;
-			width: 387px;
+			max-width: 80%;
 		  }
-		  
 		 
 		 .card_stats {
 			position: absolute;
@@ -227,17 +209,19 @@
 					var card_image = document.getElementById("card_image");
 					card_image.src=e.target.result;
 				  
-					$( "#card_image_container" ).draggable({
+					card_image.style.left=(card_overlay.offsetWidth-card_image.offsetWidth)/2;
+				  
+					$( "#card_image" ).draggable({
 						containment: "#card_overlay",
 						axis: "y",
 						cursor: "crosshair"
 					})
 					
-					$( "#card_image" ).resizable({
+					/*$( "#card_image" ).resizable({
 						containment: "#card_overlay",
 						aspectRatio: true,
 						handles: 'n, e, s, w, ne, nw, se, sw'
-					});
+					});*/
 				  
 				  convert();
 				};
@@ -474,9 +458,7 @@
 					<div id="output_nb_dice" class="card_stats"></div>
 					<div id="output_val_dice" class="card_stats"></div>
 					<div id="output_power" class="card_stats"></div>
-					<div id="card_image_container">
-						<img id="card_image" src="" >
-					</div>
+					<img id="card_image" src="" >
 					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
 					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
