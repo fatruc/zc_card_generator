@@ -1,0 +1,145 @@
+#card_overlay {
+	position:relative;
+	height: 750px;
+	width: 487px;
+  }
+
+  #output_dual{
+	padding-top:8px;
+	height: 60px;
+	width: 60px;
+  }
+  
+  #card_image {
+	position: absolute;
+	top: 200px;
+	left:50px;
+	max-width: 80%;
+	cursor: move;
+  }
+ 
+ .card_stats {
+	position: absolute;
+	font-family: EurostileLTStd;
+	bottom: 25px;
+	font-size: 30pt;
+	color:#000000;
+	text-align:right;
+	line-height: 0.9em;
+ }
+ 
+ 
+ #output_range {
+	right:365px
+ }
+
+ #output_nb_dice {
+	right:260px
+ }
+ 
+  #output_val_dice {
+	right:150px
+ }
+
+  #output_power {
+	right:45px
+ }
+ 
+ #card_file {
+	margin-top:10px
+ }
+ 
+ .input_card_stats {
+	width:24px;
+ }
+ 
+ .calque{
+	position:absolute;
+ }
+ 
+ .calque_break_in_noise {
+	right:0px;
+	top: 150px;
+	cursor: move;
+ }
+ 
+ .calque_kill_noise{
+	left:0px;
+	top: 470px;
+	cursor: move;
+ }
+ 
+ .optional {
+	display:none;
+ }
+ 
+ #output_card_header {
+	position:absolute;
+	width: 487px;
+	top:44px;
+	text-align:center;
+}
+
+
+ #output_card_header p{
+	margin: 0;
+}
+
+ #output_card_name {
+	font-family: Crackhouse;
+	/* 89px -> 65pt */
+	font-size: 60pt;
+	color:#090808;
+	line-height: 0.8em;
+	text-align: center;
+	letter-spacing: -2px;
+ }
+
+ #output_card_sub_name {
+	font-family: EurostileLTStd;
+	/* 89px -> 65pt */
+	font-size: 18pt;
+	color:#5C5C5F;
+ }
+ 
+ #output_description_container {
+	position:absolute;
+	/* 89px -> 65pt */
+	font-size: 18pt;
+	color:#5C5C5F;
+	top: 545px;
+	width: 420px;
+	height: 205px;
+	left: 35px;
+ }
+ 
+#output_description_container  tr{
+	height: 205px;
+	vertical-align:middle;
+ }
+ 
+ #output_description_container  tr td{
+	font-family: EurostileLTStd;
+	font-size: 18pt;
+	color:#5C5C5F;
+	text-align:center;
+ }
+ 
+ @font-face {
+	font-family: EurostileLTStd;
+	src: url("fonts/EurostileLTStd-BoldCn.otf") format("opentype");
+}
+
+@font-face {
+	font-family: Crackhouse;
+	src: url('fonts/crackhouse.otf') format("opentype");
+}
+
+#input_dual_container tr {
+	vertical-align: middle;
+}
+
+#input_dual_container img {
+	width: 30px;
+	height: 30px;
+}
