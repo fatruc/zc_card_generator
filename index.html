@@ -214,7 +214,8 @@
 					$( "#card_image" ).draggable({
 						containment: "#card_overlay",
 						axis: "y",
-						cursor: "crosshair"
+						cursor: "move",
+						stop: convert
 					})
 					
 					/*$( "#card_image" ).resizable({
@@ -428,12 +429,16 @@
 				$( ".calque_break_in_noise" ).draggable({
 					containment: "#card_overlay",
 					axis: "y",
+					cursor: "move",
+					stop: convert
 
 				});
 				
 				$( ".calque_kill_noise" ).draggable({
 					containment: "#card_overlay",
-					axis: "y"
+					axis: "y",
+					cursor: "move",
+					stop: convert
 				});
 			  
 
