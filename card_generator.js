@@ -210,7 +210,7 @@ function replace_dices(text) {
 		
 		function download(){
 			
-			html2canvas(document.getElementById("card_overlay"), {
+			html2canvas(document.getElementById("card_bleeding_area"), {
 				onrendered: function(canvas) {
 					$("#card_download").attr("href",canvas.toDataURL('image/png'));
 					$("#card_download").get(0).click();
@@ -219,12 +219,20 @@ function replace_dices(text) {
 				letterRendering:true
 			});
 			
-			
-			
-			
+		}
+		
+		function add_bleeding_areas(){
+			if($("#input_blleding_area").is(":checked")){
+				$("#card_bleeding_area").addClass("card_bleeding_area");
+			} else {
+				$("#card_bleeding_area").removeClass("card_bleeding_area");
+			}
 		}
 		  
 		$(document).ready(function() {
+			  
+				// deck handler
+				$("#input_blleding_area").click(add_bleeding_areas);
 			  
 				$(".input_card_stats").keyup(update_stats);
 				$(".input_header").keyup(update_headers);
@@ -253,5 +261,6 @@ function replace_dices(text) {
 				});
 			  
 				$("#downoad_button").click(download);
+				
 			  
 			});

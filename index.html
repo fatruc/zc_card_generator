@@ -11,36 +11,41 @@
 
 	</head>
 <body>
+	<div id="deck_header">
+		<input type="checkbox" id="input_blleding_area">Inclure les fonds perdus
+	</div>
 	<table>
 		<tr>
 			<td>
-				<div id="card_overlay">
-					<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-					<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
-					<img src="img/Text.png" id="calque_description" class="calque optional"/>
-					
-					<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
-					<div id="output_range" class="card_stats"></div>
-					<div id="output_nb_dice" class="card_stats"></div>
-					<div id="output_val_dice" class="card_stats"></div>
-					<div id="output_power" class="card_stats"></div>
-					<img id="card_image" src="" >
-					<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
-					
-					<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>
-					<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
-					<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
-					<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
-					
-					<span id="output_card_header">
-						<table style="margin:auto">
-							<tr>
-								<td style="vertical-align: top;"><img src="img/dual_melee.png" id="output_dual" class="optional"/></td>
-								<td><p id="output_card_name" ></p></td>
-							</tr>
-						</table>
-						<p id="output_card_sub_name" ></p>
-					</span>
+				<div id="card_bleeding_area" class="">
+					<div id="card_overlay">
+						<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
+						<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
+						<img src="img/Text.png" id="calque_description" class="calque optional"/>
+						
+						<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
+						<div id="output_range" class="card_stats"></div>
+						<div id="output_nb_dice" class="card_stats"></div>
+						<div id="output_val_dice" class="card_stats"></div>
+						<div id="output_power" class="card_stats"></div>
+						<img id="card_image" src="" >
+						<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
+						
+						<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>
+						<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
+						<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
+						<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
+						
+						<span id="output_card_header">
+							<table style="margin:auto">
+								<tr>
+									<td style="vertical-align: top;"><img src="img/dual_melee.png" id="output_dual" class="optional"/></td>
+									<td><p id="output_card_name" ></p></td>
+								</tr>
+							</table>
+							<p id="output_card_sub_name" ></p>
+						</span>
+					</div>
 				</div>
 			</td>
 			<td style="vertical-align:top;">
