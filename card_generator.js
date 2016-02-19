@@ -51,11 +51,9 @@ function replace_dices(text) {
 					$( "#card_image" ).draggable({
 						containment: "#card_overlay",
 						axis: "y",
-						cursor: "move",
-						stop: convert
+						cursor: "move"
 					})
 				  
-				  convert();
 				};
 			  })(f);
 
@@ -85,7 +83,6 @@ function replace_dices(text) {
 				return function(e) {
 				  // Render thumbnail.
 					$("#output_dual").attr("src",e.target.result);
-					convert();
 				};
 			  })(f);
 
@@ -97,16 +94,6 @@ function replace_dices(text) {
 
 		  }
 		  
-		  function convert(){
-				html2canvas(document.getElementById("card_overlay"), {
-				onrendered: function(canvas) {
-					$("#card_download").attr("href",canvas.toDataURL('image/png'));
-				},
-				logging:false,
-				letterRendering:true
-			});
-			
-		  }
 		  
 		  function update_stats(){
 			var range = replace_carriage_return($("#input_range").val());
@@ -162,7 +149,6 @@ function replace_dices(text) {
 				$("#calque_ultrared").hide();
 			}
 			
-			convert();
 		  }
 		  
 		  function update_break_in_noise(){
@@ -180,7 +166,6 @@ function replace_dices(text) {
 				$("#calque_silent_break_in").hide();
 			}
 			
-			convert();
 		  }
 
 		function update_kill_noise(){
@@ -197,7 +182,6 @@ function replace_dices(text) {
 				$("#calque_silent_kill").hide();
 			}
 			
-			convert();
 		}
 		
 		function update_dual_icon(){
@@ -223,16 +207,28 @@ function replace_dices(text) {
 		
 
 		}
+		
+		function download(){
+			
+			html2canvas(document.getElementById("card_overlay"), {
+				onrendered: function(canvas) {
+					$("#card_download").attr("href",canvas.toDataURL('image/png'));
+					$("#card_download").get(0).click();
+				},
+				logging:false,
+				letterRendering:true
+			});
+			
+			
+			
+			
+		}
 		  
 		$(document).ready(function() {
 			  
 				$(".input_card_stats").keyup(update_stats);
 				$(".input_header").keyup(update_headers);
 				$("#input_description").keyup(update_description);
-
-				$(".input_card_stats").change(convert);
-				$(".input_header").change(convert);
-				$("#input_description").change(convert);				  
 
 				$("#card_file").change(handle_change_card_image);	
 				$("#input_dual_file").change(handle_change_dual_image);	
@@ -247,18 +243,15 @@ function replace_dices(text) {
 				$( ".calque_break_in_noise" ).draggable({
 					containment: "#card_overlay",
 					axis: "y",
-					cursor: "move",
-					stop: convert
-
+					cursor: "move"
 				});
 				
 				$( ".calque_kill_noise" ).draggable({
 					containment: "#card_overlay",
 					axis: "y",
-					cursor: "move",
-					stop: convert
+					cursor: "move"
 				});
 			  
-
+				$("#downoad_button").click(download);
 			  
 			});
