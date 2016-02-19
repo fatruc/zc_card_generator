@@ -1,157 +1,157 @@
 <html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="card_generator.css">		
+    <head>
+        <link rel="stylesheet" type="text/css" href="card_generator.css">		
 
-		<script src="libs/html2canvas.js"></script>
-		<script src="libs/jquery-2.0.0.min.js"></script>
-		<script src="libs/jquery-ui-1.11.4.min.js"></script>
-		
-		<script src="card_generator.js"></script>
-	
+        <script src="libs/html2canvas.js"></script>
+        <script src="libs/jquery-2.0.0.min.js"></script>
+        <script src="libs/jquery-ui-1.11.4.min.js"></script>
 
-	</head>
-<body>
-	<div id="deck_header">
-		<input type="checkbox" id="input_blleding_area">Inclure les fonds perdus
-	</div>
-	<table>
-		<tr>
-			<td>
-				<div id="card_bleeding_area" class="">
-					<div id="card_overlay">
-						<img src="img/ArrierePlan.png" id="card_background" class="calque"/>
-						<img src="img/Stats.png" id="calque_stats" class="calque optional"/>
-						<img src="img/Text.png" id="calque_description" class="calque optional"/>
-						
-						<table id="output_description_container"><tr><td id="output_description"></td></tr></table>
-						<div id="output_range" class="card_stats"></div>
-						<div id="output_nb_dice" class="card_stats"></div>
-						<div id="output_val_dice" class="card_stats"></div>
-						<div id="output_power" class="card_stats"></div>
-						<img id="card_image" src="" >
-						<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
-						
-						<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>
-						<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
-						<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
-						<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
-						
-						<span id="output_card_header">
-							<table style="margin:auto">
-								<tr>
-									<td style="vertical-align: top;"><img src="img/dual_melee.png" id="output_dual" class="optional"/></td>
-									<td><p id="output_card_name" ></p></td>
-								</tr>
-							</table>
-							<p id="output_card_sub_name" ></p>
-						</span>
-					</div>
-				</div>
-			</td>
-			<td style="vertical-align:top;">
+        <script src="card_generator.js"></script>
 
-				<table border="0">
-					<tr>
-						<td>Titre:</td>
-						<td><textarea id="input_card_name" rows="4" cols="50" class="input_header"></textarea></td>
-					</tr>
-					<tr>
-						<td>Sous-titre:</td>
-						<td><textarea id="input_card_sub_name" rows="4" cols="50"  class="input_header"></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<input type="file" id="card_file" name="files[]" />
-						</td>
-					</tr>
-					<tr>
-						<td>Stats:</td>
-						<td>
-								<textarea id="input_range" rows="3" cols="10" class="input_card_stats"></textarea>
-								<textarea id="input_nb_dice" rows="3" cols="10" class="input_card_stats"></textarea>
-								<textarea id="input_val_dice" rows="3" cols="10" class="input_card_stats"></textarea>
-								<textarea id="input_power" rows="3" cols="10" class="input_card_stats"></textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>Description:</td>
-						<td><textarea id="input_description" rows="4" cols="50" ></textarea></td>
-					</tr>
-					<tr>
-						<td>
-							Ouverture de porte:
-						</td>
-						<td>
-							<input id="input_break_in_none" type="radio" name="input_break_in_noise"  value="none" checked="checked">Non</input>
-							<input id="input_break_in_silent" type="radio" name="input_break_in_noise"  value="silent">Silencieux</input>
-							<input id="input_break_in_noisy" type="radio" name="input_break_in_noise"  value="noisy">Bruyant</input>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Bruit arme:
-						</td>
-						<td>
-							<input id="input_kill_none" type="radio" name="input_kill_noise"  value="none" checked="checked">Non</input>
-							<input id="input_kill_silent" type="radio" name="input_kill_noise"  value="silent">Silencieux</input>
-							<input id="input_kill_noisy" type="radio" name="input_kill_noise"  value="noisy">Bruyant</input>
-						</td>
-					</tr>
-					
-					<tr  valign="top">
-						<td>Dual:</td>
-						<td>
-							<table id="input_dual_container">
-								<tr >
-									<td>
-										<input id="input_dual_none" type="radio" name="input_dual"  value="no" checked="checked">Non</input>
-									</td>
-									<td>
-										<p>|</p>
-									</td>
-									<td>
-										<input id="input_dual_melee" type="radio" name="input_dual"  value="melee">Mélée</input>
-									</td>
-									<td>
-										<img src="img/dual_melee.png"/>
-									</td>
-									<td>
-										<p>|</p>
-									</td>
-									<td>
-										<input id="input_dual_distance" type="radio" name="input_dual"  value="distance">Distance</input>
-									</td>
-									<td>
-										<img src="img/dual_distance.png"/>
-									</td>
-									<td>
-										<p>|</p>
-									</td>
-									<td>
-										<input id="input_dual_custom" type="radio" name="input_dual"  value="custom">Personnalisé</input>
-									</td>
-									<td>
-										<input type="file" id="input_dual_file" name="files[]" disabled/>
-									</td>
-								</tr>
-							</table>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>Ultrarouge:</td>
-						<td><input type="checkbox" id="input_ultrared"/></td>
-					</tr>
-				</table>
-				
-				
-				<br/>
 
-				<button type="button" id="downoad_button" >Télécharger</button>
-				<a id="card_download" download="card.png" href="" style="display:none" />
-			</td>
-		</tr>
-	</table>
-<br/>
-</body>
+    </head>
+    <body>
+        <div id="deck_header">
+            <input type="checkbox" id="input_blleding_area">Inclure les fonds perdus
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <div id="card_bleeding_area" class="">
+                        <div id="card_overlay">
+                            <img src="img/ArrierePlan.png" id="card_background" class="calque"/>
+                            <img src="img/Stats.png" id="calque_stats" class="calque optional"/>
+                            <img src="img/Text.png" id="calque_description" class="calque optional"/>
+
+                            <table id="output_description_container"><tr><td id="output_description"></td></tr></table>
+                            <div id="output_range" class="card_stats"></div>
+                            <div id="output_nb_dice" class="card_stats"></div>
+                            <div id="output_val_dice" class="card_stats"></div>
+                            <div id="output_power" class="card_stats"></div>
+                            <img id="card_image" src="" >
+                            <img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>
+
+                            <img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>
+                            <img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>
+                            <img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>
+                            <img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>
+
+                            <span id="output_card_header">
+                                <table style="margin:auto">
+                                    <tr>
+                                        <td style="vertical-align: top;"><img src="img/dual_melee.png" id="output_dual" class="optional"/></td>
+                                        <td><p id="output_card_name" ></p></td>
+                                    </tr>
+                                </table>
+                                <p id="output_card_sub_name" ></p>
+                            </span>
+                        </div>
+                    </div>
+                </td>
+                <td style="vertical-align:top;">
+
+                    <table border="0">
+                        <tr>
+                            <td>Titre:</td>
+                            <td><textarea id="input_card_name" rows="4" cols="50" class="input_header"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>Sous-titre:</td>
+                            <td><textarea id="input_card_sub_name" rows="4" cols="50"  class="input_header"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="file" id="card_file" name="files[]" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Stats:</td>
+                            <td>
+                                <textarea id="input_range" rows="3" cols="10" class="input_card_stats"></textarea>
+                                <textarea id="input_nb_dice" rows="3" cols="10" class="input_card_stats"></textarea>
+                                <textarea id="input_val_dice" rows="3" cols="10" class="input_card_stats"></textarea>
+                                <textarea id="input_power" rows="3" cols="10" class="input_card_stats"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Description:</td>
+                            <td><textarea id="input_description" rows="4" cols="50" ></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Ouverture de porte:
+                            </td>
+                            <td>
+                                <input id="input_break_in_none" type="radio" name="input_break_in_noise"  value="none" checked="checked">Non</input>
+                                <input id="input_break_in_silent" type="radio" name="input_break_in_noise"  value="silent">Silencieux</input>
+                                <input id="input_break_in_noisy" type="radio" name="input_break_in_noise"  value="noisy">Bruyant</input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bruit arme:
+                            </td>
+                            <td>
+                                <input id="input_kill_none" type="radio" name="input_kill_noise"  value="none" checked="checked">Non</input>
+                                <input id="input_kill_silent" type="radio" name="input_kill_noise"  value="silent">Silencieux</input>
+                                <input id="input_kill_noisy" type="radio" name="input_kill_noise"  value="noisy">Bruyant</input>
+                            </td>
+                        </tr>
+
+                        <tr  valign="top">
+                            <td>Dual:</td>
+                            <td>
+                                <table id="input_dual_container">
+                                    <tr >
+                                        <td>
+                                            <input id="input_dual_none" type="radio" name="input_dual"  value="no" checked="checked">Non</input>
+                                        </td>
+                                        <td>
+                                            <p>|</p>
+                                        </td>
+                                        <td>
+                                            <input id="input_dual_melee" type="radio" name="input_dual"  value="melee">Mélée</input>
+                                        </td>
+                                        <td>
+                                            <img src="img/dual_melee.png"/>
+                                        </td>
+                                        <td>
+                                            <p>|</p>
+                                        </td>
+                                        <td>
+                                            <input id="input_dual_distance" type="radio" name="input_dual"  value="distance">Distance</input>
+                                        </td>
+                                        <td>
+                                            <img src="img/dual_distance.png"/>
+                                        </td>
+                                        <td>
+                                            <p>|</p>
+                                        </td>
+                                        <td>
+                                            <input id="input_dual_custom" type="radio" name="input_dual"  value="custom">Personnalisé</input>
+                                        </td>
+                                        <td>
+                                            <input type="file" id="input_dual_file" name="files[]" disabled/>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Ultrarouge:</td>
+                            <td><input type="checkbox" id="input_ultrared"/></td>
+                        </tr>
+                    </table>
+
+
+                    <br/>
+
+                    <button type="button" id="downoad_button" >Télécharger</button>
+                    <a id="card_download" download="card.png" href="" style="display:none" />
+                </td>
+            </tr>
+        </table>
+        <br/>
+    </body>
 </html>
