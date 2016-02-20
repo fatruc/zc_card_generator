@@ -1,3 +1,7 @@
+body {
+	padding:20px;
+}
+
 
 #card_overlay {
     position:relative;
@@ -5,12 +9,26 @@
     height: 750px;
 }
 
-.card_bleeding_area {
+.without_card_bleeding_area {
+	width:487px;
+}
+
+.with_card_bleeding_area {
+	width:597px;
     padding-left: 54px;
 	padding-right: 54px;
     padding-top:35px;
 	padding-bottom:35px;
     border : 1px solid black;
+}
+
+
+#card_bleeding_area {
+	margin: auto;
+}
+
+textarea {
+	width: 100%;
 }
 
 #output_dual{

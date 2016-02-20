@@ -223,17 +223,19 @@ function download() {
 }
 
 function add_bleeding_areas() {
-    if ($("#input_blleding_area").is(":checked")) {
-        $("#card_bleeding_area").addClass("card_bleeding_area");
+    if ($("#input_bleeding_area").is(":checked")) {
+        $("#card_bleeding_area").addClass("with_card_bleeding_area");
+		$("#card_bleeding_area").removeClass("without_card_bleeding_area");
     } else {
-        $("#card_bleeding_area").removeClass("card_bleeding_area");
+        $("#card_bleeding_area").removeClass("with_card_bleeding_area");
+		$("#card_bleeding_area").addClass("without_card_bleeding_area");
     }
 }
 
 $(document).ready(function () {
 
     // deck handler
-    $("#input_blleding_area").click(add_bleeding_areas);
+    $("#input_bleeding_area").click(add_bleeding_areas);
 
     $(".input_card_stats").keyup(update_stats);
     $(".input_header").keyup(update_headers);
