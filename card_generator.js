@@ -238,7 +238,8 @@ $(document).ready(function () {
     $("#input_bleeding_area").click(add_bleeding_areas);
 
     $(".input_card_stats").keyup(update_stats);
-    $(".input_header").keyup(update_headers);
+    $("#input_card_name").keyup(update_headers);
+    $("#input_card_sub_name").keyup(update_headers);
     $("#input_description").keyup(update_description);
 
     $("#card_file").change(handle_change_card_image);
