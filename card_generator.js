@@ -1,14 +1,14 @@
-
 function replace_dices(text) {
     var emoticons = {
-        '[1]': 'img/de1.png',
-        '[2]': 'img/de2.png',
-        '[3]': 'img/de3.png',
-        '[4]': 'img/de4.png',
-        '[5]': 'img/de5.png',
-        '[6]': 'img/de6.png',
-    }, patterns = [],
-            metachars = /\[[0-6]\]/g;
+            '[1]': 'img/de1.png',
+            '[2]': 'img/de2.png',
+            '[3]': 'img/de3.png',
+            '[4]': 'img/de4.png',
+            '[5]': 'img/de5.png',
+            '[6]': 'img/de6.png',
+        },
+        patterns = [],
+        metachars = /\[[0-6]\]/g;
 
     // build a regex pattern for each defined property
     for (var i in emoticons) {
@@ -18,10 +18,10 @@ function replace_dices(text) {
     }
 
     // build the regular expression and replace
-    return text.replace(new RegExp(patterns.join('|'), 'g'), function (match) {
+    return text.replace(new RegExp(patterns.join('|'), 'g'), function(match) {
         return typeof emoticons[match] != 'undefined' ?
-                '<img src="' + emoticons[match] + '"/>' :
-                match;
+            '<img src="' + emoticons[match] + '"/>' :
+            match;
     });
 }
 
@@ -40,21 +40,13 @@ function handle_change_card_image(evt) {
         var reader = new FileReader();
 
         // Closure to capture the file information.
-        reader.onload = (function (theFile) {
-            return function (e) {
+        reader.onload = (function(theFile) {
+            return function(e) {
                 var card_image = $("#card_image");
                 var card_overlay = $("#card_overlay");
 
                 card_image.attr("src", e.target.result);
-                card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
-
-
-                $("#card_image").draggable({
-                    containment: "#card_overlay",
-                    axis: "y",
-                    cursor: "move"
-                })
-
+				center_card_image();
             };
         })(f);
 
@@ -80,8 +72,8 @@ function handle_change_dual_image(evt) {
         var reader = new FileReader();
 
         // Closure to capture the file information.
-        reader.onload = (function (theFile) {
-            return function (e) {
+        reader.onload = (function(theFile) {
+            return function(e) {
                 // Render thumbnail.
                 $("#output_dual").attr("src", e.target.result);
             };
@@ -205,14 +197,23 @@ function update_dual_icon() {
             $("output_dual").hide();
         }
     }
+}
 
+function center_card_image(){
+	var card_image = $("#card_image");
+	var card_overlay = $("#card_overlay");
+	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
+}
 
+function update_image_max_range(){
+	$("#card_image").css("max-width", $("#input_image_max_rate").val()+"%");
+	center_card_image();
 }
 
 function download() {
 
     html2canvas(document.getElementById("card_bleeding_area"), {
-        onrendered: function (canvas) {
+        onrendered: function(canvas) {
             $("#card_download").attr("href", canvas.toDataURL('image/png'));
             $("#card_download").get(0).click();
         },
@@ -225,14 +226,14 @@ function download() {
 function add_bleeding_areas() {
     if ($("#input_bleeding_area").is(":checked")) {
         $("#card_bleeding_area").addClass("with_card_bleeding_area");
-		$("#card_bleeding_area").removeClass("without_card_bleeding_area");
+        $("#card_bleeding_area").removeClass("without_card_bleeding_area");
     } else {
         $("#card_bleeding_area").removeClass("with_card_bleeding_area");
-		$("#card_bleeding_area").addClass("without_card_bleeding_area");
+        $("#card_bleeding_area").addClass("without_card_bleeding_area");
     }
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
 
     // deck handler
     $("#input_bleeding_area").click(add_bleeding_areas);
@@ -251,9 +252,10 @@ $(document).ready(function () {
 
     $("input[name='input_kill_noise']").click(update_kill_noise);
 
-	$(".popup").popover({
-		trigger: "hover"
-	});
+    $(".popup").popover({
+        trigger: "hover",
+		html:true
+    });
 
     $(".calque_break_in_noise").draggable({
         containment: "#card_overlay",
@@ -267,7 +269,16 @@ $(document).ready(function () {
         cursor: "move"
     });
 
+	$("#card_image").draggable({
+		containment: "#card_overlay",
+		cursor: "move"
+	});
+	
     $("#downoad_button").click(download);
+	
+	$("#input_image_max_rate").val($("#card_image").css("max-width").replace("%",""));
+	
+	$("#input_image_max_rate").change(update_image_max_range);
 
 
 });
