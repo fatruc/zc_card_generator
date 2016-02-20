@@ -136,6 +136,7 @@ textarea {
     font-family: EurostileLTStd;
     font-size: 18pt;
     color:#5C5C5F;
+	line-height: 1em;
 }
 
 #output_description_container {
