@@ -12,8 +12,11 @@
     <!-- Latest compiled and minified JavaScript --> 		 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>        
   </head>       
-  <body>	 		     
-    <nav class="navbar navbar-default">         
+  <body>	 		
+<div class="container-fluid">	
+    <div class="row">	  
+	<div class="col-md-12">	
+    <nav class="navbar navbar-default ">         
       <div class="container-fluid">             
         <!-- Brand and toggle get grouped for better mobile display -->              
         <div class="navbar-header">                 
@@ -21,12 +24,17 @@
           <div class="checkbox">					             
             <div class="panel-body">					                 
               <label>						                 
-                <input type="checkbox" id="input_bleeding_area"/>						Inclure les fonds perdus 					                 
+                <input type="checkbox" id="input_bleeding_area"/> Inclure les fonds perdus 					                 
               </label>					             
             </div>					           
-          </div>	                
+          </div>
+</div>		  
         </div>	     
-    </nav>		     
+    </nav>	
+	</div>
+	</div>
+	</div>
+<div class="container-fluid">	
     <div class="row">				       
       <div class="col-md-3">					         
         <div class="panel panel-default">					             
@@ -46,8 +54,9 @@
         <div class="panel panel-default">					             
           <div class="panel-heading">Image de la carte           
           </div>					             
-          <div class="panel-body">					 						             
-            <input type="file" id="card_file" name="files[]" />					             
+          <div class="panel-body">		
+            <input type="file" id="card_file" name="files[]" />	
+			<p class="help-block">L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.</p>			
           </div>					         
         </div>					         
         <div class="panel panel-default">					             
@@ -205,7 +214,7 @@
         <div class="panel">										           
           <div class="panel-body">												             
             <div class="row">						               
-              <button type="button" id="downoad_button" class="btn btn-default col-md-12" >Télécharger               
+              <button type="button" id="downoad_button" class="btn btn-default col-md-12" >Télécharger l'image              
               </button>					               
               <a id="card_download" download="card.png" href="" style="display:none" />					             
             </div>					           
@@ -213,5 +222,6 @@
         </div>					                                                                  
       </div>		     
     </div>       
-  </body>
+</div> 
+ </body>
 </html>
