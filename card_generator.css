@@ -137,6 +137,7 @@ textarea {
     font-size: 18pt;
     color:#5C5C5F;
 	line-height: 1em;
+	padding-top: 5px;
 }
 
 #output_description_container {
