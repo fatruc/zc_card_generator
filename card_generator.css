@@ -1,7 +1,7 @@
 body {
 	background: url('img/zc_backgound.jpg') no-repeat center -250px;
     padding-top: 100px;
-    background-color: black;
+    background-color: black !important;
 	padding-bottom: 20px;
 	
 }
