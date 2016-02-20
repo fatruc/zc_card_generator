@@ -1,4 +1,9 @@
-
+body {
+	background: url('img/zc_backgound.jpg') no-repeat center -250px;
+    padding-top: 100px;
+    background-color: black;
+	
+}
 
 #card_overlay {
     position:relative;
@@ -22,6 +27,12 @@
 
 #card_bleeding_area {
 	margin: auto;
+	background-color: white;
+	margin-top: 60px;
+}
+
+button {
+	width: 100%;
 }
 
 textarea {

@@ -13,12 +13,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>        
   </head>       
   <body>	 		
-<div class="container-fluid">	
+<!--<div class="container-fluid">	
     <div class="row">	  
 	<div class="col-md-12">	
     <nav class="navbar navbar-default ">         
       <div class="container-fluid">             
-        <!-- Brand and toggle get grouped for better mobile display -->              
+               
         <div class="navbar-header">                 
           <a class="navbar-brand" href="#">Générateur de cartes équipement</a>	             
           <div class="checkbox">					             
@@ -33,31 +33,32 @@
     </nav>	
 	</div>
 	</div>
-	</div>
+	</div>-->
 <div class="container-fluid">	
     <div class="row">				       
       <div class="col-md-3">					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
           <div class="panel-heading">Titre           
           </div>					             
           <div class="panel-body">						 
 			<textarea id="input_card_name" rows="4" class="form-control"></textarea> 					             
           </div>					         
         </div>					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
           <div class="panel-heading">Sous-titre           
           </div>					             
           <div class="panel-body">					 						 
 				<textarea id="input_card_sub_name" rows="4" class="form-control"></textarea>  					             
           </div>					         
         </div>					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup"  data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Image de la carte           
           </div>					             
           <div class="panel-body">		
             <input type="file" id="card_file" name="files[]" />	
-			<p class="help-block">L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.</p>			
-          </div>					         
+	
+          </div>
+		  
         </div>					         
         <div class="panel panel-default">					             
           <div class="panel-heading">Statistiques           
@@ -79,7 +80,7 @@
             </div>					             
           </div>					         
         </div>					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
           <div class="panel-heading">Description           
           </div>					             
           <div class="panel-body">					 						 
@@ -88,10 +89,10 @@
         </div>				       
       </div>				       
       <div class="col-md-6">									         
-        <div class="panel panel-default">					             
+        <!--<div class="panel panel-default">					             
           <div class="panel-heading">Aperçu           
           </div>					             
-          <div class="panel-body">                                 
+          <div class="panel-body">           -->                      
             <div id="card_bleeding_area" class="without_card_bleeding_area">                                       
               <div id="card_overlay">                                             
                 <img src="img/ArrierePlan.png" id="card_background" class="calque"/>                                             
@@ -130,11 +131,11 @@
                 </span>                                       
               </div>                                 
             </div>					           
-          </div>                             
-        </div>					       
+         <!-- </div>                             
+        </div>	-->				       
       </div>					       
       <div class="col-md-3">					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Ouverture de portes           
           </div>					             
           <div class="panel-body">						             
@@ -156,7 +157,7 @@
             </div>	                                                                  					             
           </div>					         
         </div>					 					         
-        <div class="panel panel-default">					             
+        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Bruit de l'arme           
           </div>					                                   					             
           <div class="panel-body">						             
@@ -203,23 +204,35 @@
             </div>						             
             <input type="file" id="input_dual_file" name="files[]" disabled/>						 					             
           </div>					         
-        </div>					 					         
-        <div class="input-group panel">                 
-          <span class="input-group-addon">                     
-            <input type="checkbox" id="input_ultrared"/>                 
-          </span>	             
-          <p class="form-control">		Arme ultrarouge  	             
-          </p>             
-        </div>					 										         
-        <div class="panel">										           
-          <div class="panel-body">												             
-            <div class="row">						               
-              <button type="button" id="downoad_button" class="btn btn-default col-md-12" >Télécharger l'image              
-              </button>					               
-              <a id="card_download" download="card.png" href="" style="display:none" />					             
-            </div>					           
-          </div>					         
-        </div>					                                                                  
+        </div>		
+			                 		
+
+			
+		<div class="panel panel-default">	                                   					             
+          <div class="panel-body">
+			<div class="checkbox">
+				<label>
+				  <input type="checkbox" id="input_ultrared"/> Arme ultrarouge
+				</label>
+			  </div>		  
+		  </div>
+		</div>
+
+		<div class="panel panel-default">	                                   					             
+          <div class="panel-body">
+			<div class="checkbox">
+				<label>
+				  <input type="checkbox" id="input_bleeding_area"/> Inclure les fonds perdus 
+				</label>
+			  </div>		  
+		  </div>
+		</div>
+
+	  <button type="button" id="downoad_button" class="btn btn-default" >Télécharger l'image              
+	  </button>					               
+	  <a id="card_download" download="card.png" href="" style="display:none" />		
+
+				                                                                  
       </div>		     
     </div>       
 </div> 

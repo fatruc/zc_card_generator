@@ -251,6 +251,9 @@ $(document).ready(function () {
 
     $("input[name='input_kill_noise']").click(update_kill_noise);
 
+	$(".popup").popover({
+		trigger: "hover"
+	});
 
     $(".calque_break_in_noise").draggable({
         containment: "#card_overlay",
