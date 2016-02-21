@@ -205,6 +205,7 @@ function update_dual_icon() {
 function center_card_image(){
 	var card_image = $("#card_image");
 	var card_overlay = $("#card_overlay");
+	
 	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
 }
 

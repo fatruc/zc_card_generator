@@ -58,7 +58,7 @@ textarea {
 .card_stats {
     position: absolute;
     font-family: EurostileLTStd;
-    bottom: 25px;
+    bottom: 32px;
     font-size: 30pt;
     color:#000000;
     text-align:right;
@@ -69,19 +69,19 @@ textarea {
 
 
 #output_range {
-    right:365px
+    right:368px
 }
 
 #output_nb_dice {
-    right:260px
+    right:262px
 }
 
 #output_val_dice {
-    right:150px
+    right:154px
 }
 
 #output_power {
-    right:45px
+    right:47px
 }
 
 #card_file {
