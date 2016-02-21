@@ -58,6 +58,7 @@ textarea {
 #card_image_shadow {
     position: absolute;
 	display: none;
+	max-width: 80%;
 }
 
 .card_stats {

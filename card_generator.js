@@ -66,8 +66,8 @@ function create_card_image_shadow(){
     var sourceImg = document.getElementById("card_image");
     var shadowImg = document.getElementById("card_image_shadow");
     var ctx = canvas.getContext('2d');
-    canvas.width = sourceImg.width;
-    canvas.height = sourceImg.height;
+    canvas.width = sourceImg.naturalWidth;
+    canvas.height = sourceImg.naturalHeight;
     ctx.drawImage(sourceImg,0,0);
     var imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
     var pix = imgData.data;
@@ -244,7 +244,9 @@ function center_card_image(){
 
 function update_image_max_range(){
 	$("#card_image").css("max-width", $("#input_image_max_rate").val()+"%");
+	$("#card_image_shadow").css("max-width", $("#input_image_max_rate").val()+"%");
 	center_card_image();
+	move_shadow();
 }
 
 function download() {
