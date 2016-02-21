@@ -233,6 +233,15 @@ function add_bleeding_areas() {
     }
 }
 
+function update_card_image_shadow(){
+		
+	if($("#input_image_shadow").is(":checked")){
+		$("#card_image").addClass("shadowed");
+	} else {
+		$("#card_image").removeClass("shadowed");
+	}
+}
+
 $(document).ready(function() {
 
     // deck handler
@@ -252,7 +261,7 @@ $(document).ready(function() {
 
     $("input[name='input_kill_noise']").click(update_kill_noise);
 
-    $(".popup").popover({
+    $(".help").popover({
         trigger: "hover",
 		html:true
     });
@@ -279,6 +288,8 @@ $(document).ready(function() {
 	$("#input_image_max_rate").val($("#card_image").css("max-width").replace("%",""));
 	
 	$("#input_image_max_rate").change(update_image_max_range);
+	
+	$("#input_image_shadow").click(update_card_image_shadow);
 
 
 });

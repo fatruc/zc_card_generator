@@ -1,6 +1,8 @@
-<html>       
+<html>    
+	
   <head>             
-    <link rel="stylesheet" type="text/css" href="card_generator.css">		          
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+	<link rel="stylesheet" type="text/css" href="card_generator.css">		          
 <script src="libs/html2canvas.js"></script>           
 <script src="libs/jquery-2.0.0.min.js"></script>           
 <script src="libs/jquery-ui-1.11.4.min.js"></script>           
@@ -24,14 +26,14 @@
 			<textarea id="input_card_name" rows="2" class="form-control"></textarea> 					             
           </div>					         
         </div>					         
-        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
+        <div class="panel panel-default help" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
           <div class="panel-heading">Sous-titre           
           </div>					             
           <div class="panel-body">					 						 
 				<textarea id="input_card_sub_name" rows="3" class="form-control"></textarea>  					             
           </div>					         
         </div>					         
-        <div class="panel panel-default popup"  data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="L'image peut être déplacée librement par drag'n drop directement sur l'aperçu.<br/><br/>Le pourcentage correspond au pourcentage maximum que peut occuper l'image sur la largeur de la carte">					             
+        <div class="panel panel-default help"  data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="L'image peut être déplacée librement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Image de la carte           
           </div>					             
           <div class="panel-body">		
@@ -39,12 +41,17 @@
 				<div class="form-group">
 					<input type="file" id="card_file" name="files[]" />	
 				</div>
-				<div class="form-group">
+				<div class="form-group help" title="Information" data-placement="bottom" data-content="Le pourcentage correspond au pourcentage maximum que peut occuper l'image sur la largeur de la carte">
 					<div class="input-group">
 						<input type="text" class="form-control" id="input_image_max_rate" >
 						<span class="input-group-addon" id="basic-addon2">%</span>
 					</div>
 				</div>
+				<div class="checkbox help"  data-toggle="popover" title="Attention !" data-placement="bottom" data-content="Cette option est expérimentale, et peut ne pas fonctionner avec tous les navigateurs">
+				<label>
+				  <input type="checkbox" id="input_image_shadow" /> Ombre portée
+				</label>
+			  </div>	
 			</form>
 			
           </div>
@@ -71,7 +78,7 @@
             </div>					             
           </div>					         
         </div>					         
-        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
+        <div class="panel panel-default help" data-container="body" data-toggle="popover" title="Astuce !" data-placement="right" data-content="Vous pouvez insérer des images de dés en utilisant les codes [1], [2], [3], [4], [5] et [6]">					             
           <div class="panel-heading">Description           
           </div>					             
           <div class="panel-body">					 						 
@@ -122,7 +129,7 @@
   		       
       </div>					       
       <div class="col-md-3">					         
-        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
+        <div class="panel panel-default help" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Ouverture de portes           
           </div>					             
           <div class="panel-body">						             
@@ -144,7 +151,7 @@
             </div>	                                                                  					             
           </div>					         
         </div>					 					         
-        <div class="panel panel-default popup" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
+        <div class="panel panel-default help" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             
           <div class="panel-heading">Bruit de l'arme           
           </div>					                                   					             
           <div class="panel-body">						             
