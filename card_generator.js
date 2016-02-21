@@ -146,8 +146,9 @@ function update_stats() {
 function update_headers() {
     var card_name = replace_carriage_return($("#input_card_name").val());
     var card_sub_name = replace_carriage_return($("#input_card_sub_name").val());
-    $("#output_card_name").html(card_name.toUpperCase());
+    $("#output_card_name").html("<img src=\"img/dual_melee.png\" id=\"output_dual\" class=\"optional\"/>"+card_name.toUpperCase());
     $("#output_card_sub_name").html(replace_dices(card_sub_name.toUpperCase()));
+	update_dual_icon();
 }
 
 function replace_carriage_return(text) {

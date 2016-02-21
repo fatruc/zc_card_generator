@@ -41,9 +41,9 @@ textarea {
 }
 
 #output_dual{
-    padding-top:8px;
     height: 60px;
     width: 60px;
+	margin-top: -10px;
 }
 
 #card_image {
