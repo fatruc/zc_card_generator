@@ -282,13 +282,10 @@ function update_card_image_shadow(){
 }
 
 function move_shadow() {
-	alert("toto");
 	var card_image = $("#card_image");
 	var card_image_shadow = $("#card_image_shadow");
 	card_image_shadow.css("left",card_image.position().left-9);
 	card_image_shadow.css("top",card_image.position().top+9);
-	alert(card_image_shadow.css("left"));
-	alert(card_image_shadow.css("top"));
 }
 
 $(document).ready(function() {
