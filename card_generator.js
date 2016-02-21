@@ -218,8 +218,10 @@ function download() {
 
     html2canvas(document.getElementById("card_bleeding_area"), {
         onrendered: function(canvas) {
-            $("#card_download").attr("href", canvas.toDataURL('image/png'));
-            $("#card_download").get(0).click();
+			var hidden_download_link = $("#card_download");
+            hidden_download_link.attr("href", canvas.toDataURL('image/png'));
+			hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".png");
+            hidden_download_link.get(0).click();
         },
         logging: false,
         letterRendering: true
