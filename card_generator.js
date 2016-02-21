@@ -47,7 +47,9 @@ function handle_change_card_image(evt) {
 
 				card_image.show();
                 card_image.attr("src", e.target.result);
+				create_card_image_shadow();
 				center_card_image();
+				move_shadow();
             };
         })(f);
 
@@ -57,6 +59,36 @@ function handle_change_card_image(evt) {
     }
 
 
+}
+
+function create_card_image_shadow(){
+	var canvas = document.createElement("canvas");
+    var sourceImg = document.getElementById("card_image");
+    var shadowImg = document.getElementById("card_image_shadow");
+    var ctx = canvas.getContext('2d');
+    canvas.width = sourceImg.width;
+    canvas.height = sourceImg.height;
+    ctx.drawImage(sourceImg,0,0);
+    var imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
+    var pix = imgData.data;
+    //convert the image into a shadow
+    for (var i=0, n = pix.length; i < n; i+= 4){
+        //set red to 0
+        pix[i] = 0;
+        //set green to 0
+        pix[i+1] = 0;
+        //set blue to 0
+        pix[i+2] = 0;
+        //retain the alpha value
+		if(pix[i+3]!=0){
+			pix[i+3] = 153;
+		} else {
+			pix[i+3] = 0;	
+		}
+        
+    }
+    ctx.putImageData(imgData,0,0);
+    shadowImg.src = canvas.toDataURL();
 }
 
 function handle_change_dual_image(evt) {
@@ -207,6 +239,7 @@ function center_card_image(){
 	var card_overlay = $("#card_overlay");
 	
 	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
+	
 }
 
 function update_image_max_range(){
@@ -242,10 +275,20 @@ function add_bleeding_areas() {
 function update_card_image_shadow(){
 		
 	if($("#input_image_shadow").is(":checked")){
-		$("#card_image").addClass("shadowed");
+		$("#card_image_shadow").show();
 	} else {
-		$("#card_image").removeClass("shadowed");
+		$("#card_image_shadow").hide();
 	}
+}
+
+function move_shadow() {
+	alert("toto");
+	var card_image = $("#card_image");
+	var card_image_shadow = $("#card_image_shadow");
+	card_image_shadow.css("left",card_image.position().left-9);
+	card_image_shadow.css("top",card_image.position().top+9);
+	alert(card_image_shadow.css("left"));
+	alert(card_image_shadow.css("top"));
 }
 
 $(document).ready(function() {
@@ -286,7 +329,9 @@ $(document).ready(function() {
 
 	$("#card_image").draggable({
 		containment: "#card_overlay",
-		cursor: "move"
+		cursor: "move",
+		drag: move_shadow,
+		stop: move_shadow
 	});
 	
     $("#downoad_button").click(download);

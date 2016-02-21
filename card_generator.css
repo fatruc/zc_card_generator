@@ -55,6 +55,11 @@ textarea {
 	display:none;
 }
 
+#card_image_shadow {
+    position: absolute;
+	display: none;
+}
+
 .card_stats {
     position: absolute;
     font-family: EurostileLTStd;
@@ -181,12 +186,4 @@ textarea {
 #input_dual_container img {
     width: 30px;
     height: 30px;
-}
-
-.shadowed {
-	filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=9, OffY=9,
-Color='#444')";
-	filter: url(#drop-shadow);
-	-webkit-filter: drop-shadow(-9px 9px 0px rgba(0,0,0,0.6));
-	filter: drop-shadow(-9px 9px 0px rgba(0,0,0,0.6));
 }
