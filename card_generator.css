@@ -170,6 +170,10 @@ textarea {
     text-align:center;
 }
 
+.img_de {
+	margin-top: -7px;
+}
+
 @font-face {
     font-family: EurostileLTStd;
     src: url("fonts/EurostileLTStd-BoldCn.otf") format("opentype");

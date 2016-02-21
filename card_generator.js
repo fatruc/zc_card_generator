@@ -20,7 +20,7 @@ function replace_dices(text) {
     // build the regular expression and replace
     return text.replace(new RegExp(patterns.join('|'), 'g'), function(match) {
         return typeof emoticons[match] != 'undefined' ?
-            '<img src="' + emoticons[match] + '"/>' :
+            '<img src="' + emoticons[match] + '" class="img_de"/>' :
             match;
     });
 }
