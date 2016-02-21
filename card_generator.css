@@ -52,6 +52,7 @@ textarea {
     left:50px;
     max-width: 80%;
     cursor: move;
+	display:none;
 }
 
 .card_stats {

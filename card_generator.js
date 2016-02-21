@@ -45,6 +45,7 @@ function handle_change_card_image(evt) {
                 var card_image = $("#card_image");
                 var card_overlay = $("#card_overlay");
 
+				card_image.show();
                 card_image.attr("src", e.target.result);
 				center_card_image();
             };
@@ -75,6 +76,7 @@ function handle_change_dual_image(evt) {
         reader.onload = (function(theFile) {
             return function(e) {
                 // Render thumbnail.
+				$("#output_dual").show();
                 $("#output_dual").attr("src", e.target.result);
             };
         })(f);
@@ -193,6 +195,7 @@ function update_dual_icon() {
         } else if ($("#input_dual_custom").is(":checked")) {
             $("#output_dual").attr("src", "");
             $("#input_dual_file").prop("disabled", false);
+			$("output_dual").hide();
         } else {
             $("output_dual").hide();
         }
