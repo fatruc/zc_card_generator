@@ -224,7 +224,7 @@ function replace_carriage_return(text) {
 }
 
 function load_ultrared(){
-	$("#input_ultrared").prop("checked",current_card.ultrared);
+	$("#input_ultrared").prop("checked",current_card.ultrared?current_card.ultrared:false);
 	output_ultrared();
 }
 
@@ -443,7 +443,7 @@ function add_bleeding_areas() {
 }
 
 function load_card_image_shadow(){
-	$("#input_image_shadow").prop('checked', current_card.card_image_shadow);
+	$("#input_image_shadow").prop('checked', current_card.card_image_shadow?current_card.card_image_shadow:false);
 	output_card_image_shadow();
 	create_card_image_shadow();
 	move_shadow();
