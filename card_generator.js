@@ -29,10 +29,23 @@ function replace_dices(text) {
 
 function load_card_image(){
 	var card_image = $("#card_image");
-	card_image.show();
-	card_image.attr("src", current_card.card_image);
+	card_image.attr("src", current_card.card_image?current_card.card_image:"");
+	
+	if(current_card.card_image){
+		card_image.show();
+	}else {
+		card_image.hide();
+	}
+	
 	card_image.css('top', current_card.card_image_top+"px");
 	card_image.css('left', current_card.card_image_left+"px");
+}
+
+function save_card_image(){
+	var card_image = $("#card_image");
+	current_card.card_image = card_image.attr("src");
+	current_card.card_image_top = card_image.position().top;
+	current_card.card_image_left = card_image.position().left;
 }
 
 function handle_change_card_image(evt) {
@@ -59,9 +72,7 @@ function handle_change_card_image(evt) {
 				center_card_image();
 				move_shadow();
 				
-				current_card.card_image = e.target.result;
-				current_card.card_image_top = card_image.position().top;
-				current_card.card_image_left = card_image.position().left;
+				save_card_image();
             };
         })(f);
 
@@ -74,6 +85,12 @@ function handle_change_card_image(evt) {
 }
 
 function create_card_image_shadow(){
+	
+	var card_image=$("#card_image");
+	if(!card_image || card_image.attr("src")==""){
+		return;
+	}
+	
 	var canvas = document.createElement("canvas");
     var sourceImg = document.getElementById("card_image");
     var shadowImg = document.getElementById("card_image_shadow");
@@ -122,6 +139,7 @@ function handle_change_dual_image(evt) {
                 // Render thumbnail.
 				$("#output_dual").show();
                 $("#output_dual").attr("src", e.target.result);
+				current_card.dual_image = e.target.result;
             };
         })(f);
 
@@ -138,6 +156,12 @@ function load(){
 	load_stats();
 	load_description();
 	load_card_image();
+	load_card_image_shadow();
+	load_image_max_range();
+	load_ultrared();
+	load_break_in_noise();
+	load_kill_noise();
+	load_dual_icon();
 }
 
 function load_stats(){
@@ -159,7 +183,10 @@ function save_stats() {
 }
 
 function output_stats(){
-	if (current_card.range  || current_card.nb_dices != "" || current_card.val_dices != "" || current_card.power != "") {
+	if (current_card.range && current_card.range!="" 
+		|| current_card.nb_dices && current_card.nb_dices != ""
+		|| current_card.val_dices && current_card.val_dices != ""
+		|| current_card.power && current_card.power != "") {
         $("#calque_stats").show();
         $("#input_description").prop('disabled', true);
     } else {
@@ -167,16 +194,16 @@ function output_stats(){
         $("#input_description").prop('disabled', false);
     }
 	
-	$("#output_range").html(current_card.range);
-    $("#output_nb_dice").html(current_card.nb_dices);
-    $("#output_val_dice").html(current_card.val_dices);
-    $("#output_power").html(current_card.power);
+	$("#output_range").html(current_card.range?current_card.range:"");
+    $("#output_nb_dice").html(current_card.nb_dices?current_card.nb_dices:"");
+    $("#output_val_dice").html(current_card.val_dices?current_card.val_dices:"");
+    $("#output_power").html(current_card.power?current_card.power:"");
 }
 
 function output_headers(){
 	$("#output_card_name").html("<img src=\"img/dual_melee.png\" id=\"output_dual\" class=\"optional\"/>"+(current_card.card_name?current_card.card_name.toUpperCase():""));
     $("#output_card_sub_name").html(replace_dices(current_card.card_sub_name?current_card.card_sub_name.toUpperCase():""));
-	update_dual_icon();
+	output_dual_icon();
 }
 
 function load_headers(){
@@ -196,16 +223,167 @@ function replace_carriage_return(text) {
     return text.replace(/\r\n|\r|\n/g, "<br />");
 }
 
+function load_ultrared(){
+	$("#input_ultrared").prop("checked",current_card.ultrared);
+	output_ultrared();
+}
+
+function save_ultrared(){
+	current_card.ultrared=$("#input_ultrared").is(":checked");
+	output_ultrared();
+}
+
+
+function output_ultrared() {
+    if (current_card.ultrared) {
+        $("#calque_ultrared").show();
+    } else {
+        $("#calque_ultrared").hide();
+    }
+}
+
+function save_break_in_noise(){
+	current_card.noisy_break_in = $("#input_break_in_noisy").is(":checked");
+	current_card.silent_break_in = $("#input_break_in_silent").is(":checked");
+	output_break_in_noise();
+}
+
+function load_break_in_noise(){
+
+	$("#input_break_in_none").prop("checked",!current_card.noisy_break_in && !current_card.silent_break_in);
+	
+	$("#input_break_in_noisy").prop("checked",current_card.noisy_break_in);
+	$("#input_break_in_silent").prop("checked",current_card.silent_break_in);
+	
+
+	output_break_in_noise();
+}
+
+function end_drag_break_in_noise(){
+	current_card.noisy_break_in_top = $("#calque_noisy_break_in").position().top;
+	current_card.silent_break_in_top = $("#calque_silent_break_in").position().top;
+}
+
+function output_break_in_noise() {
+
+    if (current_card.noisy_break_in) {
+        $("#calque_noisy_break_in").show();
+    } else {
+        $("#calque_noisy_break_in").hide();
+    }
+
+
+    if (current_card.silent_break_in) {
+        $("#calque_silent_break_in").show();
+    } else {
+        $("#calque_silent_break_in").hide();
+    }
+	
+	$("#calque_noisy_break_in").css("top",current_card.noisy_break_in_top+"px");
+	$("#calque_silent_break_in").css("top",current_card.silent_break_in_top+"px");
+
+}
+
+function end_drag_kill_noise(){
+	current_card.noisy_kill_top = $("#calque_noisy_kill").position().top;
+	current_card.silent_kill_top = $("#calque_silent_kill").position().top;
+}
+
+function save_kill_noise(){
+	current_card.noisy_kill=$("#input_kill_noisy").is(":checked");
+	current_card.silent_kill=$("#input_kill_silent").is(":checked");
+	output_kill_noise();
+}
+
+function load_kill_noise(){
+	$("#input_kill_none").prop("checked",!current_card.noisy_kill && !current_card.noisy_kill_top);
+	
+	$("#input_kill_noisy").prop("checked",current_card.noisy_kill);
+	$("#input_kill_silent").prop("checked",current_card.silent_kill);
+	
+	$("#calque_noisy_kill").css("top",current_card.noisy_kill_top);
+	$("#calque_silent_kill").css("top",current_card.silent_kill_top);
+	
+	output_kill_noise();
+}
+
+function output_kill_noise() {
+    if (current_card.noisy_kill) {
+        $("#calque_noisy_kill").show();
+    } else {
+        $("#calque_noisy_kill").hide();
+    }
+
+
+    if (current_card.silent_kill) {
+        $("#calque_silent_kill").show();
+    } else {
+        $("#calque_silent_kill").hide();
+    }
+
+}
+
+function save_dual_icon(){
+	current_card.dual_icon_none = $("#input_dual_none").is(":checked");
+	current_card.dual_icon_melee = $("#input_dual_melee").is(":checked");
+	current_card.dual_icon_distance = $("#input_dual_distance").is(":checked");
+	current_card.dual_icon_custom = $("#input_dual_custom").is(":checked");
+	
+	if(current_card.dual_icon_none || current_card.dual_icon_custom){
+		current_card.dual_image="";
+	} else if(current_card.dual_icon_melee){
+		current_card.dual_image="img/dual_melee.png";
+	} else if(current_card.dual_icon_distance){
+		current_card.dual_image="img/dual_distance.png";
+	}
+	
+	output_dual_icon();
+}
+
+function load_dual_icon(){
+	$("#input_dual_none").prop("checked",!current_card.dual_icon_none || current_card.dual_icon_none);
+	$("#input_dual_melee").prop("checked",current_card.dual_icon_melee);
+	$("#input_dual_distance").prop("checked",current_card.dual_icon_distance);
+	$("#input_dual_custom").prop("checked",current_card.dual_icon_custom);
+	output_dual_icon();
+}
+
+function output_dual_icon() {
+
+    $("#input_dual_file").prop("disabled", true);
+
+	$("#output_dual").attr("src", current_card.dual_image?current_card.dual_image:"");
+	
+    if (current_card.dual_icon_none || !current_card.dual_image) {
+        $("#output_dual").hide();
+    } else {
+        $("#output_dual").show();
+
+		if (current_card.dual_icon_custom) {
+            $("#input_dual_file").prop("disabled", false);
+			$("output_dual").hide();
+        } 
+    }
+}
+
+function center_card_image(){
+	var card_image = $("#card_image");
+	var card_overlay = $("#card_overlay");
+
+	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
+	current_card.card_image_left = card_image.position().left;
+}
+
 function save_description(){
 	current_card.description = $("#input_description").val();
 	output_description();
 }
 
 function output_description(){
-    description = replace_carriage_return(current_card.description);
 
     if (current_card.description) {
-		$("#output_description").html(replace_dices(current_card.description.toUpperCase()));
+		description = replace_carriage_return(current_card.description);
+		$("#output_description").html(replace_dices(description.toUpperCase()));
         $("#calque_description").show();
         $(".input_card_stats").prop('disabled', true);
     } else {
@@ -221,84 +399,21 @@ function load_description(){
 }
 
 
-
-function update_ultrared() {
-    if ($("#input_ultrared").is(":checked")) {
-        $("#calque_ultrared").show();
-    } else {
-        $("#calque_ultrared").hide();
-    }
+function load_image_max_range(){
+	$("#input_image_max_rate").val(current_card.image_max_range?current_card.image_max_range:"80");
+	output_image_max_range();
 }
 
-function update_break_in_noise() {
-
-    if ($("#input_break_in_noisy").is(":checked")) {
-        $("#calque_noisy_break_in").show();
-    } else {
-        $("#calque_noisy_break_in").hide();
-    }
-
-
-    if ($("#input_break_in_silent").is(":checked")) {
-        $("#calque_silent_break_in").show();
-    } else {
-        $("#calque_silent_break_in").hide();
-    }
-
-}
-
-function update_kill_noise() {
-    if ($("#input_kill_noisy").is(":checked")) {
-        $("#calque_noisy_kill").show();
-    } else {
-        $("#calque_noisy_kill").hide();
-    }
-
-
-    if ($("#input_kill_silent").is(":checked")) {
-        $("#calque_silent_kill").show();
-    } else {
-        $("#calque_silent_kill").hide();
-    }
-
-}
-
-function update_dual_icon() {
-
-    $("#input_dual_file").prop("disabled", true);
-
-    if ($("#input_dual_none").is(":checked")) {
-        $("#output_dual").hide();
-    } else {
-        $("#output_dual").show();
-
-        if ($("#input_dual_melee").is(":checked")) {
-            $("#output_dual").attr("src", "img/dual_melee.png");
-        } else if ($("#input_dual_distance").is(":checked")) {
-            $("#output_dual").attr("src", "img/dual_distance.png");
-        } else if ($("#input_dual_custom").is(":checked")) {
-            $("#output_dual").attr("src", "");
-            $("#input_dual_file").prop("disabled", false);
-			$("output_dual").hide();
-        } else {
-            $("output_dual").hide();
-        }
-    }
-}
-
-function center_card_image(){
-	var card_image = $("#card_image");
-	var card_overlay = $("#card_overlay");
-	
-	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
-	
-}
-
-function update_image_max_range(){
-	$("#card_image").css("max-width", $("#input_image_max_rate").val()+"%");
-	$("#card_image_shadow").css("max-width", $("#input_image_max_rate").val()+"%");
+function save_image_max_range(){
+	current_card.image_max_range = $("#input_image_max_rate").val();
+	output_image_max_range();
 	center_card_image();
 	move_shadow();
+}
+
+function output_image_max_range(){
+	$("#card_image").css("max-width", current_card.image_max_range+"%");
+	$("#card_image_shadow").css("max-width", current_card.image_max_range+"%");
 }
 
 function download() {
@@ -316,6 +431,7 @@ function download() {
 
 }
 
+
 function add_bleeding_areas() {
     if ($("#input_bleeding_area").is(":checked")) {
         $("#card_bleeding_area").addClass("with_card_bleeding_area");
@@ -324,6 +440,26 @@ function add_bleeding_areas() {
         $("#card_bleeding_area").removeClass("with_card_bleeding_area");
         $("#card_bleeding_area").addClass("without_card_bleeding_area");
     }
+}
+
+function load_card_image_shadow(){
+	$("#input_image_shadow").prop('checked', current_card.card_image_shadow);
+	output_card_image_shadow();
+	create_card_image_shadow();
+	move_shadow();
+}
+
+function save_card_image_shadow(){
+	current_card.card_image_shadow = $("#input_image_shadow").is(":checked");
+	output_card_image_shadow();
+}	
+
+function output_card_image_shadow(){
+	if(current_card.card_image_shadow){
+		$("#card_image_shadow").show();
+	} else {
+		$("#card_image_shadow").hide();
+	}
 }
 
 function update_card_image_shadow(){
@@ -335,6 +471,11 @@ function update_card_image_shadow(){
 	}
 }
 
+function end_drag_card_image(){
+	move_shadow();
+	save_card_image();
+}
+
 function move_shadow() {
 	var card_image = $("#card_image");
 	var card_image_shadow = $("#card_image_shadow");
@@ -344,6 +485,11 @@ function move_shadow() {
 
 function save_card(){
 	localStorage.current_card_string = JSON.stringify(current_card);
+}
+
+function clear_card(){
+	current_card = new Object();
+	load();
 }
 
 var current_card = new Object();
@@ -361,11 +507,11 @@ $(document).ready(function() {
     $("#card_file").change(handle_change_card_image);
     $("#input_dual_file").change(handle_change_dual_image);
 
-    $("#input_ultrared").click(update_ultrared);
-    $("input[name='input_dual']").click(update_dual_icon);
-    $("input[name='input_break_in_noise']").click(update_break_in_noise);
+    $("#input_ultrared").click(save_ultrared);
+    $("input[name='input_dual']").click(save_dual_icon);
+    $("input[name='input_break_in_noise']").click(save_break_in_noise);
 
-    $("input[name='input_kill_noise']").click(update_kill_noise);
+    $("input[name='input_kill_noise']").click(save_kill_noise);
 
     $(".help").popover({
         trigger: "hover",
@@ -375,31 +521,35 @@ $(document).ready(function() {
     $(".calque_break_in_noise").draggable({
         containment: "#card_overlay",
         axis: "y",
-        cursor: "move"
+        cursor: "move",
+		stop: end_drag_break_in_noise
     });
 
     $(".calque_kill_noise").draggable({
         containment: "#card_overlay",
         axis: "y",
-        cursor: "move"
+        cursor: "move",
+		stop: end_drag_kill_noise
     });
 
 	$("#card_image").draggable({
 		containment: "#card_overlay",
 		cursor: "move",
 		drag: move_shadow,
-		stop: move_shadow
+		stop: end_drag_card_image
 	});
 	
     $("#downoad_button").click(download);
 	
 	$("#save_button").click(save_card);
 	
+	$("#clear_button").click(clear_card);
+	
 	$("#input_image_max_rate").val($("#card_image").css("max-width").replace("%",""));
 	
-	$("#input_image_max_rate").change(update_image_max_range);
+	$("#input_image_max_rate").change(save_image_max_range);
 	
-	$("#input_image_shadow").click(update_card_image_shadow);
+	$("#input_image_shadow").click(save_card_image_shadow);
 
 	if(localStorage.current_card_string){
 		current_card=JSON.parse(localStorage.current_card_string);

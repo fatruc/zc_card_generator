@@ -71,11 +71,13 @@ textarea {
     line-height: 0.9em;
 	width: 100%;
 	letter-spacing: -2.5px;
+	white-space: nowrap;
 }
 
 
 #output_range {
-    right:368px
+    right:368px;
+	width: 83px;
 }
 
 #output_nb_dice {
