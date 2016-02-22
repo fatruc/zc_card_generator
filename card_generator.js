@@ -483,13 +483,20 @@ function move_shadow() {
 	card_image_shadow.css("top",card_image.position().top+9);
 }
 
-function save_card(){
+function remember_card(){
 	localStorage.current_card_string = JSON.stringify(current_card);
 }
 
 function clear_card(){
 	current_card = new Object();
 	load();
+}
+
+function save_card(){
+	var hidden_download_link = $("#card_download");
+	hidden_download_link.attr("href", "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(current_card)));
+	hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".zec");
+	hidden_download_link.get(0).click();
 }
 
 var current_card = new Object();
@@ -540,6 +547,8 @@ $(document).ready(function() {
 	});
 	
     $("#downoad_button").click(download);
+	
+	$("#remember_button").click(remember_card);
 	
 	$("#save_button").click(save_card);
 	
