@@ -26,6 +26,15 @@ function replace_dices(text) {
 }
 
 
+
+function load_card_image(){
+	var card_image = $("#card_image");
+	card_image.show();
+	card_image.attr("src", current_card.card_image);
+	card_image.css('top', current_card.card_image_top+"px");
+	card_image.css('left', current_card.card_image_left+"px");
+}
+
 function handle_change_card_image(evt) {
     var files = evt.target.files; // FileList object
 
@@ -42,14 +51,17 @@ function handle_change_card_image(evt) {
         // Closure to capture the file information.
         reader.onload = (function(theFile) {
             return function(e) {
-                var card_image = $("#card_image");
-                var card_overlay = $("#card_overlay");
-
+				var card_image = $("#card_image");
+				var card_overlay = $("#card_overlay");
 				card_image.show();
-                card_image.attr("src", e.target.result);
+				card_image.attr("src", e.target.result);
 				create_card_image_shadow();
 				center_card_image();
 				move_shadow();
+				
+				current_card.card_image = e.target.result;
+				current_card.card_image_top = card_image.position().top;
+				current_card.card_image_left = card_image.position().left;
             };
         })(f);
 
@@ -123,6 +135,7 @@ function handle_change_dual_image(evt) {
 
 function load(){
 	load_stats();
+	load_card_image();
 }
 
 function load_stats(){
@@ -368,6 +381,6 @@ $(document).ready(function() {
 		current_card=JSON.parse(localStorage.current_card_string);
 	}
 	
-	load_stats();
+	load();
 
 });
