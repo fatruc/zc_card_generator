@@ -121,26 +121,41 @@ function handle_change_dual_image(evt) {
 
 }
 
+function load(){
+	load_stats();
+}
 
-function update_stats() {
-    var range = replace_carriage_return($("#input_range").val());
-    var nb_dices = replace_carriage_return($("#input_nb_dice").val());
-    var val_dices = replace_carriage_return($("#input_val_dice").val());
-    var power = replace_carriage_return($("#input_power").val());
+function load_stats(){
+	$("#input_range").val(current_card.range);
+	$("#input_nb_dice").val(current_card.nb_dices);
+	$("#input_val_dice").val(current_card.val_dices);
+	$("#input_power").val(current_card.power);
+	
+	output_stats();
+}
 
-    if (range != "" || nb_dices != "" || val_dices != "" || power != "") {
+function save_stats() {
+	current_card.range = replace_carriage_return($("#input_range").val());
+    current_card.nb_dices = replace_carriage_return($("#input_nb_dice").val());
+	current_card.val_dices = replace_carriage_return($("#input_val_dice").val());
+    current_card.power = replace_carriage_return($("#input_power").val());
+	
+	output_stats();
+}
+
+function output_stats(){
+	if (current_card.range  || current_card.nb_dices != "" || current_card.val_dices != "" || current_card.power != "") {
         $("#calque_stats").show();
         $("#input_description").prop('disabled', true);
     } else {
         $("#calque_stats").hide();
         $("#input_description").prop('disabled', false);
     }
-
-    $("#output_range").html(range);
-    $("#output_nb_dice").html(nb_dices);
-    $("#output_val_dice").html(val_dices);
-    $("#output_power").html(power);
-
+	
+	$("#output_range").html(current_card.range);
+    $("#output_nb_dice").html(current_card.nb_dices);
+    $("#output_val_dice").html(current_card.val_dices);
+    $("#output_power").html(current_card.power);
 }
 
 function update_headers() {
@@ -176,7 +191,6 @@ function update_ultrared() {
     } else {
         $("#calque_ultrared").hide();
     }
-
 }
 
 function update_break_in_noise() {
@@ -291,12 +305,18 @@ function move_shadow() {
 	card_image_shadow.css("top",card_image.position().top+9);
 }
 
+function save_card(){
+	localStorage.current_card_string = JSON.stringify(current_card);
+}
+
+var current_card = new Object();
+
 $(document).ready(function() {
 
     // deck handler
     $("#input_bleeding_area").click(add_bleeding_areas);
 
-    $(".input_card_stats").keyup(update_stats);
+    $(".input_card_stats").keyup(save_stats);
     $("#input_card_name").keyup(update_headers);
     $("#input_card_sub_name").keyup(update_headers);
     $("#input_description").keyup(update_description);
@@ -336,11 +356,18 @@ $(document).ready(function() {
 	
     $("#downoad_button").click(download);
 	
+	$("#save_button").click(save_card);
+	
 	$("#input_image_max_rate").val($("#card_image").css("max-width").replace("%",""));
 	
 	$("#input_image_max_rate").change(update_image_max_range);
 	
 	$("#input_image_shadow").click(update_card_image_shadow);
 
+	if(localStorage.current_card_string){
+		current_card=JSON.parse(localStorage.current_card_string);
+	}
+	
+	load_stats();
 
 });
