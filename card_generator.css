@@ -1,3 +1,12 @@
+#clone_container{
+	position: absolute;
+	top:0px;
+	left:0px;
+	width:487px;
+	height:750px;
+	z-index: 9999999999999999999;
+}
+
 body {
 	background: url('img/zc_backgound.jpg') no-repeat center -250px;
     padding-top: 100px;
@@ -33,8 +42,12 @@ body {
 #card_bleeding_area {
 	margin: auto;
 	background-color: white;
-	margin-top: 60px;
+	/*margin-top: 60px;*/
 	position: absolute;
+}
+
+#column-middle{
+	padding-top:60px;
 }
 
 button {

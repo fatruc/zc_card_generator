@@ -441,16 +441,21 @@ function output_image_max_range(){
 
 function download() {
 
-    html2canvas(document.getElementById("card_bleeding_area"), {
+	$("#card_bleeding_area").clone().appendTo("#clone_container");
+
+    html2canvas(document.getElementById("clone_container"), {
         onrendered: function(canvas) {
 			var hidden_download_link = $("#card_download");
             hidden_download_link.attr("href", canvas.toDataURL('image/png',1.0));
 			hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".png");
             hidden_download_link.get(0).click();
+			$("#clone_container").empty();
 			document.body.appendChild(canvas);
         },
         logging: false,
-        letterRendering: true
+        letterRendering: true,
+		width:487,
+		height: 750
     });
 
 }
