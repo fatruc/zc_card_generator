@@ -381,12 +381,12 @@ function output_dual_icon() {
         $("#output_dual").hide();
     } else {
         $("#output_dual").show();
-
-		if (current_card.dual_icon_custom) {
-            $("#input_dual_file").prop("disabled", false);
-			$("output_dual").hide();
-        } 
     }
+	
+	if (current_card.dual_icon_custom) {
+		$("#input_dual_file").prop("disabled", false);
+		$("output_dual").hide();
+	} 
 }
 
 function center_card_image(){
