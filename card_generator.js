@@ -447,6 +447,7 @@ function download() {
             hidden_download_link.attr("href", canvas.toDataURL('image/png',1.0));
 			hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".png");
             hidden_download_link.get(0).click();
+			document.body.appendChild(canvas);
         },
         logging: false,
         letterRendering: true
