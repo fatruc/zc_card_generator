@@ -526,6 +526,27 @@ function save_card(){
 var current_card = new Object();
 
 $(document).ready(function() {
+	
+	// save old getContext
+	var oldgetContext = HTMLCanvasElement.prototype.getContext ;
+
+	// get a context, set it to smoothed if it was a 2d context, and return it.
+	function getSmoothContext(contextType) {
+	  var resCtx = oldgetContext.apply(this, arguments);
+	  if (contextType == '2d') {
+	   setToFalse(resCtx, 'imageSmoothingEnabled');
+	   setToFalse(resCtx, 'mozImageSmoothingEnabled');
+	   setToFalse(resCtx, 'oImageSmoothingEnabled');
+	   setToFalse(resCtx, 'webkitImageSmoothingEnabled');  
+	  }
+	  return resCtx ;  
+	}
+
+	function setToFalse(obj, prop) { if ( obj[prop] !== undefined ) obj[prop] = false; }
+
+	// inject new smoothed getContext
+	HTMLCanvasElement.prototype.getContext = getSmoothContext ;
+
 
     // deck handler
     $("#input_bleeding_area").click(add_bleeding_areas);

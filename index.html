@@ -86,7 +86,8 @@
 						<div class="panel-body">					 						 
 							<textarea id="input_description" rows="4" class="form-control" ></textarea>  					             
 						</div>					         
-					</div>				       
+					</div>
+			
 				</div>				       
 				<div class="col-md-6">									         
 
@@ -218,27 +219,39 @@
 						</div>					         
 					</div>		
 
-					<p>
-						<button type="button" id="remember_button" class="btn btn-primary" help" data-container="body" data-toggle="popover" title="Information !" data-placement="left" data-content="En cliquant sur ce bouton, vous retrouverez votre carte à votre prochaine visite">Mémoriser</button>	
-					</p>
-						<button type="button" id="save_button" class="btn btn-primary" >Sauvegarder</button>	
-					<p>
-					<p>
-						<button type="button" id="load_card_file" class="btn btn-primary" >Charger un fichier</button>
-						<input type="file" id="input_zec_file" name="files[]" class="hidden" accept=".zec"/>						
-					</p>
-					<p>
-						<button type="button" id="clear_button" class="btn btn-primary" >Effacer</button>	
-					</p>
-					<p>
-						<button type="button" id="downoad_button" class="btn btn-primary" >Télécharger l'image</button>					               
-							
-					</p>
-					<a id="card_download" download="card.png" href="" style="display:none" ></a>	
+					
 				</div>		     
 			</div>       
 		</div> 
 
+		<div class="container-fluid well">	
+			<div class="row">
+				<div class="col-md-3">
+					<p>
+						<button type="button" id="remember_button" class="btn btn-primary" help" data-container="body" data-toggle="popover" title="Information !" data-placement="left" data-content="En cliquant sur ce bouton, vous retrouverez votre carte à votre prochaine visite">Mémoriser</button>	
+					</p>
+					<p>
+						<button type="button" id="clear_button" class="btn btn-primary" >Effacer</button>	
+					</p>	
+				</div>
+				<div class="col-md-6">
+					<p>
+						<button type="button" id="downoad_button" class="btn btn-primary" >Télécharger l'image</button>
+						<a id="card_download" download="card.png" href="" style="display:none" ></a>						               
+					</p>
+				</div>
+				<div class="col-md-3">
+					<p>
+						<button type="button" id="save_button" class="btn btn-primary" >Sauvegarder</button>	
+					</p>
+					<p>
+						<button type="button" id="load_card_file" class="btn btn-primary" >Charger un fichier</button>
+						<input type="file" id="input_zec_file" name="files[]" class="hidden" accept=".zec"/>						
+					</p>
+				</div>
+			</div>
+		</div>
+		
 		<div class="container-fluid">	
 			<div class="row">				       
 				<div class="col-md-12">
