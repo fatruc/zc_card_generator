@@ -5,6 +5,7 @@
 	width:487px;
 	height:750px;
 	z-index: 9999999999999999999;
+	display:none;
 }
 
 body {

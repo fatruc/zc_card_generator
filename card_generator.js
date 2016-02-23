@@ -440,7 +440,7 @@ function output_image_max_range(){
 }
 
 function download() {
-
+	$("#clone_container").show();
 	$("#card_bleeding_area").clone().appendTo("#clone_container");
 
     html2canvas(document.getElementById("clone_container"), {
@@ -450,7 +450,7 @@ function download() {
 			hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".png");
             hidden_download_link.get(0).click();
 			$("#clone_container").empty();
-			document.body.appendChild(canvas);
+			$("#clone_container").hide();
         },
         logging: false,
         letterRendering: true,
