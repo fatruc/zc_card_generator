@@ -48,6 +48,29 @@ function save_card_image(){
 	current_card.card_image_left = card_image.position().left;
 }
 
+function load_save_file(evt){
+	    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+				clear_card();
+				current_card=JSON.parse(e.target.result);
+				load();
+            };
+        })(f);
+
+
+        // Read in the image file as a data URL.
+        reader.readAsText(f);
+    }
+}
+
 function handle_change_card_image(evt) {
     var files = evt.target.files; // FileList object
 
@@ -551,6 +574,8 @@ $(document).ready(function() {
 	$("#remember_button").click(remember_card);
 	
 	$("#save_button").click(save_card);
+	
+	$("#input_zec_file").change(load_save_file);
 	
 	$("#clear_button").click(clear_card);
 	
