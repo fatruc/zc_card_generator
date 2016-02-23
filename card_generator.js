@@ -373,7 +373,7 @@ function load_dual_icon(){
 
 function output_dual_icon() {
 
-    $("#input_dual_file").prop("disabled", true);
+    $("#load_dual_image").prop("disabled", true);
 
 	$("#output_dual").attr("src", current_card.dual_image?current_card.dual_image:"");
 	
@@ -384,7 +384,7 @@ function output_dual_icon() {
     }
 	
 	if (current_card.dual_icon_custom) {
-		$("#input_dual_file").prop("disabled", false);
+		$("#load_dual_image").prop("disabled", false);
 		$("output_dual").hide();
 	} 
 }
@@ -587,6 +587,14 @@ $(document).ready(function() {
 
 	$("#load_card_file").click(function(){
 		$("#input_zec_file").click();
+	});
+	
+	$("#load_card_image").click(function(){
+		$("#card_file").click();
+	});
+	
+	$("#load_dual_image").click(function(){
+		$("#input_dual_file").click();
 	});
 	
 	if(localStorage.current_card_string){

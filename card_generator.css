@@ -6,6 +6,10 @@ body {
 	
 }
 
+.hidden{
+	display:none;
+}
+
 #card_overlay {
     position:relative;
     width: 487px;
