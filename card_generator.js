@@ -585,6 +585,10 @@ $(document).ready(function() {
 	
 	$("#input_image_shadow").click(save_card_image_shadow);
 
+	$("#load_card_file").click(function(){
+		$("#input_zec_file").click();
+	});
+	
 	if(localStorage.current_card_string){
 		current_card=JSON.parse(localStorage.current_card_string);
 	}
