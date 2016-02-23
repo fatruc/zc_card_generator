@@ -34,6 +34,7 @@ body {
 	margin: auto;
 	background-color: white;
 	margin-top: 60px;
+	position: absolute;
 }
 
 button {
