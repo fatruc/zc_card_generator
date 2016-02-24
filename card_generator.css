@@ -46,6 +46,8 @@ nav li div.radio label{
     height: 750px;
 }
 
+
+
 .bleeding_printerstudio_and_cut{
 	width:597px;
 	height: 822px;
@@ -236,6 +238,29 @@ textarea {
     margin-left: -55px;
 }
 
+.calque_description {
+	background-image:url("img/Text.png");
+	background-repeat: no-repeat;
+	background-position: top;
+	width:427px;
+    bottom: 0px;
+    left: 26px;
+}
+
+.calque_description_0 {
+	height:201px;
+}
+
+.calque_description_36 {
+	height:237px;
+	margin-bottom:-36px;
+}
+
+.calque_description_80 {
+	height:281px;
+	margin-bottom:-80px;
+}
+
 .optional {
     display:none;
 }
@@ -274,14 +299,14 @@ textarea {
     position:absolute;
     font-size: 18pt;
     color:#5C5C5F;
-    top: 545px;
+    bottom: 0px;
     width: 420px;
-    height: 205px;
+    height: 201px;
     left: 35px;
 }
 
 #output_description_container  tr{
-    height: 205px;
+    height: 201px;
     vertical-align:middle;
 }
 
