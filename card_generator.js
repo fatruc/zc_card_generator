@@ -440,6 +440,8 @@ function output_image_max_range(){
 }
 
 function download() {
+		$("#clone_container").css("width",$("#card_bleeding_area").css("width"));
+	$("#clone_container").css("height",$("#card_bleeding_area").css("height"));
 	$("#clone_container").show();
 	$("#card_bleeding_area").clone().appendTo("#clone_container");
 
@@ -453,21 +455,22 @@ function download() {
 			$("#clone_container").hide();
         },
         logging: false,
-        letterRendering: true,
-		width:487,
-		height: 750
+        letterRendering: true
     });
 
 }
 
 
-function add_bleeding_areas() {
-    if ($("#input_bleeding_area").is(":checked")) {
-        $("#card_bleeding_area").addClass("with_card_bleeding_area");
-        $("#card_bleeding_area").removeClass("without_card_bleeding_area");
-    } else {
-        $("#card_bleeding_area").removeClass("with_card_bleeding_area");
-        $("#card_bleeding_area").addClass("without_card_bleeding_area");
+function change_bleeding_areas() {
+	$("#card_bleeding_area").removeClass();
+    if ($("#input_bleeding_none").is(":checked")) {
+        $("#card_bleeding_area").addClass("bleeding_none");
+    } else if ($("#input_bleeding_print_and_cut").is(":checked")) {
+        $("#card_bleeding_area").addClass("bleeding_print_and_cut");
+    } else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
+        $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
+    } else		{
+        $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
     }
 }
 
@@ -554,7 +557,7 @@ $(document).ready(function() {
 
 
     // deck handler
-    $("#input_bleeding_area").click(add_bleeding_areas);
+    $("input[name='input_bleeding']").click(change_bleeding_areas);
 
     $(".input_card_stats").keyup(save_stats);
     $("#input_card_name").keyup(save_headers);

@@ -95,9 +95,8 @@
 				</div>				       
 				<div class="col-md-6" id="column-middle">									         
 
-					<div id="card_bleeding_area" class="without_card_bleeding_area">                                       
-						<div id="card_overlay">                                             
-							<img src="img/ArrierePlan.png" id="card_background" class="calque"/>                                             
+					<div id="card_bleeding_area" class="bleeding_none">                                       
+						<div id="card_overlay">                                                                                        
 							<img src="img/Stats.png" id="calque_stats" class="calque optional"/>                                             
 							<img src="img/Text.png" id="calque_description" class="calque optional"/>                                             
 							<table id="output_description_container">                  
@@ -140,14 +139,32 @@
 						</div>
 					</div>
 
-					<div class="panel panel-default">	                                   					             
+					<div class="panel panel-default">	  
+						<div class="panel-heading">Fond perdu         
+						</div>					
 						<div class="panel-body">
-							<div class="checkbox">
-								<label>
-									<input type="checkbox" id="input_bleeding_area"/> Inclure les fonds perdus 
-								</label>
-							</div>		  
-						</div>
+							<div class="radio">						                 
+								<label>							                 
+									<input id="input_bleeding_none" type="radio" name="input_bleeding"  value="none" checked="checked"/>							Aucun 						                 
+								</label>						             
+							</div>
+							<div class="radio">						                 
+								<label>							                 
+									<input id="input_bleeding_print_and_cut" type="radio" name="input_bleeding"  value="none" />							Impression et découpe manuelle 						                 
+								</label>						             
+							</div>							
+							<div class="radio">						                 
+								<label>							                 
+									<input id="input_bleeding_ps_and_cut" type="radio" name="input_bleeding"  value="none">
+									Printer studio et découpe manuelle
+								</label>						             
+							</div>	
+							<div class="radio">						                 
+								<label>							                 
+									<input id="input_bleeding_ps_no_cut" type="radio" name="input_bleeding"  value="none" />							Printer studio sans découpe 						                 
+								</label>						             
+							</div>	
+							</div>
 					</div>
 
 					<div class="panel panel-default help" data-container="body" data-toggle="popover" title="Astuce !" data-placement="left" data-content="L'image peut être déplacée verticalement par drag'n drop directement sur l'aperçu.">					             

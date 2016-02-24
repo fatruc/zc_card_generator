@@ -2,8 +2,8 @@
 	position: absolute;
 	top:0px;
 	left:0px;
-	width:487px;
-	height:750px;
+	width:10px;
+	height:10px;
 	z-index: 9999999999999999999;
 	display:none;
 }
@@ -26,17 +26,48 @@ body {
     height: 750px;
 }
 
-.without_card_bleeding_area {
-	width:487px;
+.bleeding_printerstudio_and_cut{
+	width:597px;
+	height: 822px;
+	background-image:url("img/beeding_printerstudio_and_cut.png");
+	background-repeat: no-repeat;
+	padding-left:	55px;
+	padding-top:	36px;
 }
 
-.with_card_bleeding_area {
+.bleeding_printerstudio_no_cut {
 	width:597px;
-    padding-left: 54px;
-	padding-right: 54px;
-    padding-top:35px;
-	padding-bottom:35px;
-    border : 1px solid black;
+	height: 822px;
+	background-image:url("img/bleeding_printerstudio_no_cut.png");
+	background-repeat: no-repeat;
+	padding-left:	55px;
+	padding-top:	36px;
+}
+
+.bleeding_print_and_cut {
+	width:648px;
+	height: 910px;
+	background-image:url("img/bleeding_print_and_cut.png");
+	background-repeat: no-repeat;
+	padding-left:	80px;
+	padding-top:	80px;
+}
+
+
+
+.bleeding_none {
+	width:487px;
+	height: 750px;
+	background-image:url("img/bleeding_none.png");
+	background-repeat: no-repeat;
+	
+	
+}
+
+
+
+.with_card_bleeding_area {
+
 }
 
 
