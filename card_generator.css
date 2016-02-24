@@ -9,16 +9,36 @@
 }
 
 body {
-	background: url('img/zc_backgound.jpg') no-repeat center -250px;
+	background: url('img/zc_backgound.jpg') no-repeat center -350px;
     padding-top: 100px;
     background-color: black !important;
 	padding-bottom: 20px;
 	
 }
 
+#downoad_button{
+	margin-left: 40px;
+}
+
+#about{
+	padding: 20px;
+	width: 300px;
+}
+
 .hidden{
 	display:none;
 }
+
+nav li div.radio {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+nav li div.radio label{
+	white-space: nowrap;
+}
+
+
 
 #card_overlay {
     position:relative;
@@ -71,11 +91,9 @@ body {
 	/*position: absolute;*/
 }
 
-#column-middle{
-	padding-top:60px;
-}
 
-button {
+
+#main button {
 	width: 100%;
 }
 
