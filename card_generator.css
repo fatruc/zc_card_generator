@@ -22,7 +22,7 @@ body {
 
 #card_overlay {
     position:relative;
-    width: 487px;
+    width: 488px;
     height: 750px;
 }
 
@@ -56,7 +56,7 @@ body {
 
 
 .bleeding_none {
-	width:487px;
+	width:488px;
 	height: 750px;
 	background-image:url("img/bleeding_none.png");
 	background-repeat: no-repeat;
@@ -154,6 +154,16 @@ textarea {
     position:absolute;
 }
 
+#calque_description{
+	bottom: 0px;
+	left: 27px;
+}
+
+#calque_stats{
+	bottom: 0px;
+	left: 28px;
+}
+
 .calque_break_in_noise {
     right:0px;
     top: 150px;
@@ -172,7 +182,7 @@ textarea {
 
 #output_card_header {
     position:absolute;
-    width: 487px;
+    width: 488px;
     top:44px;
     text-align:center;
 }
