@@ -443,6 +443,7 @@ function download() {
 	$("#clone_container").css("height",$("#card_bleeding_area").css("height"));
 	$("#clone_container").show();
 	$("#card_bleeding_area").clone().appendTo("#clone_container");
+	$("#clone_container #card_bleeding_area").css("position","absolute");
 
     html2canvas(document.getElementById("clone_container"), {
         onrendered: function(canvas) {

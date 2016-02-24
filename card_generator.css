@@ -60,22 +60,15 @@ body {
 	height: 750px;
 	background-image:url("img/bleeding_none.png");
 	background-repeat: no-repeat;
-	
-	
 }
 
-
-
-.with_card_bleeding_area {
-
-}
 
 
 #card_bleeding_area {
 	margin: auto;
 	background-color: white;
 	/*margin-top: 60px;*/
-	position: absolute;
+	/*position: absolute;*/
 }
 
 #column-middle{
