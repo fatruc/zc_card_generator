@@ -273,37 +273,35 @@ function save_break_in_noise(){
 
 function load_break_in_noise(){
 
-	$("#input_break_in_none").prop("checked",!current_card.noisy_break_in && !current_card.silent_break_in);
+	$("#input_break_in_none").prop("checked",!current_card.noisy_break_in && !current_card.noisy_break_in_top);
 	
 	$("#input_break_in_noisy").prop("checked",current_card.noisy_break_in);
 	$("#input_break_in_silent").prop("checked",current_card.silent_break_in);
 	
-
+	$("#calque_break_in_noise").css("top",current_card.break_in_noise_top);
+	
 	output_break_in_noise();
 }
 
 function end_drag_break_in_noise(){
-	current_card.noisy_break_in_top = $("#calque_noisy_break_in").position().top;
-	current_card.silent_break_in_top = $("#calque_silent_break_in").position().top;
+	current_card.break_in_noise_top = $("#calque_break_in_noise").position().top;
 }
 
 function output_break_in_noise() {
-
-    if (current_card.noisy_break_in) {
-        $("#calque_noisy_break_in").show();
-    } else {
-        $("#calque_noisy_break_in").hide();
-    }
-
-
-    if (current_card.silent_break_in) {
-        $("#calque_silent_break_in").show();
-    } else {
-        $("#calque_silent_break_in").hide();
-    }
+ 	 $("#calque_break_in_noise").removeClass("calque_break_in_noise_noisy calque_break_in_noise_silent");
 	
-	$("#calque_noisy_break_in").css("top",current_card.noisy_break_in_top+"px");
-	$("#calque_silent_break_in").css("top",current_card.silent_break_in_top+"px");
+	if (current_card.noisy_break_in){
+		$("#calque_break_in_noise").addClass("calque_break_in_noise_noisy");
+	} else if(current_card.silent_break_in){
+		$("#calque_break_in_noise").addClass("calque_break_in_noise_silent");
+	}
+	
+    if (current_card.noisy_break_in || current_card.silent_break_in) {
+        $("#calque_break_in_noise").show();
+    } else {
+        $("#calque_break_in_noise").hide();
+    }
+
 
 }
 
@@ -441,7 +439,7 @@ function output_image_max_range(){
 }
 
 function download() {
-		$("#clone_container").css("width",$("#card_bleeding_area").css("width"));
+	$("#clone_container").css("width",$("#card_bleeding_area").css("width"));
 	$("#clone_container").css("height",$("#card_bleeding_area").css("height"));
 	$("#clone_container").show();
 	$("#card_bleeding_area").clone().appendTo("#clone_container");
@@ -464,20 +462,25 @@ function download() {
 function change_bleeding_areas() {
 
 	$(".calque_kill_noise").removeClass("calque_kill_noise_80 calque_kill_noise_0 calque_kill_noise_55");
+	$(".calque_break_in_noise").removeClass("calque_break_in_noise_80 calque_break_in_noise_0 calque_break_in_noise_55");
 	
 	$("#card_bleeding_area").removeClass();
     if ($("#input_bleeding_none").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_none");
 		$(".calque_kill_noise").addClass("calque_kill_noise_0");
+		$(".calque_break_in_noise").addClass("calque_break_in_noise_0");
     } else if ($("#input_bleeding_print_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_print_and_cut");
 		$(".calque_kill_noise").addClass("calque_kill_noise_80");
+		$(".calque_break_in_noise").addClass("calque_break_in_noise_80");
     } else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
 		$(".calque_kill_noise").addClass("calque_kill_noise_55");
+		$(".calque_break_in_noise").addClass("calque_break_in_noise_55");
     } else		{
         $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
 		$(".calque_kill_noise").addClass("calque_kill_noise_55");
+		$(".calque_break_in_noise").addClass("calque_break_in_noise_55");
     }
 }
 

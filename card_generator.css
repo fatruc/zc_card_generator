@@ -168,6 +168,8 @@ textarea {
     right:0px;
     top: 150px;
     cursor: move;
+	height: 103px;
+	background-position: left;
 }
 
 .calque_kill_noise{
@@ -178,6 +180,14 @@ textarea {
 	background-position: right;
 }
 
+.calque_break_in_noise_noisy {
+	background-image: url("img/NoisyBreakIn.png");
+}
+
+.calque_break_in_noise_silent{
+	background-image: url("img/SilentBreakIn.png");
+}
+
 .calque_kill_noise_noisy {
 	background-image: url("img/NoisyKill.png");
 }
@@ -186,8 +196,22 @@ textarea {
 	background-image: url("img/SilentKill.png");
 }
 
+.calque_break_in_noise_80{
+	width: 273px;
+	margin-right: -80px;
+}
+
+.calque_break_in_noise_0{
+	width: 193px;
+}
+
+.calque_break_in_noise_55{
+	width: 248px;
+	margin-right: -55px;
+}
+
 .calque_kill_noise_0{
-	width: 216px;
+	width: 218px;
 }
 
 
