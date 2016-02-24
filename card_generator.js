@@ -308,8 +308,7 @@ function output_break_in_noise() {
 }
 
 function end_drag_kill_noise(){
-	current_card.noisy_kill_top = $("#calque_noisy_kill").position().top;
-	current_card.silent_kill_top = $("#calque_silent_kill").position().top;
+	current_card.kill_noise_top = $("#calque_kill_noise").position().top;
 }
 
 function save_kill_noise(){
@@ -324,25 +323,27 @@ function load_kill_noise(){
 	$("#input_kill_noisy").prop("checked",current_card.noisy_kill);
 	$("#input_kill_silent").prop("checked",current_card.silent_kill);
 	
-	$("#calque_noisy_kill").css("top",current_card.noisy_kill_top);
-	$("#calque_silent_kill").css("top",current_card.silent_kill_top);
+	$("#calque_kill_noise").css("top",current_card.kill_noise_top);
 	
 	output_kill_noise();
 }
 
 function output_kill_noise() {
-    if (current_card.noisy_kill) {
-        $("#calque_noisy_kill").show();
+	
+	 $("#calque_kill_noise").removeClass("calque_kill_noise_noisy calque_kill_noise_silent");
+	
+	if (current_card.noisy_kill){
+		$("#calque_kill_noise").addClass("calque_kill_noise_noisy");
+	} else if(current_card.silent_kill){
+		$("#calque_kill_noise").addClass("calque_kill_noise_silent");
+	}
+	
+    if (current_card.noisy_kill || current_card.silent_kill) {
+        $("#calque_kill_noise").show();
     } else {
-        $("#calque_noisy_kill").hide();
+        $("#calque_kill_noise").hide();
     }
 
-
-    if (current_card.silent_kill) {
-        $("#calque_silent_kill").show();
-    } else {
-        $("#calque_silent_kill").hide();
-    }
 
 }
 
@@ -460,17 +461,23 @@ function download() {
 
 }
 
-
 function change_bleeding_areas() {
+
+	$(".calque_kill_noise").removeClass("calque_kill_noise_80 calque_kill_noise_0 calque_kill_noise_55");
+	
 	$("#card_bleeding_area").removeClass();
     if ($("#input_bleeding_none").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_none");
+		$(".calque_kill_noise").addClass("calque_kill_noise_0");
     } else if ($("#input_bleeding_print_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_print_and_cut");
+		$(".calque_kill_noise").addClass("calque_kill_noise_80");
     } else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
+		$(".calque_kill_noise").addClass("calque_kill_noise_55");
     } else		{
         $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
+		$(".calque_kill_noise").addClass("calque_kill_noise_55");
     }
 }
 

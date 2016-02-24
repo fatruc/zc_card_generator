@@ -115,10 +115,11 @@
 							<img id="card_image_shadow" src="" />
 							<img id="card_image" src="" />						
 							<img src="img/Ultrared.png" id="calque_ultrared" class="calque optional"/>                                             
-							<img src="img/SilentKill.png" id="calque_silent_kill" class="calque optional calque_kill_noise"/>                                             
+							                                         
 							<img src="img/SilentBreakIn_mini.png" id="calque_silent_break_in" class="calque optional calque_break_in_noise"/>                                             
 							<img src="img/NoisyBreakIn_mini.png" id="calque_noisy_break_in" class="calque optional calque_break_in_noise"/>                                             
-							<img src="img/NoisyKill.png" id="calque_noisy_kill" class="calque optional calque_kill_noise"/>                                             
+							
+							<div id="calque_kill_noise" class="calque optional calque_kill_noise calque_kill_noise_0"></div>                                             
 							<div id="output_card_header">                                                   
 								<p id="output_card_name" ><img src="img/dual_melee.png" id="output_dual" class="optional"/></p>                 
 								<p id="output_card_sub_name" ></p>                                             
@@ -140,30 +141,35 @@
 					</div>
 
 					<div class="panel panel-default">	  
-						<div class="panel-heading">Fond perdu         
-						</div>					
-						<div class="panel-body">
-							<div class="radio">						                 
-								<label>							                 
-									<input id="input_bleeding_none" type="radio" name="input_bleeding"  value="none" checked="checked"/>Aucun 						                 
-								</label>						             
+						<div class="panel-heading">
+							<a class="collapsed" role="button" data-toggle="collapse" href="#collapseBleeding" aria-expanded="false" aria-controls="collapseBleeding" data-parent="#accordion" >
+							 Fond perdu
+							</a>
+						</div>
+						<div id="collapseBleeding" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingBleeding">						
+							<div class="panel-body">
+								<div class="radio">						                 
+									<label>							                 
+										<input id="input_bleeding_none" type="radio" name="input_bleeding"  value="none" checked="checked"/>Aucun 						                 
+									</label>						             
+								</div>
+								<div class="radio help" data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus horizontaux et verticaux avec repères de coupe pour imprimer chez soi, et découper soi-même">						                 
+									<label>							                 
+										<input id="input_bleeding_print_and_cut" type="radio" name="input_bleeding"  value="none" />Impression et découpe manuelle 						                 
+									</label>						             
+								</div>							
+								<div class="radio help"  data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus verticaux avec bande blanches à droite et à gauche. Pour imprimer sur PrinterStudio, et découper le long des bandes blanches pour être à la taille des cartes du jeu"> 						                 
+									<label>							                 
+										<input id="input_bleeding_ps_and_cut" type="radio" name="input_bleeding"  value="none">Printer studio et découpe manuelle
+									</label>						             
+								</div>	
+								<div class="radio help"   data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus pour imprimer sur PrinterStudio sans découpe, et avoir des cartes au format mini-US">						                 
+									<label>							                 
+										<input id="input_bleeding_ps_no_cut" type="radio" name="input_bleeding"  value="none" />Printer studio sans découpe 						                 
+									</label>						             
+								</div>
+								<a href="http://www.printerstudio.com/personalized/custom-blank-playing-cards-mini-size.html" target="_blank"> Aller sur Printer Studio</a>							
 							</div>
-							<div class="radio help" data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus horizontaux et verticaux avec repères de coupe pour imprimer chez soi, et découper soi-même">						                 
-								<label>							                 
-									<input id="input_bleeding_print_and_cut" type="radio" name="input_bleeding"  value="none" />Impression et découpe manuelle 						                 
-								</label>						             
-							</div>							
-							<div class="radio help"  data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus verticaux avec bande blanches à droite et à gauche. Pour imprimer sur PrinterStudio, et découper le long des bandes blanches pour être à la taille des cartes du jeu"> 						                 
-								<label>							                 
-									<input id="input_bleeding_ps_and_cut" type="radio" name="input_bleeding"  value="none">Printer studio et découpe manuelle
-								</label>						             
-							</div>	
-							<div class="radio help"   data-container="body" data-toggle="popover" title="Information" data-placement="left" data-content="Fonds perdus pour imprimer sur PrinterStudio sans découpe, et avoir des cartes au format mini-US">						                 
-								<label>							                 
-									<input id="input_bleeding_ps_no_cut" type="radio" name="input_bleeding"  value="none" />Printer studio sans découpe 						                 
-								</label>						             
-							</div>
-							<a href="http://www.printerstudio.com/personalized/custom-blank-playing-cards-mini-size.html" target="_blank"> Aller sur Printer Studio</a>							
 						</div>
 					</div>
 

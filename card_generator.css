@@ -173,7 +173,32 @@ textarea {
 .calque_kill_noise{
     left:0px;
     top: 470px;
+	height: 103px;
     cursor: move;
+	background-position: right;
+}
+
+.calque_kill_noise_noisy {
+	background-image: url("img/NoisyKill.png");
+}
+
+.calque_kill_noise_silent{
+	background-image: url("img/SilentKill.png");
+}
+
+.calque_kill_noise_0{
+	width: 216px;
+}
+
+
+.calque_kill_noise_80{
+	width:296px;
+    margin-left: -80px;	
+}
+
+.calque_kill_noise_55{
+	width:271px;
+    margin-left: -55px;
 }
 
 .optional {
