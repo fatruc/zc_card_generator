@@ -486,14 +486,14 @@ function change_bleeding_areas() {
 	} else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
 		
-		$(".calque_bleeding").each(function(index,element){
-			$(this).addClass(element.attr("id")+"_bleeding_1");
+		$(".calque_bleeding").each(function(){
+			$(this).addClass($(this).attr("id")+"_bleeding_1");
 		});
 		
     } else		{
         $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
 		
-		$(".calque_bleeding").each(function(index,element){
+		$(".calque_bleeding").each(function(){
 			$(this).addClass($(this).attr("id")+"_bleeding_1");
 		})
     }
