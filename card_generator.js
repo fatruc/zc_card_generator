@@ -442,7 +442,10 @@ function download() {
 	$("#clone_container").css("width",$("#card_bleeding_area").css("width"));
 	$("#clone_container").css("height",$("#card_bleeding_area").css("height"));
 	$("#clone_container").show();
+	
+	$("#calque_card_border_preview").hide();
 	$("#card_bleeding_area").clone().appendTo("#clone_container");
+	
 	$("#clone_container #card_bleeding_area").css("position","absolute");
 
     html2canvas(document.getElementById("clone_container"), {
@@ -453,6 +456,7 @@ function download() {
             hidden_download_link.get(0).click();
 			$("#clone_container").empty();
 			$("#clone_container").hide();
+			show_card_border_preview();
         },
         logging: false,
         letterRendering: true
@@ -467,36 +471,15 @@ function change_bleeding_areas() {
 		$(this).removeClass(element_id+"_bleeding_0");
 		$(this).removeClass(element_id+"_bleeding_1");
 		$(this).removeClass(element_id+"_bleeding_2");
+		$(this).removeClass(element_id+"_bleeding_3");
 	});
 	
-	$("#card_bleeding_area").removeClass();
-    if ($("#input_bleeding_none").is(":checked")) {
-		$("#card_bleeding_area").addClass("bleeding_none");
-		$(".calque_bleeding").each(function(){
-			$(this).addClass($(this).attr("id")+"_bleeding_0");
-		});
-		
-    } else if ($("#input_bleeding_print_and_cut").is(":checked")) {
-        $("#card_bleeding_area").addClass("bleeding_print_and_cut");
- 
- 		$(".calque_bleeding").each(function(){
-			$(this).addClass($(this).attr("id")+"_bleeding_2");
-		});
- 
-	} else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
-        $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
-		
-		$(".calque_bleeding").each(function(){
-			$(this).addClass($(this).attr("id")+"_bleeding_1");
-		});
-		
-    } else		{
-        $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
-		
-		$(".calque_bleeding").each(function(){
-			$(this).addClass($(this).attr("id")+"_bleeding_1");
-		})
-    }
+	var selected_bleeding_suffix = $('input[name=input_bleeding]:checked').val();
+	
+	$(".calque_bleeding").each(function(){
+		$(this).addClass($(this).attr("id") + "_" + selected_bleeding_suffix);
+	});
+	
 }
 
 function load_card_image_shadow(){
@@ -557,6 +540,15 @@ function save_card(){
 }
 
 var current_card = new Object();
+
+function show_card_border_preview(){
+	if($("#input_card_border_preview").is(":checked")){
+		$("#calque_card_border_preview").show();
+	} else {
+		$("#calque_card_border_preview").hide();
+	}
+	
+}
 
 $(document).ready(function() {
 	
@@ -651,6 +643,8 @@ $(document).ready(function() {
 	$("#load_dual_image").click(function(){
 		$("#input_dual_file").click();
 	});
+	
+	$("#input_card_border_preview").click(show_card_border_preview);
 	
 	if(localStorage.current_card_string){
 		current_card=JSON.parse(localStorage.current_card_string);

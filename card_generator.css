@@ -29,12 +29,12 @@ body {
 	display:none;
 }
 
-nav li div.radio {
+nav li div.radio , nav li div.checkbox{
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-nav li div.radio label{
+nav li div.radio label, nav li div.checkbox label{
 	white-space: nowrap;
 }
 
@@ -48,7 +48,7 @@ nav li div.radio label{
 
 
 
-.bleeding_printerstudio_and_cut{
+.card_bleeding_area_bleeding_1{
 	width:597px;
 	height: 822px;
 	background-image:url("img/beeding_printerstudio_and_cut.png");
@@ -57,7 +57,7 @@ nav li div.radio label{
 	padding-top:	36px;
 }
 
-.bleeding_printerstudio_no_cut {
+.card_bleeding_area_bleeding_2 {
 	width:597px;
 	height: 822px;
 	background-image:url("img/bleeding_printerstudio_no_cut.png");
@@ -66,7 +66,7 @@ nav li div.radio label{
 	padding-top:	36px;
 }
 
-.bleeding_print_and_cut {
+.card_bleeding_area_bleeding_3 {
 	width:648px;
 	height: 910px;
 	background-image:url("img/bleeding_print_and_cut.png");
@@ -77,7 +77,7 @@ nav li div.radio label{
 
 
 
-.bleeding_none {
+.card_bleeding_area_bleeding_0 {
 	width:488px;
 	height: 750px;
 	background-image:url("img/bleeding_none.png");
@@ -93,6 +93,23 @@ nav li div.radio label{
 	/*position: absolute;*/
 }
 
+#calque_card_border_preview{
+	background-color: transparent;
+	height: 750px;
+	pointer-events: none;
+	border: 1px solid black;
+	border-radius: 30px;
+	display:none;
+}
+
+.calque_card_border_preview_bleeding_1 ,.calque_card_border_preview_bleeding_0, .calque_card_border_preview_bleeding_3{
+	width:488px;
+}
+
+.calque_card_border_preview_bleeding_2 {
+	width:561px;
+	margin-left: -36px;
+}
 
 
 #main button {
@@ -199,7 +216,7 @@ textarea {
 	background-image: url("img/SilentKill.png");
 }
 
-.calque_break_in_noise_bleeding_2{
+.calque_break_in_noise_bleeding_3{
 	width: 273px;
 	margin-right: -80px;
 }
@@ -208,7 +225,7 @@ textarea {
 	width: 193px;
 }
 
-.calque_break_in_noise_bleeding_1{
+.calque_break_in_noise_bleeding_1, .calque_break_in_noise_bleeding_2 {
 	width: 248px;
 	margin-right: -55px;
 }
@@ -218,12 +235,12 @@ textarea {
 }
 
 
-.calque_kill_noise_bleeding_2{
+.calque_kill_noise_bleeding_3{
 	width:296px;
     margin-left: -80px;	
 }
 
-.calque_kill_noise_bleeding_1{
+.calque_kill_noise_bleeding_1, .calque_kill_noise_bleeding_2{
 	width:271px;
     margin-left: -55px;
 }
@@ -240,14 +257,14 @@ textarea {
 	height: 225px;
 }
 
-.calque_ultrared_bleeding_1 {
+.calque_ultrared_bleeding_1, .calque_ultrared_bleeding_2 {
 	width: 568px;
 	height: 290px;
 	margin-top: -55px;
 	margin-left:-40px;
 }
 
-.calque_ultrared_bleeding_2 {
+.calque_ultrared_bleeding_3 {
 	width: 568px;
 	height: 305px;
 	margin-top: -80px;
@@ -255,7 +272,7 @@ textarea {
 }
 
 .calque_stats {
-	background-image:url("img/stats.png");
+	background-image:url("img/Stats.png");
 	background-repeat: no-repeat;
 	background-position: top;
 	width:426px;
@@ -267,12 +284,12 @@ textarea {
 	height:140px;
 }
 
-.calque_stats_bleeding_1 {
+.calque_stats_bleeding_1, .calque_stats_bleeding_2 {
 	height:176px;
 	margin-bottom:-36px;
 }
 
-.calque_stats_bleeding_2 {
+.calque_stats_bleeding_3 {
 	height:220px;
 	margin-bottom:-80px;
 }
@@ -290,12 +307,12 @@ textarea {
 	height:201px;
 }
 
-.calque_description_bleeding_1 {
+.calque_description_bleeding_1, .calque_description_bleeding_2 {
 	height:237px;
 	margin-bottom:-36px;
 }
 
-.calque_description_bleeding_2 {
+.calque_description_bleeding_3 {
 	height:281px;
 	margin-bottom:-80px;
 }

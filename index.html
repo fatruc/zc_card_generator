@@ -49,31 +49,37 @@
 							<li>
 								<div class="radio">						                 
 									<label>							                 
-										<input id="input_bleeding_none" type="radio" name="input_bleeding"  value="none" checked="checked"/>Aucun 						                 
+										<input id="input_bleeding_none" value="bleeding_0" type="radio" name="input_bleeding"  value="none" checked="checked"/>Aucun 						                 
 									</label>						             
 								</div>
 							</li>
 							<li>
 								<div class="radio help" data-container="body" data-toggle="popover" title="Information" data-placement="right" data-content="Fonds perdus horizontaux et verticaux avec repères de coupe pour imprimer chez soi, et découper soi-même">						                 
 									<label>							                 
-										<input id="input_bleeding_print_and_cut" type="radio" name="input_bleeding"  value="none" />Impression et découpe manuelle 						                 
+										<input id="input_bleeding_print_and_cut"  value="bleeding_3" type="radio" name="input_bleeding"  value="none" />Impression et découpe manuelle 						                 
 									</label>						             
 								</div>	
 							</li>
 							<li>
 								<div class="radio help"  data-container="body" data-toggle="popover" title="Information" data-placement="right" data-content="Fonds perdus verticaux avec bande blanches à droite et à gauche. Pour imprimer sur PrinterStudio, et découper le long des bandes blanches pour être à la taille des cartes du jeu"> 						                 
 									<label>							                 
-										<input id="input_bleeding_ps_and_cut" type="radio" name="input_bleeding"  value="none">Printer studio et découpe manuelle
+										<input id="input_bleeding_ps_and_cut"  value="bleeding_1" type="radio" name="input_bleeding"  value="none">Printer studio et découpe manuelle
 									</label>						             
 								</div>
 							</li>
 							<li>
 								<div class="radio help"   data-container="body" data-toggle="popover" title="Information" data-placement="right" data-content="Fonds perdus pour imprimer sur PrinterStudio sans découpe, et avoir des cartes au format mini-US">						                 
 									<label>							                 
-										<input id="input_bleeding_ps_no_cut" type="radio" name="input_bleeding"  value="none" />Printer studio sans découpe 						                 
+										<input id="input_bleeding_ps_no_cut"  value="bleeding_2" type="radio" name="input_bleeding"  value="none" />Printer studio sans découpe 						                 
 									</label>						             
 								</div>
 							</li>
+							<li role="separator" class="divider"></li>
+							<div class="checkbox"  >
+								<label>
+									<input type="checkbox" id="input_card_border_preview" ></input> Afficher le contour de la carte dans l'aperçu
+								</label>
+							</div>
 							<li role="separator" class="divider"></li>
 							<li>
 								<a href="http://www.printerstudio.com/personalized/custom-blank-playing-cards-mini-size.html" target="_blank"> Aller sur Printer Studio</a>	
@@ -171,8 +177,8 @@
 				</div>				       
 				<div class="col-md-6" id="column-middle">									         
 
-					<div id="card_bleeding_area" class="bleeding_none">                                       
-						<div id="card_overlay">                                                                                        
+					<div id="card_bleeding_area" class="calque_bleeding">                                       
+						<div id="card_overlay" class="card_overlay_preview">                                                                                        
 							<div id="calque_stats" class="calque calque_stats optional calque_bleeding"></div>
 							<div id="calque_description" class="calque calque_description calque_bleeding"></div>    
 							<table id="output_description_container">                  
@@ -197,9 +203,10 @@
 							<div id="output_card_header">                                                   
 								<p id="output_card_name" ><img src="img/dual_melee.png" id="output_dual" class="optional"/></p>                 
 								<p id="output_card_sub_name" ></p>                                             
-							</div>                                       
-						</div>                                 
-					</div>					           
+							</div>
+							<div id="calque_card_border_preview" class="calque calque_bleeding"></div>							
+						</div>
+					</div>		
 
 				</div>					       
 				<div class="col-md-3">	
