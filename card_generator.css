@@ -167,16 +167,6 @@ textarea {
     position:absolute;
 }
 
-#calque_description{
-	bottom: 0px;
-	left: 27px;
-}
-
-#calque_stats{
-	bottom: 0px;
-	left: 28px;
-}
-
 .calque_break_in_noise {
     right:0px;
     top: 150px;
@@ -239,7 +229,7 @@ textarea {
 }
 
 .calque_ultrared {
-	background-image:url("img/Ultrared_2.png");
+	background-image:url("img/Ultrared.png");
 	top:0px;
 	background-position: bottom;
 	background-repeat: no-repeat;
@@ -262,6 +252,29 @@ textarea {
 	height: 305px;
 	margin-top: -80px;
 	margin-left:-40px;
+}
+
+.calque_stats {
+	background-image:url("img/stats.png");
+	background-repeat: no-repeat;
+	background-position: top;
+	width:426px;
+    bottom: 0px;
+    left: 29px;
+}
+
+.calque_stats_bleeding_0 {
+	height:140px;
+}
+
+.calque_stats_bleeding_1 {
+	height:176px;
+	margin-bottom:-36px;
+}
+
+.calque_stats_bleeding_2 {
+	height:220px;
+	margin-bottom:-80px;
 }
 
 .calque_description {
