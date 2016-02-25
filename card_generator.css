@@ -41,20 +41,26 @@ nav li div.radio label, nav li div.checkbox label{
 
 
 #card_overlay {
-    position:relative;
+    position:absolute;
     width: 488px;
     height: 750px;
 }
 
+.card_overlay_bleeding_2, .card_overlay_bleeding_1{
+	left: 55px;
+	top:36px;
+}
 
+.card_overlay_bleeding_3{
+	left: 80px;
+	top: 80px;
+}
 
 .card_bleeding_area_bleeding_1{
 	width:597px;
 	height: 822px;
 	background-image:url("img/beeding_printerstudio_and_cut.png");
 	background-repeat: no-repeat;
-	padding-left:	55px;
-	padding-top:	36px;
 }
 
 .card_bleeding_area_bleeding_2 {
@@ -62,8 +68,6 @@ nav li div.radio label, nav li div.checkbox label{
 	height: 822px;
 	background-image:url("img/bleeding_printerstudio_no_cut.png");
 	background-repeat: no-repeat;
-	padding-left:	55px;
-	padding-top:	36px;
 }
 
 .card_bleeding_area_bleeding_3 {
@@ -71,8 +75,6 @@ nav li div.radio label, nav li div.checkbox label{
 	height: 910px;
 	background-image:url("img/bleeding_print_and_cut.png");
 	background-repeat: no-repeat;
-	padding-left:	80px;
-	padding-top:	80px;
 }
 
 
@@ -87,10 +89,10 @@ nav li div.radio label, nav li div.checkbox label{
 
 
 #card_bleeding_area {
-	margin: auto;
+	
 	background-color: white;
 	/*margin-top: 60px;*/
-	/*position: absolute;*/
+	position: absolute;
 }
 
 #calque_card_border_preview{
@@ -107,8 +109,8 @@ nav li div.radio label, nav li div.checkbox label{
 }
 
 .calque_card_border_preview_bleeding_2 {
-	width:561px;
-	margin-left: -36px;
+	width:525px;
+	margin-left: -18px;
 }
 
 
@@ -246,7 +248,7 @@ textarea {
 
 .calque_kill_noise_bleeding_1, .calque_kill_noise_bleeding_2{
 	width:271px;
-    margin-left: -55px;
+    margin-left: -54px;
 }
 
 .calque_ultrared {
