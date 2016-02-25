@@ -583,7 +583,7 @@ function get_card_langage(){
 function change_card_language(){
 	var locale = $(this).find("img").attr("value");
 	var selected = $("#langage_panel button img");
-	selected.attr("src","/img/flags/" + locale + ".png");
+	selected.attr("src","img/flags/" + locale + ".png");
 	selected.attr("value",locale);
 	load();
 }
