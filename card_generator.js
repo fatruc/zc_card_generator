@@ -224,20 +224,22 @@ function output_stats(){
 }
 
 function output_headers(){
-	$("#output_card_name").html("<img src=\"img/dual_melee.png\" id=\"output_dual\" class=\"optional\"/>"+(current_card.card_name?current_card.card_name.toUpperCase():""));
-    $("#output_card_sub_name").html(replace_dices(current_card.card_sub_name?current_card.card_sub_name.toUpperCase():""));
+	var card_name = get_locale_string("card_name");
+	var card_sub_name = get_locale_string("card_sub_name");
+	$("#output_card_name").html("<img src=\"img/dual_melee.png\" id=\"output_dual\" class=\"optional\"/>"+(card_name?card_name.toUpperCase():""));
+    $("#output_card_sub_name").html(replace_dices(card_sub_name?card_sub_name.toUpperCase():""));
 	output_dual_icon();
 }
 
 function load_headers(){
-	$("#input_card_name").val(current_card.card_name);
-	$("#input_card_sub_name").val(current_card.card_sub_name);
+	$("#input_card_name").val(get_locale_string("card_name"));
+	$("#input_card_sub_name").val(get_locale_string("card_sub_name"));
 	output_headers();
 }
 
 function save_headers() {
-    current_card.card_name = replace_carriage_return($("#input_card_name").val());
-    current_card.card_sub_name = replace_carriage_return($("#input_card_sub_name").val());
+	set_locale_string("card_name",replace_carriage_return($("#input_card_name").val()));
+	set_locale_string("card_sub_name",replace_carriage_return($("#input_card_sub_name").val()));
 	
 	output_headers();
 }
@@ -411,14 +413,15 @@ function center_card_image(){
 }
 
 function save_description(){
-	current_card.description = $("#input_description").val();
+	set_locale_string("description",$("#input_description").val());
 	output_description();
 }
 
 function output_description(){
+	var description = get_locale_string("description");
 
-    if (current_card.description) {
-		description = replace_carriage_return(current_card.description);
+    if (description) {
+		description = replace_carriage_return(description);
 		$("#output_description").html(replace_dices(description.toUpperCase()));
         $("#calque_description").show();
         $(".input_card_stats").prop('disabled', true);
@@ -430,7 +433,8 @@ function output_description(){
 }
 
 function load_description(){
-	$("#input_description").val(current_card.description);
+	var description = get_locale_string("description");
+	$("#input_description").val(description);
 	output_description();
 }
 
@@ -553,7 +557,7 @@ function save_card(){
 	hidden_download_link.get(0).click();
 }
 
-var current_card = new Object();
+
 
 function show_card_border_preview(){
 	if($("#input_card_border_preview").is(":checked")){
@@ -563,6 +567,30 @@ function show_card_border_preview(){
 	}
 	
 }
+
+function set_locale_string(name,value){
+	current_card[name + "_" + get_card_langage()]=value;
+}
+
+function get_locale_string(name){
+	return current_card[name + "_" + get_card_langage()] ? current_card[name + "_" + get_card_langage()] : current_card[name];
+}
+
+function get_card_langage(){
+	return $("#langage_panel button img").attr("value");
+}
+
+function change_card_language(){
+	var locale = $(this).find("img").attr("value");
+	var selected = $("#langage_panel button img");
+	selected.attr("src","/img/flags/" + locale + ".png");
+	selected.attr("value",locale);
+	load();
+}
+
+var default_langage = "fr";
+
+var current_card = new Object();
 
 $(document).ready(function() {
 	
@@ -659,6 +687,8 @@ $(document).ready(function() {
 	});
 	
 	$("#input_card_border_preview").click(show_card_border_preview);
+	
+	$("#langage_panel a").click(change_card_language);
 	
 	if(localStorage.current_card_string){
 		current_card=JSON.parse(localStorage.current_card_string);

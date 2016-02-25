@@ -176,6 +176,10 @@ textarea {
     margin-top:10px
 }
 
+#langage_panel .dropdown-menu {
+	min-width: 0px;
+}
+
 .input_card_stats {
     width:24px;
 }
