@@ -89,10 +89,9 @@ nav li div.radio label, nav li div.checkbox label{
 
 
 #card_bleeding_area {
-	
 	background-color: white;
-	/*margin-top: 60px;*/
-	position: absolute;
+    position: relative;
+    margin: auto;
 }
 
 #calque_card_border_preview{
