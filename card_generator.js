@@ -268,6 +268,13 @@ function output_ultrared() {
 function save_break_in_noise(){
 	current_card.noisy_break_in = $("#input_break_in_noisy").is(":checked");
 	current_card.silent_break_in = $("#input_break_in_silent").is(":checked");
+	
+	// réinisitlisation de la position de l'image quand on la masque
+	if(!current_card.silent_break_in && !current_card.noisy_break_in){
+		$("#calque_break_in_noise").removeAttr("style");
+		current_card.break_in_noise_top = $("#calque_break_in_noise").css("top");
+	}
+	
 	output_break_in_noise();
 }
 
@@ -312,6 +319,13 @@ function end_drag_kill_noise(){
 function save_kill_noise(){
 	current_card.noisy_kill=$("#input_kill_noisy").is(":checked");
 	current_card.silent_kill=$("#input_kill_silent").is(":checked");
+	
+	// réinitialisation de la position de l'icone quand on la masque
+	if(!current_card.noisy_kill && !current_card.silent_kill){
+		$("#calque_kill_noise").removeAttr("style");
+		current_card.kill_noise_top = $("#calque_kill_noise").css("top");
+	}
+	
 	output_kill_noise();
 }
 
