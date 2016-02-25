@@ -209,33 +209,59 @@ textarea {
 	background-image: url("img/SilentKill.png");
 }
 
-.calque_break_in_noise_80{
+.calque_break_in_noise_bleeding_2{
 	width: 273px;
 	margin-right: -80px;
 }
 
-.calque_break_in_noise_0{
+.calque_break_in_noise_bleeding_0{
 	width: 193px;
 }
 
-.calque_break_in_noise_55{
+.calque_break_in_noise_bleeding_1{
 	width: 248px;
 	margin-right: -55px;
 }
 
-.calque_kill_noise_0{
+.calque_kill_noise_bleeding_0{
 	width: 218px;
 }
 
 
-.calque_kill_noise_80{
+.calque_kill_noise_bleeding_2{
 	width:296px;
     margin-left: -80px;	
 }
 
-.calque_kill_noise_55{
+.calque_kill_noise_bleeding_1{
 	width:271px;
     margin-left: -55px;
+}
+
+.calque_ultrared {
+	background-image:url("img/Ultrared_2.png");
+	top:0px;
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+
+.calque_ultrared_bleeding_0 {
+	width: 488px;
+	height: 225px;
+}
+
+.calque_ultrared_bleeding_1 {
+	width: 568px;
+	height: 290px;
+	margin-top: -55px;
+	margin-left:-40px;
+}
+
+.calque_ultrared_bleeding_2 {
+	width: 568px;
+	height: 305px;
+	margin-top: -80px;
+	margin-left:-40px;
 }
 
 .calque_description {
@@ -251,12 +277,12 @@ textarea {
 	height:201px;
 }
 
-.calque_description_36 {
+.calque_description_bleeding_1 {
 	height:237px;
 	margin-bottom:-36px;
 }
 
-.calque_description_80 {
+.calque_description_bleeding_2 {
 	height:281px;
 	margin-bottom:-80px;
 }

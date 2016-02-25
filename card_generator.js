@@ -462,31 +462,40 @@ function download() {
 
 function change_bleeding_areas() {
 
-	$(".calque_kill_noise").removeClass("calque_kill_noise_80 calque_kill_noise_0 calque_kill_noise_55");
-	$(".calque_break_in_noise").removeClass("calque_break_in_noise_80 calque_break_in_noise_0 calque_break_in_noise_55");
-	$(".calque_description").removeClass("calque_description_0 calque_description_36 calque_description_80");
+	$(".calque_bleeding").each(function(){
+		var element_id = $(this).attr("id");
+		$(this).removeClass(element_id+"_bleeding_0");
+		$(this).removeClass(element_id+"_bleeding_1");
+		$(this).removeClass(element_id+"_bleeding_2");
+	});
 	
 	$("#card_bleeding_area").removeClass();
     if ($("#input_bleeding_none").is(":checked")) {
-        $("#card_bleeding_area").addClass("bleeding_none");
-		$(".calque_kill_noise").addClass("calque_kill_noise_0");
-		$(".calque_break_in_noise").addClass("calque_break_in_noise_0");
-		$(".calque_description").addClass("calque_description_0");
+		$("#card_bleeding_area").addClass("bleeding_none");
+		$(".calque_bleeding").each(function(){
+			$(this).addClass($(this).attr("id")+"_bleeding_0");
+		});
+		
     } else if ($("#input_bleeding_print_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_print_and_cut");
-		$(".calque_kill_noise").addClass("calque_kill_noise_80");
-		$(".calque_break_in_noise").addClass("calque_break_in_noise_80");
-		$(".calque_description").addClass("calque_description_80");
-    } else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
+ 
+ 		$(".calque_bleeding").each(function(){
+			$(this).addClass($(this).attr("id")+"_bleeding_2");
+		});
+ 
+	} else if ($("#input_bleeding_ps_and_cut").is(":checked")) {
         $("#card_bleeding_area").addClass("bleeding_printerstudio_and_cut");
-		$(".calque_kill_noise").addClass("calque_kill_noise_55");
-		$(".calque_break_in_noise").addClass("calque_break_in_noise_55");
-		$(".calque_description").addClass("calque_description_36");
+		
+		$(".calque_bleeding").each(function(index,element){
+			$(this).addClass(element.attr("id")+"_bleeding_1");
+		});
+		
     } else		{
         $("#card_bleeding_area").addClass("bleeding_printerstudio_no_cut");
-		$(".calque_kill_noise").addClass("calque_kill_noise_55");
-		$(".calque_break_in_noise").addClass("calque_break_in_noise_55");
-		$(".calque_description").addClass("calque_description_36");
+		
+		$(".calque_bleeding").each(function(index,element){
+			$(this).addClass($(this).attr("id")+"_bleeding_1");
+		})
     }
 }
 
@@ -646,6 +655,8 @@ $(document).ready(function() {
 	if(localStorage.current_card_string){
 		current_card=JSON.parse(localStorage.current_card_string);
 	}
+	
+	change_bleeding_areas();
 	
 	load();
 
