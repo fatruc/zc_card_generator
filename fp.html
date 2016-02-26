@@ -4,54 +4,104 @@
 		<script src="libs/html2canvas.js"></script>           
 		<script src="libs/jquery-2.0.0.min.js"></script>           
 		<script src="libs/jquery-ui-1.11.4.min.js"></script>          
+		<script src="libs/jquery.transit.min.js"></script>  
+		<script src="libs/FileSaver.min.js"></script>  
+		<script src="libs/canvas-toBlob.js"></script>  
+		
+		
 		<script>
 		
-		$(document).ready(function() {
-				$("#name").draggable({
-					containment: "#container",
-					cursor: "move"
-					});
-			$("#download").click(download);
-			
 			function download(){
-				$("#container").removeClass("scaled");
+				rescale("#fiche");
 				
 			    html2canvas(document.getElementById("container"), {
 					onrendered: function(canvas) {
-					var hidden_download_link = $("#card_download");
-					hidden_download_link.attr("href", canvas.toDataURL('image/png',1.0));
-					hidden_download_link.get(0).click();
-					$("#container").addClass("scaled");
+					
+					canvas.toBlob(function(blob) {
+						saveAs(blob, "fiche.png");
+					}, "image/png");
+					
+					rescale("#fiche");
 
 				},
 				logging: false,
 				letterRendering: true
 			});
 			}
+		
+		
+		$(document).ready(function() {
+		
+		    $('.scalable').each(function(){
+				rescale("#fiche");
+			})
+		
+			$("#name").draggable({
+				containment: "#container",
+				cursor: "move"
+				});
+				
+			$("#download").click(download);
 				
 		});
+		
+
+
+
+
+		function rescale(selector) {
+
+			var elem = $(selector);
+		
+			var height = parseInt(elem.height());
+			var width = parseInt(elem.width());
+			var scalex = parseFloat(elem.attr('scalex'));
+			var scaley = parseFloat(elem.attr('scaley'));
+
+			if (!elem.hasClass('rescaled')){
+				var ratioX = scalex;
+				var ratioY = scaley;
+			}else{          
+				var ratioX = 1;
+				var ratioY = 1;
+			}
+
+			elem.toggleClass('rescaled');
+			elem.css('-webkit-transform', 'scale('+ratioX +', '+ratioY+')');        
+			elem.css('-webkit-transform-origin-x', '0');     
+			elem.css('-webkit-transform-origin-y', '0');  
+			elem.css('transform-origin-x', '0');     
+			elem.css('transform-origin-y', '0'); 			
+			elem.css('-moz-transform-origin', '0 0'); 
+			elem.css('transform', 'scale('+ratioX +', '+ratioY+')');   
+			elem.parent().css('width', parseInt(width*ratioX) + 'px');
+			elem.parent().css('height', parseInt(height*ratioY) + 'px');
+		}
 		
 		</script>
 		<style>
 		
 		.scaled {
-			-transform-origin: 0 0;
+			-moz-transform-origin: 0 0;
 			transform: scale(0.25);
 			-ms-transform: scale(0.25);
 			-ms--transform-origin: 0 0;
 			-webkit-transform: scale(0.25);
-			-webkit--transform-origin: 0% 0%;
+			-webkit-transform-origin: 0% 0%;
 			-webkit-transform-origin-x: 0;
 			-webkit-transform-origin-y: 0;
 			transform-origin-x: 0;
 			transform-origin-y: 0;
 			cursor: move;
-			width:100%;
-			height:100%;
+
+		}
+		
+		.original {
+			width: 2730px;
+			height: 1667px;
 		}
 		
 		#container{
-			//position: absolute;
 
 		}
 
@@ -72,14 +122,17 @@
 			left:500px;
 		}
 		
+		
 
 		</style>
 	
 	</head>
 	<body>
-		<div id="container" class="scaled">
-			<img src="img/564117FondPerduVFV2.png"></img>
-			<div id="name" class="name">Fatruc</div>
+		<div id="container" class="overall-scalable">
+			<div id="fiche" class="scalable original" scalex='0.25' scaley='0.25'>
+				<img src="img/564117FondPerduVFV2.png"></img>
+				<div id="name" class="name">Fatruc</div>
+			</div>
 		</div>
 		<button id="download">Télécharger</button>
 		<a id="card_download" download="card.png" href=""  >test</a>
