@@ -405,11 +405,11 @@ function output_dual_icon() {
 }
 
 function center_card_image(){
-	var card_image = $("#card_image");
-	var card_overlay = $("#card_overlay");
-
-	card_image.css("left", (card_overlay.width() - card_image.width()) / 2);
-	current_card.card_image_left = card_image.position().left;
+	$("#card_image").position({
+	   my: "center",
+	   at: "center",
+	   of: "#card_overlay"
+	});
 }
 
 function save_description(){
@@ -594,6 +594,14 @@ var current_card = new Object();
 
 $(document).ready(function() {
 	
+	// empeche de valider le formulaire en appuyant sur enter
+	 $("input").keydown(function(event){
+		if(event.keyCode == 13) {
+		  event.preventDefault();
+		  return false;
+		}
+	  });
+	
 	// save old getContext
 	var oldgetContext = HTMLCanvasElement.prototype.getContext ;
 
@@ -670,7 +678,7 @@ $(document).ready(function() {
 	
 	$("#input_image_max_rate").val($("#card_image").css("max-width").replace("%",""));
 	
-	$("#input_image_max_rate").change(save_image_max_range);
+	$("#input_image_max_rate").keyup(save_image_max_range);
 	
 	$("#input_image_shadow").click(save_card_image_shadow);
 
