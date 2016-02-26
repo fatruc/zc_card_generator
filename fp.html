@@ -1,0 +1,87 @@
+<html>
+	<head>
+
+		<script src="libs/html2canvas.js"></script>           
+		<script src="libs/jquery-2.0.0.min.js"></script>           
+		<script src="libs/jquery-ui-1.11.4.min.js"></script>          
+		<script>
+		
+		$(document).ready(function() {
+				$("#name").draggable({
+					containment: "#container",
+					cursor: "move"
+					});
+			$("#download").click(download);
+			
+			function download(){
+				$("#container").removeClass("scaled");
+				
+			    html2canvas(document.getElementById("container"), {
+					onrendered: function(canvas) {
+					var hidden_download_link = $("#card_download");
+					hidden_download_link.attr("href", canvas.toDataURL('image/png',1.0));
+					hidden_download_link.get(0).click();
+					$("#container").addClass("scaled");
+
+				},
+				logging: false,
+				letterRendering: true
+			});
+			}
+				
+		});
+		
+		</script>
+		<style>
+		
+		.scaled {
+			-transform-origin: 0 0;
+			transform: scale(0.25);
+			-ms-transform: scale(0.25);
+			-ms--transform-origin: 0 0;
+			-webkit-transform: scale(0.25);
+			-webkit--transform-origin: 0% 0%;
+			-webkit-transform-origin-x: 0;
+			-webkit-transform-origin-y: 0;
+			transform-origin-x: 0;
+			transform-origin-y: 0;
+			cursor: move;
+			width:100%;
+			height:100%;
+		}
+		
+		#container{
+			//position: absolute;
+
+		}
+
+		@font-face {
+			font-family: Crackhouse;
+			src: url('fonts/crackhouse.otf') format("opentype");
+		}
+		
+		.name {
+			font-family: Crackhouse;
+			font-size: 80pt;
+			color:#090808;
+			line-height: 0.8em;
+			text-align: center;
+			letter-spacing: -2px;
+			position:absolute;
+			top:500px;
+			left:500px;
+		}
+		
+
+		</style>
+	
+	</head>
+	<body>
+		<div id="container" class="scaled">
+			<img src="img/564117FondPerduVFV2.png"></img>
+			<div id="name" class="name">Fatruc</div>
+		</div>
+		<button id="download">Télécharger</button>
+		<a id="card_download" download="card.png" href=""  >test</a>
+	</body>
+</html>
