@@ -86,7 +86,6 @@ nav li div.radio label, nav li div.checkbox label{
 .card_bleeding_area_bleeding_3 {
 	width:648px;
 	height: 910px;
-	//background-image:url("img/bleeding_print_and_cut.png");
 	background-repeat: no-repeat;
 }
 
@@ -112,7 +111,6 @@ nav li div.radio label, nav li div.checkbox label{
 .card_bleeding_area_bleeding_0 {
 	width:488px;
 	height: 750px;
-	//background-image:url("img/bleeding_none.png");
 	background-repeat: no-repeat;
 }
 
@@ -131,6 +129,7 @@ nav li div.radio label, nav li div.checkbox label{
 	border: 1px solid black;
 	border-radius: 30px;
 	display:none;
+	top: 0px;
 }
 
 .calque_card_border_preview_bleeding_1 ,.calque_card_border_preview_bleeding_0, .calque_card_border_preview_bleeding_3{

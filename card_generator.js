@@ -468,13 +468,16 @@ function download() {
 
     html2canvas(document.getElementById("clone_container"), {
         onrendered: function(canvas) {
-			var hidden_download_link = $("#card_download");
-            hidden_download_link.attr("href", canvas.toDataURL('image/png',1.0));
-			hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".png");
-            hidden_download_link.get(0).click();
-			$("#clone_container").empty();
-			$("#clone_container").hide();
-			show_card_border_preview();
+			
+			canvas.toBlob(function(blob) {
+				var file_name = $("#input_card_name").val().replace(/\W/g, '_')+".png";
+				saveAs(blob, file_name);
+				
+				$("#clone_container").empty();
+				$("#clone_container").hide();
+				show_card_border_preview();	
+			})
+
         },
         logging: false,
         letterRendering: true
@@ -550,11 +553,14 @@ function clear_card(){
 	load();
 }
 
+function get_file_name_without_extension(){
+	return $("#input_card_name").val().replace(/\W/g, '_');
+}
+
 function save_card(){
-	var hidden_download_link = $("#card_download");
-	hidden_download_link.attr("href", "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(current_card)));
-	hidden_download_link.prop("download",$("#input_card_name").val().replace(/\W/g, '_')+".zec");
-	hidden_download_link.get(0).click();
+	var file_name = get_file_name_without_extension() +".zec";
+	var blob = new Blob(JSON.stringify(current_card), {type: "text/json;charset=utf-8"});
+	saveAs(blob, get_file_name_without_extension + ".zec");
 }
 
 
