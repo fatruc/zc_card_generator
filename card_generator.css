@@ -56,33 +56,63 @@ nav li div.radio label, nav li div.checkbox label{
 	top: 80px;
 }
 
+.card_background_bleeding_1{
+	width:488px;
+	height: 822px;
+	background-image:url("img/bleeding_full.png");
+	margin-top: -36px;
+}
+
 .card_bleeding_area_bleeding_1{
 	width:597px;
 	height: 822px;
-	background-image:url("img/beeding_printerstudio_and_cut.png");
 	background-repeat: no-repeat;
 }
 
 .card_bleeding_area_bleeding_2 {
 	width:597px;
 	height: 822px;
-	background-image:url("img/bleeding_printerstudio_no_cut.png");
 	background-repeat: no-repeat;
+}
+
+.card_background_bleeding_2{
+	width:597px;
+	height: 822px;
+	background-image:url("img/bleeding_full.png");
+	margin-top: -36px;
+	margin-left: -55px;
 }
 
 .card_bleeding_area_bleeding_3 {
 	width:648px;
 	height: 910px;
-	background-image:url("img/bleeding_print_and_cut.png");
+	//background-image:url("img/bleeding_print_and_cut.png");
 	background-repeat: no-repeat;
 }
 
+.card_background_bleeding_3{
+	width:648px;
+	height: 910px;
+	background-image:url("img/bleeding_print_and_cut.png");
+	margin-top: -80px;
+	margin-left: -80px;
+}
 
+.card_background{
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.card_background_bleeding_0{
+	width:488px;
+	height: 750px;
+	background-image:url("img/bleeding_full.png");
+}
 
 .card_bleeding_area_bleeding_0 {
 	width:488px;
 	height: 750px;
-	background-image:url("img/bleeding_none.png");
+	//background-image:url("img/bleeding_none.png");
 	background-repeat: no-repeat;
 }
 
