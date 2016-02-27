@@ -666,7 +666,7 @@ $(document).ready(function() {
     });
 
 	$("#card_image").draggable({
-		containment: "#card_bleeding_area",
+		
 		cursor: "move",
 		drag: move_shadow,
 		stop: end_drag_card_image
