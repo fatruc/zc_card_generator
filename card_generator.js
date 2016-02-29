@@ -559,8 +559,8 @@ function get_file_name_without_extension(){
 
 function save_card(){
 	var file_name = get_file_name_without_extension() +".zec";
-	var blob = new Blob(JSON.stringify(current_card), {type: "text/json;charset=utf-8"});
-	saveAs(blob, get_file_name_without_extension + ".zec");
+	var blob = new Blob([JSON.stringify(current_card)], {type: "text/json;charset=utf-8"});
+	saveAs(blob, file_name);
 }
 
 
