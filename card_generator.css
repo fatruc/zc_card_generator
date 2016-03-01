@@ -106,6 +106,7 @@ nav li div.radio label, nav li div.checkbox label{
 	width:488px;
 	height: 750px;
 	background-image:url("img/bleeding_full.png");
+	
 }
 
 .card_bleeding_area_bleeding_0 {
@@ -186,20 +187,20 @@ textarea {
 
 
 #output_range {
-    right:368px;
+    right:371px;
 	width: 83px;
 }
 
 #output_nb_dice {
-    right:262px
+    right:265px
 }
 
 #output_val_dice {
-    right:154px
+    right:151px
 }
 
 #output_power {
-    right:47px
+    right:44px
 }
 
 #card_file {
@@ -220,7 +221,7 @@ textarea {
 
 .calque_break_in_noise {
     right:0px;
-    top: 150px;
+    top: 153px;
     cursor: move;
 	height: 103px;
 	background-position: left;
@@ -311,7 +312,7 @@ textarea {
 	background-position: top;
 	width:426px;
     bottom: 0px;
-    left: 29px;
+    left: 26px;
 }
 
 .calque_stats_bleeding_0 {
