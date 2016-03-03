@@ -25,20 +25,31 @@ function replace_dices(text) {
     });
 }
 
-
+function load_griffe_image(){
+	var griffe_image = $("#output_griffe");
+	griffe_image.attr("src", current_card.griffe_image?current_card.griffe_image:"");
+	
+	output_griffe();
+}
 
 function load_card_image(){
 	var card_image = $("#card_image");
 	card_image.attr("src", current_card.card_image?current_card.card_image:"");
 	
 	if(current_card.card_image){
+		card_image.css('top', current_card.card_image_top+"px");
+		card_image.css('left', current_card.card_image_left+"px");
 		card_image.show();
 	}else {
 		card_image.hide();
 	}
 	
-	card_image.css('top', current_card.card_image_top+"px");
-	card_image.css('left', current_card.card_image_left+"px");
+
+}
+
+function save_griffe_image(){
+	var griffe_image = $("#output_griffe");
+	current_card.griffe_image = griffe_image.attr("src");
 }
 
 function save_card_image(){
@@ -171,6 +182,39 @@ function handle_change_dual_image(evt) {
         reader.readAsDataURL(f);
     }
 
+}
+
+function handle_change_griffe_image(evt) {
+    var files = evt.target.files; // FileList object
+
+    // Loop through the FileList and render image files as thumbnails.
+    for (var i = 0, f; f = files[i]; i++) {
+
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+            continue;
+        }
+
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                // Render thumbnail.
+				$("#output_griffe").show();
+                $("#output_griffe").attr("src", e.target.result);
+				current_card.griffe_image = e.target.result;
+				
+				save_griffe_image();
+				output_griffe();
+            };
+        })(f);
+
+
+        // Read in the image file as a data URL.
+        reader.readAsDataURL(f);
+    }
+
 
 }
 
@@ -185,6 +229,7 @@ function load(){
 	load_break_in_noise();
 	load_kill_noise();
 	load_dual_icon();
+	load_griffe_image();
 }
 
 function load_stats(){
@@ -205,11 +250,15 @@ function save_stats() {
 	output_stats();
 }
 
-function output_stats(){
-	if (current_card.range && current_card.range!="" 
+function is_stats(){
+	return current_card.range && current_card.range!="" 
 		|| current_card.nb_dices && current_card.nb_dices != ""
 		|| current_card.val_dices && current_card.val_dices != ""
-		|| current_card.power && current_card.power != "") {
+		|| current_card.power && current_card.power != "";
+}
+
+function output_stats(){
+	if (is_stats()) {
         $("#calque_stats").show();
         $("#input_description").prop('disabled', true);
     } else {
@@ -221,6 +270,8 @@ function output_stats(){
     $("#output_nb_dice").html(current_card.nb_dices?current_card.nb_dices:"");
     $("#output_val_dice").html(current_card.val_dices?current_card.val_dices:"");
     $("#output_power").html(current_card.power?current_card.power:"");
+	
+	output_griffe();
 }
 
 function output_headers(){
@@ -430,6 +481,27 @@ function output_description(){
         $("#calque_description").hide();
         $(".input_card_stats").prop('disabled', false);
     }
+	
+	output_griffe();
+}
+
+function output_griffe(){
+	
+	if(current_card.griffe_image){
+		$("#output_griffe").show();
+	}else {
+		$("#output_griffe").hide();
+	}
+	
+	$("#output_griffe").removeClass("calque_griffe_desc calque_griffe_stats");
+	
+	if(get_locale_string("description")){
+		$("#output_griffe").addClass("calque_griffe_desc");
+	} else if(is_stats()){
+		$("#output_griffe").addClass("calque_griffe_stats");
+	} else {
+		$("#output_griffe").hide();
+	}
 }
 
 function load_description(){
@@ -620,6 +692,7 @@ $(document).ready(function() {
     $("#input_description").keyup(save_description);
 
     $("#card_file").change(handle_change_card_image);
+	$("#griffe_file").change(handle_change_griffe_image);
     $("#input_dual_file").change(handle_change_dual_image);
 
     $("#input_ultrared").click(save_ultrared);
@@ -674,8 +747,16 @@ $(document).ready(function() {
 		$("#input_zec_file").click();
 	});
 	
+	$("#load_card_file").click(function(){
+		$("#input_zec_file").click();
+	});
+	
 	$("#load_card_image").click(function(){
 		$("#card_file").click();
+	});
+	
+	$("#load_griffe_image").click(function(){
+		$("#griffe_file").click();
 	});
 	
 	$("#load_dual_image").click(function(){

@@ -16,6 +16,22 @@ body {
 	
 }
 
+#output_griffe{
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.calque_griffe_desc {
+	top: 534px;
+    left: 19px;
+}
+
+
+.calque_griffe_stats{
+	top: 594px;
+    left: 19px;
+}
+
 #downoad_button{
 	margin-left: 40px;
 }
