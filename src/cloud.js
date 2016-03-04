@@ -55,6 +55,7 @@ function add_card_name(card_id, card){
 	var card_name = new Object();
 	card_name.card_id=card_id;
 	
+	// on recherche toutes les traductions du nom de la carte pour ne pas la code en dur
 	for(p in card){
 		if(p.startsWith("card_name_")){
 			card_name[p] = card[p];

@@ -22,6 +22,8 @@ function output_stats(){
 function output_headers(){
 	var card_name = get_locale_string("card_name");
 	var card_sub_name = get_locale_string("card_sub_name");
+	
+	//TODO: à revoir, c'est pas tarrible !
 	$("#output_card_name").html("<img src=\"img/dual_melee.png\" id=\"output_dual\" class=\"optional\"/>"+(card_name?replace_carriage_return(card_name).toUpperCase():""));
     $("#output_card_sub_name").html(replace_dices(card_sub_name?replace_carriage_return(card_sub_name).toUpperCase():""));
 	output_dual_icon();
