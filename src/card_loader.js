@@ -113,6 +113,6 @@ $(document).ready(function() {
 	
 		$("#input_zec_file").change(load_save_file);
 		
-
+		load();
 	
 })

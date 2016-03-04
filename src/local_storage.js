@@ -24,8 +24,5 @@ $(document).ready(function() {
 		if(localStorage.current_card_string){
 			current_card=JSON.parse(localStorage.current_card_string);
 		}
-		
-		change_bleeding_areas();
-		
-		load();
+
 });

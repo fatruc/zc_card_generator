@@ -28,4 +28,6 @@ function change_bleeding_areas() {
 $(document).ready(function() {
     $("input[name='input_bleeding']").click(change_bleeding_areas);
 	$("#input_card_border_preview").click(show_card_border_preview);
+	
+	change_bleeding_areas();
 });
