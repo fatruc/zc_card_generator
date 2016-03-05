@@ -65,6 +65,7 @@ function authDataCallback(authData) {
 }
 
 function load_saved_card_names(){
+	$("#saved_card_list").empty();
 	$.toaster('Chargement de la liste des cartes sauvegardées', "Information", 'info');
 	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/");
 	
@@ -94,8 +95,15 @@ function add_saved_card_name_to_page(card_name){
 
 function upload(){
 	$.toaster('Sauvegarde de la carte en cours', "Information", 'info');
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/");
-	var card_ref = ref.push()
+	var card_ref;
+	
+	if(!current_card.card_id){
+		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/").push()
+	} else {
+		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/" + current_card.card_id);
+	}
+	
+	
 	card_ref.set(current_card, function(error) {
 		  if (error) {
 			$.toaster('Echec de la sauvegarde', "Erreur", 'danger');
@@ -109,7 +117,7 @@ function add_card_name_to_database(card_id, card){
 	
 	console.log(card_id);
 	
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/");
+	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/"+card_id);
 	
 	var card_name = new Object();
 	card_name.card_id=card_id;
@@ -121,10 +129,11 @@ function add_card_name_to_database(card_id, card){
 		}
 	}
 	
-	ref.push(card_name, function(error) {
+	ref.set(card_name, function(error) {
 		  if (error) {
 			$.toaster('Echec de la sauvegarde', "Erreur", 'danger');
 		  } else {
+			  load_saved_card_names();
 			 $.toaster('Sauvegarde terminée', "Information", 'info');
 		  }
 	});
@@ -135,11 +144,13 @@ function load_saved_card(){
 	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
 	console.log($(this).attr("id"));
 	
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/"+$(this).attr("id"));
+	var card_id = $(this).attr("id");
+	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/"+card_id);
 	
 	ref.once("value", function(snapshot) {
 		$.toaster('Chargement terminé', "Information", 'info');
 		current_card = snapshot.val();
+		current_card.card_id = card_id;
 		console.log(current_card);
 		load();
 	  	  
