@@ -16,7 +16,7 @@ $(document).ready(function() {
 	ref.onAuth(authDataCallback);
 	
 	$("#disconnect").click(disconnect);
-	$("#google_connect").click(google_connect);
+	$(".provider_connect").click(provider_connect);
 	$("#button_confirm_delete_card").click(confirm_delete_card);
 	$("#button_cancel_delete_card").click(cancel_delete_card);
 
@@ -53,9 +53,10 @@ function disconnected_toast(){
 }
 
 
-function google_connect(){
+function provider_connect(){
+	var provider = $(this).attr("provider");
 	var ref = new Firebase(FIREBASE_APP_URL);
-	ref.authWithOAuthPopup("google", function(error, authData) {
+	ref.authWithOAuthPopup(provider, function(error, authData) {
 	  if (error) {
 		$.toaster("impossible de se connecter",'Erreur',  'danger');
 	  } else {
@@ -72,7 +73,7 @@ function authDataCallback(authData) {
 	$.toaster('Vous êtes connecté', "Information", 'info');
 	on_connected();
 	uid = authData.uid;
-	$("#connected_info").html("Vous êtes connecté avec "+to_title_case(authData.provider)+" <span class=\"caret\"></span>");
+	$("#connected_info").html("Connecté avec "+to_title_case(authData.provider)+" <span class=\"caret\"></span>");
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
 	load_saved_card_names();
   } else {

@@ -114,10 +114,18 @@
 	
 				
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown">
+					<li class="dropdown" id="connected_menu">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="connected_info">Connecté avec<span class="caret"></span></a>
+					  <ul class="dropdown-menu">
+						<li><a href="#" id="disconnect">Se déconnecter</a></li>
+					  </ul>
+					</li>
+					<li class="dropdown" id="connect_menu">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
 					  <ul class="dropdown-menu">
-						<li><a href="#" id="google_connect">Se connecter avec son compte Google</a></li>
+						<li><a href="#" provider="google" class="provider_connect">Google</a></li>
+						<li><a href="#" provider="facebook" class="provider_connect">Facebook</a></li>
+						<li><a href="#" provider="twitter" class="provider_connect">Twitter</a></li>
 					  </ul>
 					</li>
 					<li class="dropdown">
