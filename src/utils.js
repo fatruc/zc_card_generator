@@ -87,6 +87,11 @@ function disable_form_validation(){
 	  });
 }
 
+function to_title_case(str) {
+    return str.replace(/(?:^|\s)\w/g, function(match) {
+        return match.toUpperCase();
+    });
+}
 
 
 $(document).ready(function() {

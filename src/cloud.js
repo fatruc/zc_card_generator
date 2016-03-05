@@ -72,7 +72,7 @@ function authDataCallback(authData) {
 	$.toaster('Vous êtes connecté', "Information", 'info');
 	on_connected();
 	uid = authData.uid;
-	$("#connected_info").html("Vous êtes connecté avec "+authData.provider+" <span class=\"caret\"></span>");
+	$("#connected_info").html("Vous êtes connecté avec "+to_title_case(authData.provider)+" <span class=\"caret\"></span>");
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
 	load_saved_card_names();
   } else {
