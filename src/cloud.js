@@ -15,6 +15,7 @@ $(document).ready(function() {
 	var ref = new Firebase(FIREBASE_APP_URL);
 	ref.onAuth(authDataCallback);
 	
+	$("#disconnect").click(disconnect);
 	$("#google_connect").click(google_connect);
 	$("#button_confirm_delete_card").click(confirm_delete_card);
 	$("#button_cancel_delete_card").click(cancel_delete_card);
@@ -22,7 +23,14 @@ $(document).ready(function() {
 
 });
 
+function disconnect(){
+	new Firebase(FIREBASE_APP_URL).unauth();
+}
+
 function on_connected(){
+	$("#connect_menu").hide();
+	$("#connected_menu").show();
+	
 	$("#upload_button").off("click");
 	$("#upload_button").click(upload);
 	
@@ -31,6 +39,8 @@ function on_connected(){
 }
 
 function on_disconnected(){
+	$("#connected_menu").hide();
+	$("#connect_menu").show();
 	$("#saved_card_list").empty();
 	$("#upload_button").off("click");
 	$("#delete_button").off("click");
@@ -49,7 +59,6 @@ function google_connect(){
 	  if (error) {
 		$.toaster("impossible de se connecter",'Erreur',  'danger');
 	  } else {
-		 on_disconnected();
 		$.toaster('Vous êtes connecté', "Information", 'info');
 		on_connected();
 		console.log("Authenticated successfully with payload:", authData);
@@ -63,10 +72,12 @@ function authDataCallback(authData) {
 	$.toaster('Vous êtes connecté', "Information", 'info');
 	on_connected();
 	uid = authData.uid;
+	$("#connected_info").html("Vous êtes connecté avec "+authData.provider+" <span class=\"caret\"></span>");
     console.log("User " + authData.uid + " is logged in with " + authData.provider);
 	load_saved_card_names();
   } else {
 	$.toaster('Vous êtes déconnecté', "Information", 'info');
+	on_disconnected();
     console.log("User is logged out");
   }
 }
