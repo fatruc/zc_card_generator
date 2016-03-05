@@ -21,11 +21,13 @@ $(document).ready(function() {
 });
 
 function on_connected(){
+	$("#upload_button").off("click");
 	$("#upload_button").click(upload);
 }
 
 function on_disconnected(){
 	$("#saved_card_list").empty();
+	$("#upload_button").off("click");
 	$("#upload_button").click(disconnected_toast);
 }
 
