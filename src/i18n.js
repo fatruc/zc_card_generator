@@ -5,6 +5,10 @@ function set_locale_string(name,value){
 	current_card[name + "_" + get_card_langage()]=value;
 }
 
+function get_locale_string_gen(object, property, lang){
+	return object[property + "_" + lang] ? object[property + "_" + lang] : object[property];
+}
+
 function get_locale_string(name){
 	return current_card[name + "_" + get_card_langage()] ? current_card[name + "_" + get_card_langage()] : current_card[name];
 }
@@ -25,6 +29,7 @@ function change_card_language(){
 $(document).ready(function() {
 	
 	$("#langage_panel a").click(change_card_language);
+
 	
 })
 

@@ -12,9 +12,9 @@
 		<script src="src/bleedings.js"></script> 
 		<script src="src/card_display.js"></script> 
 		<script src="src/card_saver.js"></script> 
+		<script src="src/i18n.js"></script> 
 		<script src="src/cloud.js"></script> 
 		<script src="src/events.js"></script> 
-		<script src="src/i18n.js"></script> 
 		<script src="src/local_storage.js"></script> 
 		<script src="src/card_loader.js"></script> 
 		
@@ -105,8 +105,17 @@
 						<li><a href="#" id="google_connect">Se connecter avec son compte Google</a></li>
 					  </ul>
 					</li>
+					<li class="dropdown">
+					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mes cartes sauvegardées<span class="caret"></span></a>
+					  <ul class="dropdown-menu" id="saved_card_list">
+						<!--<li><a href="#" id="google_connect"></a></li>-->
+					  </ul>
+					</li>
 				  </ul>
 				<button type="button" id="downoad_button"  class="btn btn-default navbar-btn btn-primary">Télécharger l'image</button>
+				
+	
+				
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">? <span class="caret"></span></a>
