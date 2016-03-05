@@ -16,6 +16,8 @@ $(document).ready(function() {
 	ref.onAuth(authDataCallback);
 	
 	$("#google_connect").click(google_connect);
+	$("#button_confirm_delete_card").click(confirm_delete_card);
+	$("#button_cancel_delete_card").click(cancel_delete_card);
 
 
 });
@@ -118,7 +120,13 @@ function upload(){
 	});
 }
 
-function delete_card(){
+function cancel_delete_card(){
+	$('#delete_card_modal').modal('hide');
+}
+
+function confirm_delete_card(){
+	$('#delete_card_modal').modal('hide');
+	
 	$.toaster('Suppression de la carte en cours', "Information", 'info');
 	var card_ref;
 	
@@ -134,6 +142,13 @@ function delete_card(){
 			  delete_card_name_from_database(card_ref.key());
 		  }
 	});
+}
+
+function delete_card(){
+	
+	$('#delete_card_modal').modal('show');
+	
+
 }
 
 function delete_card_name_from_database(card_id){
