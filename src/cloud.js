@@ -23,12 +23,17 @@ $(document).ready(function() {
 function on_connected(){
 	$("#upload_button").off("click");
 	$("#upload_button").click(upload);
+	
+	$("#delete_button").off("click");
+	$("#delete_button").click(delete_card);
 }
 
 function on_disconnected(){
 	$("#saved_card_list").empty();
 	$("#upload_button").off("click");
+	$("#delete_button").off("click");
 	$("#upload_button").click(disconnected_toast);
+	$("#delete_button").click(disconnected_toast);
 }
 
 function disconnected_toast(){
@@ -109,6 +114,37 @@ function upload(){
 			$.toaster('Echec de la sauvegarde', "Erreur", 'danger');
 		  } else {
 			  add_card_name_to_database(card_ref.key(), current_card);
+		  }
+	});
+}
+
+function delete_card(){
+	$.toaster('Suppression de la carte en cours', "Information", 'info');
+	var card_ref;
+	
+	if(current_card.card_id){
+		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/" + current_card.card_id);
+	}
+	
+	
+	card_ref.set(null, function(error) {
+		  if (error) {
+			$.toaster('Echec de la suppression', "Erreur", 'danger');
+		  } else {
+			  delete_card_name_from_database(card_ref.key());
+		  }
+	});
+}
+
+function delete_card_name_from_database(card_id){
+		new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/"+card_id).set(null, function(error) {
+		  if (error) {
+			$.toaster('Echec de la suppression', "Erreur", 'danger');
+		  } else {
+			  clear_card();
+			  remember_card();
+			  load_saved_card_names();
+			 $.toaster('La carte a été supprimée', "Information", 'info');
 		  }
 	});
 }
