@@ -32,7 +32,7 @@ function on_connected(){
 	$("#connected_menu").show();
 	
 	$("#upload_button").off("click");
-	$("#upload_button").click(upload);
+	$("#upload_button").click(save_card_into_database);
 	
 	$("#delete_button").off("click");
 	$("#delete_button").click(delete_card);
@@ -112,15 +112,12 @@ function add_saved_card_name_to_page(card_name){
 	$("#saved_card_list").append("<li><a href=\"#\" id=\"" + card_name.card_id + "\" class=\"saved_card\">" + get_locale_string_gen(card_name, "card_name", default_langage) + "</a></li>")
 }
 
-function upload(){
+function save_card_into_database(){
 	$.toaster('Sauvegarde de la carte en cours', "Information", 'info');
-	var card_ref;
-	
-	if(!current_card.card_id){
-		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/").push()
-	} else {
-		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/" + current_card.card_id);
-	}
+	var ref=new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/");;
+	var card_id = current_card.card_id ? current_card.card_id : ref.push().key(); 
+	current_card.card_id=card_id;
+	var card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/"+card_id);
 	
 	
 	card_ref.set(current_card, function(error) {
