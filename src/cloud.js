@@ -6,6 +6,10 @@ var FIREBASE_APP_URL = "https://cartes-equip-zc.firebaseio.com/";
 
 $(document).ready(function() {
 	
+	if (!Date.now) {
+		Date.now = function() { return new Date().getTime(); }
+	}
+	
 	$.toaster({ settings : {
 		'timeout'      : 4000
 	} });
@@ -27,7 +31,7 @@ $(document).ready(function() {
 	console.log("request parameters "+ card_id);
 	if(card_id){
 		console.log(card_id);
-		load_card_with_ids(card_id);
+		load_card_with_ids_from_db(card_id);
 	}
 
 });
@@ -45,7 +49,7 @@ function share_card(){
 	$('#share_card_modal').modal('show');
 }
 
-function load_card_with_ids(card_id){
+function load_card_with_ids_from_db(card_id){
 	
 	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
 	
@@ -53,15 +57,18 @@ function load_card_with_ids(card_id){
 	
 	ref.once("value", function(snapshot) {
 		$.toaster('Chargement terminé', "Information", 'info');
-		current_card = snapshot.val();
-		current_card.card_id = card_id;
-		console.log(current_card);
-		load();
-	  	  
+		var loaded_card = snapshot.val();
+		loaded_card.card_id = card_id;
+		on_card_loaded(loaded_card);
 	}, function (errorObject) {
 	  $.toaster('Echec du chargement', "Erreur", 'danger');
 	});
-	
+}
+
+function on_card_loaded(card){
+	current_card = card;
+	console.log(current_card);
+	load();
 }
 
 
@@ -152,7 +159,7 @@ function load_saved_card_names(){
 }
 
 function add_saved_card_name_to_page(card_name){
-	$("#saved_card_list").append("<li><a href=\"#\" id=\"" + card_name.card_id + "\" class=\"saved_card\">" + get_locale_string_gen(card_name, "card_name", default_langage) + "</a></li>")
+	$("#saved_card_list").append("<li><a href=\"#\" id=\"" + card_name.card_id + "\" date=\"" + (card_name.card_date?card_name.card_date:0) + "\" class=\"saved_card\">" + get_locale_string_gen(card_name, "card_name", default_langage) + "</a></li>")
 }
 
 function save_card_into_database(){
@@ -161,6 +168,7 @@ function save_card_into_database(){
 	var card_id = current_card.card_id ? current_card.card_id : ref.push().key(); 
 	current_card.card_id=card_id;
 	current_card.user_id=uid;
+	current_card.card_date=Date.now();
 	var card_ref = new Firebase(FIREBASE_APP_URL + "cards/"+card_id);
 	
 	
@@ -225,6 +233,7 @@ function add_card_name_to_database(card_id, card){
 	
 	var card_name = new Object();
 	card_name.card_id=card_id;
+	card_name.card_date=card.card_date;
 	
 	// on recherche toutes les traductions du nom de la carte pour ne pas la code en dur
 	for(p in card){
@@ -238,6 +247,7 @@ function add_card_name_to_database(card_id, card){
 			$.toaster('Echec de la sauvegarde', "Erreur", 'danger');
 		  } else {
 			  load_saved_card_names();
+			  add_card_to_cache(card);
 			 $.toaster('Sauvegarde terminée', "Information", 'info');
 		  }
 	});
@@ -248,5 +258,15 @@ function load_saved_card(){
 	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
 	console.log($(this).attr("id"));
 	var card_id = $(this).attr("id");
-	load_card_with_ids(card_id);
+	var card_date = parseInt($(this).attr("date"));
+	
+	// on recherche si une carte existe dans le cache local, et on vérifie sa date
+	var cached_card = get_card_from_cache(card_id);
+	if(cached_card && cached_card.card_date && cached_card.card_date>=card_date){
+		console.log("la carte a été trouvée dans le cache avec le même timestamp");
+		on_card_loaded(cached_card);
+	} else {
+		console.log("aucune carte n'a été trouvée dans le cache, ou la carte est périmée");
+		load_card_with_ids_from_db(card_id);	
+	}
 }
