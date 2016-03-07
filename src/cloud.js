@@ -21,20 +21,19 @@ $(document).ready(function() {
 	$("#button_cancel_delete_card").click(cancel_delete_card);
 
 	var card_id = $.urlParam("cid");
-	var user_id = $.urlParam("uid");
-	console.log("request parameters "+user_id + " " + card_id);
-	if(card_id && user_id){
-		console.log(user_id + " " + card_id);
-		load_card_with_ids(user_id,card_id);
+	console.log("request parameters "+ card_id);
+	if(card_id){
+		console.log(card_id);
+		load_card_with_ids(card_id);
 	}
 
 });
 
-function load_card_with_ids(user_id, card_id){
+function load_card_with_ids(card_id){
 	
 	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
 	
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + user_id + "/cards/"+card_id);
+	var ref = new Firebase(FIREBASE_APP_URL+ "cards/"+card_id);
 	
 	ref.once("value", function(snapshot) {
 		$.toaster('Chargement terminé', "Information", 'info');
@@ -142,10 +141,11 @@ function add_saved_card_name_to_page(card_name){
 
 function save_card_into_database(){
 	$.toaster('Sauvegarde de la carte en cours', "Information", 'info');
-	var ref=new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/");;
+	var ref=new Firebase(FIREBASE_APP_URL + "cards/");
 	var card_id = current_card.card_id ? current_card.card_id : ref.push().key(); 
 	current_card.card_id=card_id;
-	var card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/"+card_id);
+	current_card.user_id=uid;
+	var card_ref = new Firebase(FIREBASE_APP_URL + "cards/"+card_id);
 	
 	
 	card_ref.set(current_card, function(error) {
@@ -168,7 +168,7 @@ function confirm_delete_card(){
 	var card_ref;
 	
 	if(current_card.card_id){
-		card_ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/" + current_card.card_id);
+		card_ref = new Firebase(FIREBASE_APP_URL + "/cards/" + current_card.card_id);
 	}
 	
 	
@@ -231,9 +231,6 @@ function add_card_name_to_database(card_id, card){
 function load_saved_card(){
 	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
 	console.log($(this).attr("id"));
-	
 	var card_id = $(this).attr("id");
-	
-	load_card_with_ids(uid,card_id);
-	
+	load_card_with_ids(card_id);
 }

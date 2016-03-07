@@ -22,8 +22,7 @@ $(document).ready(function() {
 		$("#save_button").click(save_card);
 	
 		var card_id = $.urlParam("cid");
-		var user_id = $.urlParam("uid");
-		if(!(card_id && user_id) && localStorage.current_card_string){
+		if(!card_id && localStorage.current_card_string){
 			current_card=JSON.parse(localStorage.current_card_string);
 		}
 	
