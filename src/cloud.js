@@ -19,6 +19,9 @@ $(document).ready(function() {
 	$(".provider_connect").click(provider_connect);
 	$("#button_confirm_delete_card").click(confirm_delete_card);
 	$("#button_cancel_delete_card").click(cancel_delete_card);
+	$("#share_button").click(share_card);
+	$("#button_confirm_share").click(close_share_popup);
+	
 
 	var card_id = $.urlParam("cid");
 	console.log("request parameters "+ card_id);
@@ -28,6 +31,19 @@ $(document).ready(function() {
 	}
 
 });
+
+function close_share_popup(){
+	$('#share_card_modal').modal('hide');
+}
+
+function share_card(){
+	if(current_card.card_id){
+		$("#share_url").html("Veuillez copier le lien de partage suivant: "+window.location.href +"?cid="+current_card.card_id);
+	} else {
+		$("#share_url").html("Votre carte n'est pas sauvegardée. Vous ne pouvez pas la partager !");
+	}
+	$('#share_card_modal').modal('show');
+}
 
 function load_card_with_ids(card_id){
 	
