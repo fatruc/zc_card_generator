@@ -93,6 +93,13 @@ function to_title_case(str) {
     });
 }
 
+$.urlParam = function(name){
+	var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+	if(results==null){
+		return null;
+	}
+	return results[1] || 0;
+}
 
 $(document).ready(function() {
 	disable_form_validation();

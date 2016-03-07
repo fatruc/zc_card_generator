@@ -20,8 +20,36 @@ $(document).ready(function() {
 	$("#button_confirm_delete_card").click(confirm_delete_card);
 	$("#button_cancel_delete_card").click(cancel_delete_card);
 
+	var card_id = $.urlParam("cid");
+	var user_id = $.urlParam("uid");
+	console.log("request parameters "+user_id + " " + card_id);
+	if(card_id && user_id){
+		console.log(user_id + " " + card_id);
+		load_card_with_ids(user_id,card_id);
+	}
 
 });
+
+function load_card_with_ids(user_id, card_id){
+	
+	$.toaster('Chargement de la carte demandée en cours', "Information", 'info');
+	
+	var ref = new Firebase(FIREBASE_APP_URL + "users/" + user_id + "/cards/"+card_id);
+	
+	ref.once("value", function(snapshot) {
+		$.toaster('Chargement terminé', "Information", 'info');
+		current_card = snapshot.val();
+		current_card.card_id = card_id;
+		console.log(current_card);
+		load();
+	  	  
+	}, function (errorObject) {
+	  $.toaster('Echec du chargement', "Erreur", 'danger');
+	});
+	
+}
+
+
 
 function disconnect(){
 	new Firebase(FIREBASE_APP_URL).unauth();
@@ -205,17 +233,7 @@ function load_saved_card(){
 	console.log($(this).attr("id"));
 	
 	var card_id = $(this).attr("id");
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/cards/"+card_id);
 	
-	ref.once("value", function(snapshot) {
-		$.toaster('Chargement terminé', "Information", 'info');
-		current_card = snapshot.val();
-		current_card.card_id = card_id;
-		console.log(current_card);
-		load();
-	  	  
-	}, function (errorObject) {
-	  $.toaster('Echec du chargement', "Erreur", 'danger');
-	});
+	load_card_with_ids(uid,card_id);
 	
 }
