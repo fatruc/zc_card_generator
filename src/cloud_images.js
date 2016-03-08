@@ -57,6 +57,6 @@ function share_image(){
 function share_image_done(image_id){
 	var link = 'http://i.imgur.com/' + image_id + ".png";
 	console.log(link);
-	$("#share_url").html("Veuillez copier le lien de partage suivant: "+link+"<br/><br/>Pour un forum:</br>[url]"+link+"[/url]");
+	$("#share_url").html("Veuillez copier le lien de partage suivant: "+link+"<br/><br/>Pour un forum:</br>[img]"+link+"[/img]");
 	$('#share_card_modal').modal('show');
 }
