@@ -138,6 +138,27 @@ function download() {
     html2canvas(document.getElementById("clone_container"), {
         onrendered: function(canvas) {
 			
+			var imageData = canvas.toDataURL("image/png").substring(22);
+
+			
+			 $.ajax({
+			  url: 'https://api.imgur.com/3/image',
+			  type: 'POST',
+			  headers: {
+				Authorization: 'Client-ID a7322c5eebcda17',
+				Accept: 'application/json'
+			  },
+			  data: {
+				image: imageData,
+				type: 'base64'
+			  },
+			  success: function(result) {
+				var id = result.data.id;
+				console.log('http://i.imgur.com/' + id + ".png");
+				//window.location = 'https://imgur.com/gallery/' + id;
+			  }
+			});
+			
 			canvas.toBlob(function(blob) {
 				var file_name = $("#input_card_name").val().replace(/\W/g, '_')+".png";
 				saveAs(blob, file_name);
