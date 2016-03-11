@@ -27,7 +27,14 @@ function share_image(){
 			$("#clone_container").hide();
 			show_card_border_preview();	
 			
-			$.toaster('Enregistrement de l\'image en cours. Veuillez patienter !', "Information", 'warning');
+			var loadingToast = $.toast({
+				heading: 'Veuillez patienter',
+				text: "Enregistrement de l\'image en cours",
+				icon:'info',
+				hideAfter: false,
+				allowToastClose: false
+			});
+			
 			
 			 $.ajax({
 			  url: 'https://api.imgur.com/3/image',
@@ -41,8 +48,22 @@ function share_image(){
 				type: 'base64'
 			  },
 			  success: function(result) {
+				loadingToast.reset();
+				
+				$.toast({
+					heading: 'Terminé',
+					icon:'success'
+				});
+				
 				var id = result.data.id;
 				share_image_done(id);
+			  },
+			  
+			  error: function(){
+				 $.toast({
+					heading: 'Erreur',
+					icon:'error'
+				});
 			  }
 			});
 			
