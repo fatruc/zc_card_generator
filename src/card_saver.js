@@ -2,9 +2,14 @@
  * Mise à jour du modèle mémoire en fonction des manipulations
  */
 
+function display_unsaved_data_alert(){
+	there_is_unsaved_change();
+}
+ 
 function save_griffe_image(){
 	var griffe_image = $("#output_griffe");
 	current_card.griffe_image = griffe_image.attr("src");
+	display_unsaved_data_alert();
 }
 
 function save_card_image(){
@@ -12,6 +17,7 @@ function save_card_image(){
 	current_card.card_image = card_image.attr("src");
 	current_card.card_image_top = card_image.position().top;
 	current_card.card_image_left = card_image.position().left;
+	display_unsaved_data_alert();
 }
 
 function save_stats() {
@@ -19,6 +25,7 @@ function save_stats() {
     current_card.nb_dices = replace_carriage_return($("#input_nb_dice").val());
 	current_card.val_dices = replace_carriage_return($("#input_val_dice").val());
     current_card.power = replace_carriage_return($("#input_power").val());
+	display_unsaved_data_alert();
 	
 	output_stats();
 }
@@ -26,12 +33,15 @@ function save_stats() {
 function save_headers() {
 	set_locale_string("card_name",$("#input_card_name").val());
 	set_locale_string("card_sub_name",$("#input_card_sub_name").val());
+	display_unsaved_data_alert();
 	
 	output_headers();
 }
 
 function save_ultrared(){
 	current_card.ultrared=$("#input_ultrared").is(":checked");
+	display_unsaved_data_alert();
+	
 	output_ultrared();
 }
 
@@ -44,16 +54,19 @@ function save_break_in_noise(){
 		$("#calque_break_in_noise").removeAttr("style");
 		current_card.break_in_noise_top = $("#calque_break_in_noise").css("top");
 	}
+	display_unsaved_data_alert();
 	
 	output_break_in_noise();
 }
 
 function end_drag_break_in_noise(){
 	current_card.break_in_noise_top = $("#calque_break_in_noise").position().top;
+	display_unsaved_data_alert();
 }
 
 function end_drag_kill_noise(){
 	current_card.kill_noise_top = $("#calque_kill_noise").position().top;
+	display_unsaved_data_alert();
 }
 
 function save_kill_noise(){
@@ -65,6 +78,7 @@ function save_kill_noise(){
 		$("#calque_kill_noise").removeAttr("style");
 		current_card.kill_noise_top = $("#calque_kill_noise").css("top");
 	}
+	display_unsaved_data_alert();
 	
 	output_kill_noise();
 }
@@ -82,12 +96,15 @@ function save_dual_icon(){
 	} else if(current_card.dual_icon_distance){
 		current_card.dual_image="img/dual_distance.png";
 	}
+	display_unsaved_data_alert();
 	
 	output_dual_icon();
 }
 
 function save_description(){
 	set_locale_string("description",$("#input_description").val());
+	display_unsaved_data_alert();
+	
 	output_description();
 }
 
@@ -96,10 +113,13 @@ function save_image_max_range(){
 	output_image_max_range();
 	center_card_image();
 	move_shadow();
+	display_unsaved_data_alert();
 }
 
 function save_card_image_shadow(){
 	current_card.card_image_shadow = $("#input_image_shadow").is(":checked");
+	display_unsaved_data_alert();
+	
 	output_card_image_shadow();
 }
 

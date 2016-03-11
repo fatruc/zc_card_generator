@@ -249,6 +249,7 @@ function add_card_name_to_database(card_id, card){
 			  load_saved_card_names();
 			  add_card_to_cache(card);
 			 $.toaster('Sauvegarde terminée', "Information", 'info');
+			  there_is_no_unsved_change();
 		  }
 	});
 	

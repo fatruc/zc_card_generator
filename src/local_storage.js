@@ -2,6 +2,7 @@ var current_card = new Object();
 
 function remember_card(){
 	localStorage.current_card_string = JSON.stringify(current_card);
+	 there_is_no_unsved_change();
 }
 
 function clear_card(){

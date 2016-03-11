@@ -101,6 +101,20 @@ $.urlParam = function(name){
 	return results[1] || 0;
 }
 
+function there_is_unsaved_change(){
+	
+	$("#unsaved_warning").show();
+	
+	$(window).bind('beforeunload', function(){
+	  return 'Certaines modifications n\'ont pas été sauvegardées ni mémorisées !';
+	});
+}
+
+function there_is_no_unsved_change(){
+	$("#unsaved_warning").hide();
+	$(window).unbind('beforeunload');
+}
+
 $(document).ready(function() {
 	disable_form_validation();
 	
@@ -110,6 +124,8 @@ $(document).ready(function() {
     });
 	
 	$("#downoad_button").click(download);
+	
+
 });
 
 
