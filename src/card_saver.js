@@ -12,6 +12,12 @@ function save_griffe_image(){
 	display_unsaved_data_alert();
 }
 
+function delete_griffe_image(){
+	current_card.griffe_image = "";
+	display_unsaved_data_alert();
+	output_griffe();
+}
+
 function save_card_image(){
 	var card_image = $("#card_image");
 	current_card.card_image = card_image.attr("src");
@@ -176,6 +182,8 @@ $(document).ready(function() {
 	$("#load_griffe_image").click(function(){
 		$("#griffe_file").click();
 	});
+	
+	$("#delete_griffe_image").click(delete_griffe_image);
 	
 	$("#load_dual_image").click(function(){
 		$("#input_dual_file").click();
