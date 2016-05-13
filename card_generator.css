@@ -436,8 +436,8 @@ textarea {
 }
 
 @font-face {
-    font-family: Crackhouse;
-    src: url('fonts/crackhouse.otf') format("opentype");
+    font-family: 'Crackhouse';
+	src: local('Crackhouse'), url('fonts/crackhouse.woff') format('woff');
 }
 
 #input_dual_container tr {
