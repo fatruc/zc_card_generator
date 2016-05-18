@@ -97,6 +97,10 @@ function center_card_image(){
 	});
 }
 
+function update_descripion_text_position(){
+	$("#output_description_container").height($("#card_overlay").offset().top+$("#card_overlay").height()-$("#calque_description").offset().top);
+}
+
 function output_description(){
 	var description = get_locale_string("description");
 
@@ -106,11 +110,13 @@ function output_description(){
         $("#calque_description").show();
         $(".input_card_stats").prop('disabled', true);
     } else {
+		$("#calque_description").removeAttr("style");
 		$("#output_description").html("");
         $("#calque_description").hide();
         $(".input_card_stats").prop('disabled', false);
     }
 	
+	update_descripion_text_position();
 	output_griffe();
 }
 

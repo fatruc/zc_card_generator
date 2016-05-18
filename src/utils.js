@@ -116,6 +116,8 @@ function there_is_no_unsved_change(){
 }
 
 $(document).ready(function() {
+	
+
 	disable_form_validation();
 	
 	$(".help").popover({

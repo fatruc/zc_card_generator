@@ -102,6 +102,10 @@ function load_dual_icon(){
 function load_description(){
 	var description = get_locale_string("description");
 	$("#input_description").val(description);
+	
+	$("#calque_description").css("top",current_card.description_top);
+	update_descripion_text_position();
+	
 	output_description();
 }
 

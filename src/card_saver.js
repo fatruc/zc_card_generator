@@ -75,6 +75,11 @@ function end_drag_kill_noise(){
 	display_unsaved_data_alert();
 }
 
+function end_drag_description(){
+	current_card.description_top = $("#calque_description").position().top;
+	display_unsaved_data_alert();
+}
+
 function save_kill_noise(){
 	current_card.noisy_kill=$("#input_kill_noisy").is(":checked");
 	current_card.silent_kill=$("#input_kill_silent").is(":checked");
@@ -113,8 +118,14 @@ function save_dual_icon(){
 }
 
 function save_description(){
-	set_locale_string("description",$("#input_description").val());
+	var description = $("#input_description").val();
+	set_locale_string("description",description);
 	display_unsaved_data_alert();
+	
+	// réinitialisation de la position du cadre
+	if(!description){
+		current_card.description_top = $("#calque_description").css("top");
+	}
 	
 	output_description();
 }
@@ -138,6 +149,8 @@ function end_drag_card_image(){
 	move_shadow();
 	save_card_image();
 }
+
+
 
 $(document).ready(function() {
 	$("#card_file").change(handle_change_card_image);
@@ -163,6 +176,16 @@ $(document).ready(function() {
 		stop: end_drag_break_in_noise
     });
 
+	
+	
+	$("#calque_description").draggable({
+        axis: "y",
+        cursor: "move",
+		drag: update_descripion_text_position,
+		stop: end_drag_description
+    });
+	
+	
     $(".calque_kill_noise").draggable({
         containment: "#card_overlay",
         axis: "y",

@@ -165,6 +165,7 @@ nav li div.radio label, nav li div.checkbox label{
 	background-color: white;
     position: relative;
     margin: auto;
+	overflow: hidden;
 }
 
 #calque_card_border_preview{
@@ -378,8 +379,10 @@ textarea {
 	background-repeat: no-repeat;
 	background-position: top;
 	width:427px;
-    bottom: 0px;
+    top: 549px;
     left: 26px;
+	height:241px;
+	cursor: move;
 }
 
 .calque_description_bleeding_0 {
@@ -434,14 +437,12 @@ textarea {
     position:absolute;
     font-size: 18pt;
     color:#5C5C5F;
-    bottom: 0px;
     width: 420px;
-    height: 201px;
-    left: 35px;
+
 }
 
 #output_description_container  tr{
-    height: 201px;
+
     vertical-align:middle;
 }
 
