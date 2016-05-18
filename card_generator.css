@@ -74,12 +74,55 @@ nav li div.radio label, nav li div.checkbox label{
 	top: 80px;
 }
 
-.card_background_bleeding_1{
+.card_background_bleeding_0_normal, .card_background_bleeding_0_pimp, .card_background_bleeding_0_starting{
+	width:488px;
+	height: 750px;
+}
+
+.card_background_bleeding_1_normal, .card_background_bleeding_1_pimp, .card_background_bleeding_1_starting{
 	width:488px;
 	height: 822px;
-	background-image:url("img/bleeding_full.png");
 	margin-top: -36px;
 }
+
+.card_background_bleeding_2_normal, .card_background_bleeding_2_pimp, .card_background_bleeding_2_starting{
+	width:597px;
+	height: 822px;
+	margin-top: -36px;
+	margin-left: -55px;
+}
+
+.card_background_bleeding_3_normal, .card_background_bleeding_3_pimp, .card_background_bleeding_3_starting{
+	width:648px;
+	height: 910px;
+	margin-top: -80px;
+	margin-left: -80px;
+}
+
+.card_background_bleeding_0_normal, .card_background_bleeding_1_normal, .card_background_bleeding_2_normal{
+	background-image:url("img/bleeding_full_normal.png");
+}
+
+.card_background_bleeding_3_normal{
+	background-image:url("img/bleeding_print_and_cut_normal.png");
+}
+
+.card_background_bleeding_0_pimp, .card_background_bleeding_1_pimp, .card_background_bleeding_2_pimp{
+	background-image:url("img/bleeding_full_pimp.png");
+}
+
+.card_background_bleeding_3_pimp{
+	background-image:url("img/bleeding_print_and_cut_pimp.png");
+}
+
+.card_background_bleeding_0_starting, .card_background_bleeding_1_starting, .card_background_bleeding_2_starting{
+	background-image:url("img/bleeding_full_starting.png");
+}
+
+.card_background_bleeding_3_starting{
+	background-image:url("img/bleeding_print_and_cut_starting.png");
+}
+
 
 .card_bleeding_area_bleeding_1{
 	width:597px;
@@ -93,13 +136,7 @@ nav li div.radio label, nav li div.checkbox label{
 	background-repeat: no-repeat;
 }
 
-.card_background_bleeding_2{
-	width:597px;
-	height: 822px;
-	background-image:url("img/bleeding_full.png");
-	margin-top: -36px;
-	margin-left: -55px;
-}
+
 
 .card_bleeding_area_bleeding_3 {
 	width:648px;
@@ -107,25 +144,14 @@ nav li div.radio label, nav li div.checkbox label{
 	background-repeat: no-repeat;
 }
 
-.card_background_bleeding_3{
-	width:648px;
-	height: 910px;
-	background-image:url("img/bleeding_print_and_cut.png");
-	margin-top: -80px;
-	margin-left: -80px;
-}
+
 
 .card_background{
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-.card_background_bleeding_0{
-	width:488px;
-	height: 750px;
-	background-image:url("img/bleeding_full.png");
-	
-}
+
 
 .card_bleeding_area_bleeding_0 {
 	width:488px;

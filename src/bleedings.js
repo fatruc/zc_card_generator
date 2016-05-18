@@ -11,18 +11,35 @@ function change_bleeding_areas() {
 
 	$(".calque_bleeding").each(function(){
 		var element_id = $(this).attr("id");
-		$(this).removeClass(element_id+"_bleeding_0");
-		$(this).removeClass(element_id+"_bleeding_1");
-		$(this).removeClass(element_id+"_bleeding_2");
-		$(this).removeClass(element_id+"_bleeding_3");
+		
+		$(this).removeClass (function (index, css) {
+			return remove_bleeding_style(css)
+
+		});
+
 	});
 	
 	var selected_bleeding_suffix = $('input[name=input_bleeding]:checked').val();
+	var selected_card_type = $('input[name=input_card_type]:checked').val();
 	
 	$(".calque_bleeding").each(function(){
+		$(this).addClass($(this).attr("id") + "_" + selected_bleeding_suffix + "_" + selected_card_type);
 		$(this).addClass($(this).attr("id") + "_" + selected_bleeding_suffix);
 	});
 	
+}
+
+function remove_bleeding_style(css) {
+    var current_styles = css.split(" ");
+	var j = 0;
+    while (j < current_styles.length) {
+        if (current_styles[j].indexOf("_bleeding_")<0){
+			current_styles.splice(j, 1);
+		} else {
+            j++;
+		}
+    }
+    return current_styles.join(" ");
 }
 
 $(document).ready(function() {

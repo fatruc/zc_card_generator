@@ -13,6 +13,7 @@
 	load_break_in_noise();
 	load_kill_noise();
 	load_dual_icon();
+	load_card_type();
 	load_griffe_image();
 }
  
@@ -22,6 +23,8 @@ function load_griffe_image(){
 	
 	output_griffe();
 }
+
+
 
 function load_card_image(){
 	var card_image = $("#card_image");
@@ -79,6 +82,13 @@ function load_kill_noise(){
 	$("#calque_kill_noise").css("top",current_card.kill_noise_top);
 	
 	output_kill_noise();
+}
+
+function load_card_type(){
+	$("#input_card_type_normal").prop("checked",!current_card.card_type || current_card.card_type == "normal");
+	$("#input_card_type_pimp").prop("checked",current_card.card_type == "pimp");
+	$("#input_card_type_starting").prop("checked",current_card.card_type == "starting");
+	change_bleeding_areas();
 }
 
 function load_dual_icon(){

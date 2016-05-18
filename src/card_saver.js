@@ -89,6 +89,11 @@ function save_kill_noise(){
 	output_kill_noise();
 }
 
+function save_card_type(){
+	current_card.card_type = $('input[name=input_card_type]:checked').val();
+	change_bleeding_areas();
+}
+
 function save_dual_icon(){
 	current_card.dual_icon_none = $("#input_dual_none").is(":checked");
 	current_card.dual_icon_melee = $("#input_dual_melee").is(":checked");
@@ -146,6 +151,7 @@ $(document).ready(function() {
 	
 	$("#input_ultrared").click(save_ultrared);
     $("input[name='input_dual']").click(save_dual_icon);
+	$("input[name='input_card_type']").click(save_card_type);
     $("input[name='input_break_in_noise']").click(save_break_in_noise);
 	
 	$("input[name='input_kill_noise']").click(save_kill_noise);
