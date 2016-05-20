@@ -114,6 +114,7 @@ function handle_change_griffe_image(evt) {
 				
 				save_griffe_image();
 				output_griffe();
+				save_griffe_position();
             };
         })(f);
 

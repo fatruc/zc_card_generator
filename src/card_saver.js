@@ -9,7 +9,6 @@ function display_unsaved_data_alert(){
 function save_griffe_image(){
 	var griffe_image = $("#output_griffe");
 	current_card.griffe_image = griffe_image.attr("src");
-	save_griffe_position();
 	display_unsaved_data_alert();
 }
 
