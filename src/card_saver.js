@@ -76,7 +76,12 @@ function end_drag_kill_noise(){
 }
 
 function end_drag_description(){
+	update_descripion_text_position();
 	current_card.description_top = $("#calque_description").position().top;
+	
+	current_card.griffe_image_top = $("#output_griffe").position().top;
+	current_card.griffe_image_left = $("#output_griffe").position().left;
+	
 	display_unsaved_data_alert();
 }
 
@@ -128,6 +133,11 @@ function save_description(){
 	}
 	
 	output_description();
+}
+
+function start_drag_description(){
+	start_top_description = $("#calque_description").offset().top;
+	start_top_griffe=$("#output_griffe").offset().top;
 }
 
 function save_image_max_range(){
@@ -182,7 +192,8 @@ $(document).ready(function() {
         axis: "y",
         cursor: "move",
 		drag: update_descripion_text_position,
-		stop: end_drag_description
+		stop: end_drag_description,
+		start: start_drag_description
     });
 	
 	

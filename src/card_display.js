@@ -97,8 +97,25 @@ function center_card_image(){
 	});
 }
 
+var start_top_griffe;
+
+var start_top_description;
+
+function start_drag_description(){
+	if(current_card.griffe_image){
+		start_top_description = $("#calque_description").position().top;
+		start_top_griffe=$("#output_griffe").position().top
+	}
+}
+
 function update_descripion_text_position(){
 	$("#output_description_container").height($("#card_overlay").offset().top+$("#card_overlay").height()-$("#calque_description").offset().top);
+	
+	// update griffe position
+	if(current_card.griffe_image){
+		var delta = $("#calque_description").position().top-start_top_description;
+		$("#output_griffe").css("top",start_top_griffe+delta);
+	}
 }
 
 function output_description(){
@@ -122,21 +139,35 @@ function output_description(){
 
 function output_griffe(){
 	
+	var griffe_image = $("#output_griffe");
+	griffe_image.attr("src", current_card.griffe_image?current_card.griffe_image:"");
+
+	
 	if(current_card.griffe_image){
-		$("#output_griffe").show();
+		griffe_image.show();
 	}else {
-		$("#output_griffe").hide();
+		griffe_image.hide();
 	}
 	
-	$("#output_griffe").removeClass("calque_griffe_desc calque_griffe_stats");
-	
-	if(get_locale_string("description")){
-		$("#output_griffe").addClass("calque_griffe_desc");
-	} else if(is_stats()){
-		$("#output_griffe").addClass("calque_griffe_stats");
+	if(current_card.griffe_image_top){
+		griffe_image.css("top",current_card.griffe_image_top);
+		griffe_image.css("left",current_card.griffe_image_left);
 	} else {
-		$("#output_griffe").hide();
+		
+		if(get_locale_string("description")){
+			griffe_image.css("top",$("#calque_description").position().top - $("#output_griffe").height()/2 + 10);
+			griffe_image.css("left",$("#calque_description").position().left- $("#output_griffe").width()/2 + 10);
+		} else if(is_stats()){
+			griffe_image.css("top",$("#calque_stats").position().top - $("#output_griffe").height()/2 + 10);
+			griffe_image.css("left",$("#calque_stats").position().left- $("#output_griffe").width()/2 + 10);
+		} else {
+			griffe_image.hide();
+		}
+		
+		
 	}
+	
+	
 }
 
 function output_image_max_range(){

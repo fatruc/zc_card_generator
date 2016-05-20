@@ -18,9 +18,6 @@
 }
  
 function load_griffe_image(){
-	var griffe_image = $("#output_griffe");
-	griffe_image.attr("src", current_card.griffe_image?current_card.griffe_image:"");
-	
 	output_griffe();
 }
 
