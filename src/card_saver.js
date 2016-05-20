@@ -85,6 +85,10 @@ function end_drag_kill_noise(){
 function save_griffe_position(){
 	current_card.griffe_image_top = $("#output_griffe").position().top;
 	current_card.griffe_image_left = $("#output_griffe").position().left;
+	if(current_card.griffe_image_left < 0){
+		current_card.griffe_image_left=0;
+	}
+	output_griffe();
 }
 
 function end_drag_griffe(){
