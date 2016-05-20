@@ -16,21 +16,6 @@ body {
 	
 }
 
-
-
-
-
-.calque_griffe_desc {
-	top: 534px;
-    left: 19px;
-}
-
-
-.calque_griffe_stats{
-	top: 594px;
-    left: 19px;
-}
-
 #downoad_button{
 	margin-left: 40px;
 }
@@ -379,6 +364,10 @@ textarea {
     top: 549px;
     left: 26px;
 	height:241px;
+	cursor: move;
+}
+
+#output_griffe{
 	cursor: move;
 }
 
