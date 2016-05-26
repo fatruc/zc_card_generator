@@ -25,6 +25,29 @@ function replace_dices(text) {
     });
 }
 
+function replace_comp_capa(text) {
+    var emoticons = {
+            '[ACTIF]': '<span class="libelle_capacite_compagnon">ACTIF: </span>',
+            '[PASSIF]': '<span class="libelle_capacite_compagnon">PASSIF: </span>'
+        },
+        patterns = [],
+        metachars = /\[[A-Z]*\]/g;
+
+    // build a regex pattern for each defined property
+    for (var i in emoticons) {
+        if (emoticons.hasOwnProperty(i)) { // escape metacharacters
+            patterns.push('(' + i.replace(metachars, "\\$&") + ')');
+        }
+    }
+
+    // build the regular expression and replace
+    return text.replace(new RegExp(patterns.join('|'), 'g'), function(match) {
+        return typeof emoticons[match] != 'undefined' ?
+            emoticons[match] :
+            match;
+    });
+}
+
 
 function create_card_image_shadow(){
 	

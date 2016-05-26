@@ -123,7 +123,7 @@ function output_description(){
 
     if (description) {
 		description = replace_carriage_return(description);
-		$("#output_description").html(replace_dices(description.toUpperCase()));
+		$("#output_description").html(replace_comp_capa(replace_dices(description.toUpperCase())));
         $("#calque_description").show();
         $(".input_card_stats").prop('disabled', true);
     } else {

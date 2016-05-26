@@ -385,6 +385,10 @@ textarea {
 	margin-bottom:-80px;
 }
 
+.libelle_capacite_compagnon{
+	color: black;
+}
+
 .optional {
     display:none;
 }
