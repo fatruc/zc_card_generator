@@ -27,8 +27,10 @@ function replace_dices(text) {
 
 function replace_comp_capa(text) {
     var emoticons = {
-            '[ACTIF]': '<span class="libelle_capacite_compagnon">ACTIF: </span>',
-            '[PASSIF]': '<span class="libelle_capacite_compagnon">PASSIF: </span>'
+            '[ACTIF]': '<span class="libelle_capacite_compagnon">ACTIF : </span>',
+            '[PASSIF]': '<span class="libelle_capacite_compagnon">PASSIF : </span>',
+			'[ACTIVE]': '<span class="libelle_capacite_compagnon">ACTIVE: </span>',
+            '[PASSIVE]': '<span class="libelle_capacite_compagnon">PASSIVE: </span>'
         },
         patterns = [],
         metachars = /\[[A-Z]*\]/g;
