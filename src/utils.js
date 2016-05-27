@@ -16,11 +16,21 @@ function replace_comp_capa_unit(text, capa, newCapa){
 	}
 	
 	text = text.replace(pattern, function(){
-		var index = count > 1 ? ' ' + i++ : '';
+		var index
+		if(endsWith(capa,"ive")){
+			 index = count > 1 ? ' #' + i++ : '';	
+		} else {
+			index = count > 1 ? ' ' + i++ : '';	
+		}
+		
 		var replacement = newCapa.replace('#',index);
 		return '<span class="libelle_capacite_compagnon">'+replacement+'</span>';
 	});
 	return text;	
+}
+
+function endsWith(str, suffix) {
+    return str.toUpperCase().indexOf(suffix.toUpperCase(), str.length - suffix.length) !== -1;
 }
 
 function replace_comp_capa(text) {
