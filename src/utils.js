@@ -24,10 +24,10 @@ function replace_comp_capa_unit(text, capa, newCapa){
 }
 
 function replace_comp_capa(text) {
-	text = replace_comp_capa_unit(text, "ACTIF", "ACTIF#: ");
-	text = replace_comp_capa_unit(text, "PASSIF", "PASSIF#: ");
-	text = replace_comp_capa_unit(text, "ACTIVE", "ACTIVE# : ");
-	text = replace_comp_capa_unit(text, "PASSIVE", "PASSIVE# : ");
+	text = replace_comp_capa_unit(text, "ACTIF", "ACTIF# : ");
+	text = replace_comp_capa_unit(text, "PASSIF", "PASSIF# : ");
+	text = replace_comp_capa_unit(text, "ACTIVE", "ACTIVE#: ");
+	text = replace_comp_capa_unit(text, "PASSIVE", "PASSIVE#: ");
 	
 	return text;
 	
