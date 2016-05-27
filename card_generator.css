@@ -387,6 +387,8 @@ textarea {
 
 .libelle_capacite_compagnon{
 	color: black;
+	display: inline-block;
+    margin-top: 10px;
 }
 
 .optional {
@@ -441,6 +443,7 @@ textarea {
     font-size: 18pt;
     color:#5C5C5F;
     text-align:center;
+	padding-bottom: 18px;
 }
 
 .img_de {
