@@ -1,53 +1,36 @@
 function replace_dices(text) {
-    var emoticons = {
-            '[1]': 'img/de1.png',
-            '[2]': 'img/de2.png',
-            '[3]': 'img/de3.png',
-            '[4]': 'img/de4.png',
-            '[5]': 'img/de5.png',
-            '[6]': 'img/de6.png',
-        },
-        patterns = [],
-        metachars = /\[[0-6]\]/g;
+ 	for(var i=1;i<6;i++){
+		text = text.replace(new RegExp('\\['+i+'\\]', 'g'),'<img src="img/de'+i+'.png" class="img_de"/>');
+	}
+	return text;
+}
 
-    // build a regex pattern for each defined property
-    for (var i in emoticons) {
-        if (emoticons.hasOwnProperty(i)) { // escape metacharacters
-            patterns.push('(' + i.replace(metachars, "\\$&") + ')');
-        }
-    }
+function replace_comp_capa_unit(text, capa, newCapa){
+    var i=1;
+	
+	var pattern = new RegExp('\\['+capa+'\\]', 'g');
+	var count = (text.match(pattern) || []).length;
 
-    // build the regular expression and replace
-    return text.replace(new RegExp(patterns.join('|'), 'g'), function(match) {
-        return typeof emoticons[match] != 'undefined' ?
-            '<img src="' + emoticons[match] + '" class="img_de"/>' :
-            match;
-    });
+	if(count==0){
+		return text;
+	}
+	
+	text = text.replace(pattern, function(){
+		var index = count > 1 ? ' ' + i++ : '';
+		var replacement = newCapa.replace('#',index);
+		return '<span class="libelle_capacite_compagnon">'+replacement+'</span>';
+	});
+	return text;	
 }
 
 function replace_comp_capa(text) {
-    var emoticons = {
-            '[ACTIF]': '<span class="libelle_capacite_compagnon">ACTIF : </span>',
-            '[PASSIF]': '<span class="libelle_capacite_compagnon">PASSIF : </span>',
-			'[ACTIVE]': '<span class="libelle_capacite_compagnon">ACTIVE: </span>',
-            '[PASSIVE]': '<span class="libelle_capacite_compagnon">PASSIVE: </span>'
-        },
-        patterns = [],
-        metachars = /\[[A-Z]*\]/g;
-
-    // build a regex pattern for each defined property
-    for (var i in emoticons) {
-        if (emoticons.hasOwnProperty(i)) { // escape metacharacters
-            patterns.push('(' + i.replace(metachars, "\\$&") + ')');
-        }
-    }
-
-    // build the regular expression and replace
-    return text.replace(new RegExp(patterns.join('|'), 'g'), function(match) {
-        return typeof emoticons[match] != 'undefined' ?
-            emoticons[match] :
-            match;
-    });
+	text = replace_comp_capa_unit(text, "ACTIF", "ACTIF#: ");
+	text = replace_comp_capa_unit(text, "PASSIF", "PASSIF#: ");
+	text = replace_comp_capa_unit(text, "ACTIVE", "ACTIVE# : ");
+	text = replace_comp_capa_unit(text, "PASSIVE", "PASSIVE# : ");
+	
+	return text;
+	
 }
 
 
@@ -143,6 +126,7 @@ function there_is_no_unsved_change(){
 $(document).ready(function() {
 	
 
+	
 	disable_form_validation();
 	
 	$(".help").popover({
