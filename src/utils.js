@@ -1,5 +1,5 @@
 function replace_dices(text) {
- 	for(var i=1;i<6;i++){
+ 	for(var i=1;i<7;i++){
 		text = text.replace(new RegExp('\\['+i+'\\]', 'g'),'<img src="img/de'+i+'.png" class="img_de"/>');
 	}
 	return text;
