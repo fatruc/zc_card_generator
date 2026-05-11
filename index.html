@@ -10,6 +10,21 @@
 		<script src="libs/jquery-ui-1.11.4.min.js"></script>           
 		<script src="libs/FileSaver.min.js"></script>  
 		<script src="libs/canvas-toBlob.js"></script>  
+		<!-- Firebase v9 compat -->
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+		<script>
+			firebase.initializeApp({
+				apiKey: "AIzaSyAvnuPJhYwIHjNx_-guURY-lqvQ0OjQ2h8",
+				authDomain: "cartes-equip-zc.firebaseapp.com",
+				databaseURL: "https://cartes-equip-zc.firebaseio.com",
+				projectId: "cartes-equip-zc",
+				storageBucket: "cartes-equip-zc.firebasestorage.app",
+				messagingSenderId: "502010993261",
+				appId: "1:502010993261:web:50202b1c89f03aa0587d64"
+			});
+		</script>
 		<script src="src/utils.js"></script> 
 		<script src="src/bleedings.js"></script> 
 		<script src="src/card_display.js"></script> 
@@ -40,21 +55,6 @@
 		<link rel="stylesheet" href="libs/bootstrap-theme.min.css" />		     
 		<!-- Latest compiled and minified JavaScript --> 		 
 		<script src="libs/bootstrap.min.js"></script>
-		<!-- Firebase v9 compat -->
-		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-		<script>
-			firebase.initializeApp({
-				apiKey: "AIzaSyAvnuPJhYwIHjNx_-guURY-lqvQ0OjQ2h8",
-				authDomain: "cartes-equip-zc.firebaseapp.com",
-				databaseURL: "https://cartes-equip-zc.firebaseio.com",
-				projectId: "cartes-equip-zc",
-				storageBucket: "cartes-equip-zc.firebasestorage.app",
-				messagingSenderId: "502010993261",
-				appId: "1:502010993261:web:50202b1c89f03aa0587d64"
-			});
-		</script>
 		
 	</head>       
 	<body>
