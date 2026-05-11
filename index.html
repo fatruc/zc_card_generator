@@ -40,7 +40,21 @@
 		<link rel="stylesheet" href="libs/bootstrap-theme.min.css" />		     
 		<!-- Latest compiled and minified JavaScript --> 		 
 		<script src="libs/bootstrap.min.js"></script>
-		<script src='libs/firebase.js'></script>
+		<!-- Firebase v9 compat -->
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+		<script>
+			firebase.initializeApp({
+				apiKey: "AIzaSyAvnuPJhYwIHjNx_-guURY-lqvQ0OjQ2h8",
+				authDomain: "cartes-equip-zc.firebaseapp.com",
+				databaseURL: "https://cartes-equip-zc.firebaseio.com",
+				projectId: "cartes-equip-zc",
+				storageBucket: "cartes-equip-zc.firebasestorage.app",
+				messagingSenderId: "502010993261",
+				appId: "1:502010993261:web:50202b1c89f03aa0587d64"
+			});
+		</script>
 		
 	</head>       
 	<body>

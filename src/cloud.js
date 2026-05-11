@@ -2,7 +2,7 @@
 
 var uid;
 
-var FIREBASE_APP_URL = "https://cartes-equip-zc.firebaseio.com/";
+var db = firebase.database();
 
 $(document).ready(function() {
 	
@@ -13,8 +13,7 @@ $(document).ready(function() {
 	
 	on_disconnected();
 	
-	var ref = new Firebase(FIREBASE_APP_URL);
-	ref.onAuth(authDataCallback);
+	firebase.auth().onAuthStateChanged(authDataCallback);
 	
 	$("#disconnect").click(disconnect);
 	$(".provider_connect").click(provider_connect);
@@ -58,9 +57,9 @@ function load_card_with_ids_from_db(card_id,loadingToast){
 		});
 	}
 	
-	var ref = new Firebase(FIREBASE_APP_URL+ "cards/"+card_id);
+	var ref = db.ref("cards/"+card_id);
 	
-	ref.once("value", function(snapshot) {
+	ref.once("value").then(function(snapshot) {
 		$.toast({
 			heading: 'Chargement terminé',
 			icon: 'success'
@@ -68,13 +67,12 @@ function load_card_with_ids_from_db(card_id,loadingToast){
 		var loaded_card = snapshot.val();
 		loaded_card.card_id = card_id;
 		on_card_loaded(loaded_card,loadingToast);
-	}, function (errorObject) {
+	}).catch(function(errorObject) {
 		$.toast({
 			heading:'Erreur',
 			text:'Echec du chargement de la carte',
 			icon:'error'
 		});
-	  
 	});
 }
 
@@ -88,7 +86,7 @@ function on_card_loaded(card,loadingToast){
 
 
 function disconnect(){
-	new Firebase(FIREBASE_APP_URL).unauth();
+	firebase.auth().signOut();
 }
 
 function on_connected(){
@@ -122,29 +120,41 @@ function disconnected_toast(){
 
 
 function provider_connect(){
-	var provider = $(this).attr("provider");
-	var ref = new Firebase(FIREBASE_APP_URL);
-	ref.authWithOAuthPopup(provider, function(error, authData) {
-	  if (error) {
-			$.toast({
-				heading:'Erreur',
-				text:'Impossible de se connecter',
-				icon:'error'
-			});
-	  } else {
+	var providerName = $(this).attr("provider");
+	var provider;
+	switch(providerName) {
+		case "google":
+			provider = new firebase.auth.GoogleAuthProvider();
+			break;
+		case "facebook":
+			provider = new firebase.auth.FacebookAuthProvider();
+			break;
+		case "twitter":
+			provider = new firebase.auth.TwitterAuthProvider();
+			break;
+		default:
+			console.error("Unknown provider: " + providerName);
+			return;
+	}
+	firebase.auth().signInWithPopup(provider).then(function(result) {
 		$.toast({
 			text:'Vous êtes maintenant connecté',
 			icon:'success'
 		});
 		on_connected();
-		console.log("Authenticated successfully with payload:", authData);
-	  }
+		console.log("Authenticated successfully with payload:", result.user);
+	}).catch(function(error) {
+		$.toast({
+			heading:'Erreur',
+			text:'Impossible de se connecter: ' + error.message,
+			icon:'error'
+		});
 	});
 }
 
 // Create a callback which logs the current auth state
-function authDataCallback(authData) {
-  if (authData) {
+function authDataCallback(user) {
+  if (user) {
 	
 	$.toast({
 		text:'Vous êtes maintenant connecté',
@@ -152,9 +162,10 @@ function authDataCallback(authData) {
 	});
 	
 	on_connected();
-	uid = authData.uid;
-	$("#connected_info").html("Connecté avec "+to_title_case(authData.provider)+" <span class=\"caret\"></span>");
-    console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	uid = user.uid;
+	var providerName = user.providerData.length > 0 ? user.providerData[0].providerId.replace('.com','') : 'inconnu';
+	$("#connected_info").html("Connecté avec "+to_title_case(providerName)+" <span class=\"caret\"></span>");
+    console.log("User " + user.uid + " is logged in with " + providerName);
 	load_saved_card_names();
   } else {
 	  
@@ -176,9 +187,9 @@ function load_saved_card_names(){
 		icon:'info'
 	});
 	
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/");
+	var ref = db.ref("users/" + uid + "/card_names/");
 	
-	ref.once("value", function(snapshot) {
+	ref.once("value").then(function(snapshot) {
 	
 	  var card_names = snapshot.val();
 	  console.log(card_names);
@@ -197,7 +208,7 @@ function load_saved_card_names(){
 	$(".saved_card").click(load_saved_card);
 	  
 	  
-	}, function (errorObject) {
+	}).catch(function(errorObject) {
 		
 		$.toast({
 			heading:'Erreur',
@@ -223,12 +234,12 @@ function save_card_into_database(){
 		 allowToastClose: false
 	});
 	
-	var ref=new Firebase(FIREBASE_APP_URL + "cards/");
-	var card_id = current_card.card_id ? current_card.card_id : ref.push().key(); 
+	var ref = db.ref("cards/");
+	var card_id = current_card.card_id ? current_card.card_id : ref.push().key; 
 	current_card.card_id=card_id;
 	current_card.user_id=uid;
 	current_card.card_date=Date.now();
-	var card_ref = new Firebase(FIREBASE_APP_URL + "cards/"+card_id);
+	var card_ref = db.ref("cards/"+card_id);
 	
 	
 	card_ref.set(current_card, function(error) {
@@ -239,7 +250,7 @@ function save_card_into_database(){
 				icon:'error'
 			});
 		} else {
-			  add_card_name_to_database(card_ref.key(), current_card, loadingToast);
+			  add_card_name_to_database(card_ref.key, current_card, loadingToast);
 		}
 	});
 }
@@ -262,7 +273,7 @@ function confirm_delete_card(){
 			allowToastClose: false
 		});
 		
-		var card_ref = new Firebase(FIREBASE_APP_URL + "/cards/" + current_card.card_id);
+		var card_ref = db.ref("cards/" + current_card.card_id);
 		
 		card_ref.set(null, function(error) {
 		  if (error) {
@@ -272,7 +283,7 @@ function confirm_delete_card(){
 				icon:'error'
 			});
 		  } else {
-			  delete_card_name_from_database(card_ref.key(),loadingToast);
+			  delete_card_name_from_database(card_ref.key,loadingToast);
 		  }
 		});
 	
@@ -295,7 +306,7 @@ function delete_card(){
 }
 
 function delete_card_name_from_database(card_id,loadingToast){
-		new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/"+card_id).set(null, function(error) {
+		db.ref("users/" + uid + "/card_names/"+card_id).set(null, function(error) {
 		  loadingToast.reset();
 		  if (error) {
 				$.toast({
@@ -322,7 +333,7 @@ function add_card_name_to_database(card_id, card, loadingToast){
 	
 	console.log(card_id);
 	
-	var ref = new Firebase(FIREBASE_APP_URL + "users/" + uid + "/card_names/"+card_id);
+	var ref = db.ref("users/" + uid + "/card_names/"+card_id);
 	
 	var card_name = new Object();
 	card_name.card_id=card_id;
